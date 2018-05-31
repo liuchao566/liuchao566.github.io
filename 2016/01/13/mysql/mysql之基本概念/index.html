@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="数据库管理系统（DBMS）常见的数据库管理软件oracle，db2，sql server，access，mysql数据库操作:
+
+数据定义语言DDL
+数据操作语言DML
+
+sql规范
+sql语句不分大小写，建议大写
+sql语句默认以分号结束
+
+最常用的两种存储引擎
+MyISAM
+InnoDB
+
+12" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>mysql之基本概念 | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="数据库管理系统（DBMS）常见的数据库管理软件oracle，db2，sql server，access，mysql数据库操作:  数据定义语言DDL 数据操作语言DML  sql规范 sql语句不分大小写，建议大写 sql语句默认以分号结束  最常用的两种存储引擎 MyISAM InnoDB  123MyISAM支持表锁，InnoDB支持行锁MyISAM是非事务安全型，InnoDB是事务安全型My">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql之基本概念">
+<meta property="og:url" content="http://www.liuchao566.com/2016/01/13/mysql/mysql之基本概念/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="数据库管理系统（DBMS）常见的数据库管理软件oracle，db2，sql server，access，mysql数据库操作:  数据定义语言DDL 数据操作语言DML  sql规范 sql语句不分大小写，建议大写 sql语句默认以分号结束  最常用的两种存储引擎 MyISAM InnoDB  123MyISAM支持表锁，InnoDB支持行锁MyISAM是非事务安全型，InnoDB是事务安全型My">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-31T04:03:35.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql之基本概念">
+<meta name="twitter:description" content="数据库管理系统（DBMS）常见的数据库管理软件oracle，db2，sql server，access，mysql数据库操作:  数据定义语言DDL 数据操作语言DML  sql规范 sql语句不分大小写，建议大写 sql语句默认以分号结束  最常用的两种存储引擎 MyISAM InnoDB  123MyISAM支持表锁，InnoDB支持行锁MyISAM是非事务安全型，InnoDB是事务安全型My">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">归档</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-mysql/mysql之基本概念" class="post-mysql/mysql之基本概念 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      mysql之基本概念
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/01/13/mysql/mysql之基本概念/" data-id="cjhstbvrq001pm8tb1meuww0f" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="数据库管理系统（DBMS）"><a href="#数据库管理系统（DBMS）" class="headerlink" title="数据库管理系统（DBMS）"></a>数据库管理系统（DBMS）</h3><p>常见的数据库管理软件oracle，db2，sql server，access，mysql<br>数据库操作:</p>
+<ol>
+<li>数据定义语言DDL</li>
+<li>数据操作语言DML</li>
+</ol>
+<h3 id="sql规范"><a href="#sql规范" class="headerlink" title="sql规范"></a>sql规范</h3><ol>
+<li>sql语句不分大小写，建议大写</li>
+<li>sql语句默认以分号结束</li>
+</ol>
+<h3 id="最常用的两种存储引擎"><a href="#最常用的两种存储引擎" class="headerlink" title="最常用的两种存储引擎"></a>最常用的两种存储引擎</h3><ol>
+<li>MyISAM</li>
+<li>InnoDB</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyISAM支持表锁，InnoDB支持行锁</span><br><span class="line">MyISAM是非事务安全型，InnoDB是事务安全型</span><br><span class="line">MyISAM不支持外键，InnoDB支持外键</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/01/13/mysql/mysql之基本概念/">
+    <time datetime="2016-01-12T16:00:00.000Z" class="entry-date">
+        2016-01-13
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2016/03/01/soa架构/soa架构之redis/" rel="prev"><span class="meta-nav">←</span> soa架构之redis</a></span>
+    
+    
+        <span class="nav-next"><a href="/2015/12/03/android/android之androidannotations与butterknife对比/" rel="next">android之androidannotations与butterknife对比 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

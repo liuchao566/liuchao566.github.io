@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="下载redis win版
+设置win服务切换到redis安装目录，执行
+1redis-server --service-install redis.windows-service.conf --loglevel verbose" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>redis之win下安装 | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="下载redis win版 设置win服务切换到redis安装目录，执行 1redis-server --service-install redis.windows-service.conf --loglevel verbose">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis之win下安装">
+<meta property="og:url" content="http://www.liuchao566.com/2016/06/01/other/redis之win下安装/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="下载redis win版 设置win服务切换到redis安装目录，执行 1redis-server --service-install redis.windows-service.conf --loglevel verbose">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github-production-release-asset-2e65be.s3.amazonaws.com/3402186/bb1d10fc-3fac-11e6-8dc7-a51af1d6f36f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20180423%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20180423T114712Z&X-Amz-Expires=300&X-Amz-Signature=1590c42f9c94133a9ba03dc06d67e2a59b78e22ce5f0d1b54e0f8e1a37e23ab3&X-Amz-SignedHeaders=host&actor_id=4494313&response-content-disposition=attachment%3B%20filename%3DRedis-x64-3.2.100.msi&response-content-type=application%2Foctet-stream">
+<meta property="og:updated_time" content="2018-05-31T04:16:30.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis之win下安装">
+<meta name="twitter:description" content="下载redis win版 设置win服务切换到redis安装目录，执行 1redis-server --service-install redis.windows-service.conf --loglevel verbose">
+<meta name="twitter:image" content="https://github-production-release-asset-2e65be.s3.amazonaws.com/3402186/bb1d10fc-3fac-11e6-8dc7-a51af1d6f36f?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20180423%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20180423T114712Z&X-Amz-Expires=300&X-Amz-Signature=1590c42f9c94133a9ba03dc06d67e2a59b78e22ce5f0d1b54e0f8e1a37e23ab3&X-Amz-SignedHeaders=host&actor_id=4494313&response-content-disposition=attachment%3B%20filename%3DRedis-x64-3.2.100.msi&response-content-type=application%2Foctet-stream">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">归档</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-other/redis之win下安装" class="post-other/redis之win下安装 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      redis之win下安装
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/06/01/other/redis之win下安装/" data-id="cjhstbvsj002rm8tb9uu7loxm" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="下载redis-win版"><a href="#下载redis-win版" class="headerlink" title="下载redis win版"></a>下载redis win版</h3><p><img src="https://github-production-release-asset-2e65be.s3.amazonaws.com/3402186/bb1d10fc-3fac-11e6-8dc7-a51af1d6f36f?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20180423%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20180423T114712Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=1590c42f9c94133a9ba03dc06d67e2a59b78e22ce5f0d1b54e0f8e1a37e23ab3&amp;X-Amz-SignedHeaders=host&amp;actor_id=4494313&amp;response-content-disposition=attachment%3B%20filename%3DRedis-x64-3.2.100.msi&amp;response-content-type=application%2Foctet-stream" alt="下载地址"></p>
+<h3 id="设置win服务"><a href="#设置win服务" class="headerlink" title="设置win服务"></a>设置win服务</h3><p>切换到redis安装目录，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server --service-install redis.windows-service.conf --loglevel verbose</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/06/01/other/redis之win下安装/">
+    <time datetime="2016-05-31T16:00:00.000Z" class="entry-date">
+        2016-06-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/other/">other</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2016/07/28/ssh/struts2/" rel="prev"><span class="meta-nav">←</span> struts2</a></span>
+    
+    
+        <span class="nav-next"><a href="/2016/05/07/blog/blog之servlet搭建/" rel="next">blog之servlet搭建 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
