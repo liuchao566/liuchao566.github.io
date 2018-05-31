@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="被监听的对象：三个域对象request、session、servletContext监听器，8个监听器，监听域对象的创建和销毁，监听域对象的属性变化
+
+编写一个监听器去实现监听器接口
+覆盖监听器的方法
+在web.xml中进行配置
+
+（1）ServletContextListener（最重要）监听Se" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>java之监听器 | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="被监听的对象：三个域对象request、session、servletContext监听器，8个监听器，监听域对象的创建和销毁，监听域对象的属性变化  编写一个监听器去实现监听器接口 覆盖监听器的方法 在web.xml中进行配置  （1）ServletContextListener（最重要）监听ServletContext对象的创建与销毁 1234使用：1. 编写一个监听器去实现监听器接口2. 覆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java之监听器">
+<meta property="og:url" content="http://www.liuchao566.com/2015/04/17/java/java之监听器/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="被监听的对象：三个域对象request、session、servletContext监听器，8个监听器，监听域对象的创建和销毁，监听域对象的属性变化  编写一个监听器去实现监听器接口 覆盖监听器的方法 在web.xml中进行配置  （1）ServletContextListener（最重要）监听ServletContext对象的创建与销毁 1234使用：1. 编写一个监听器去实现监听器接口2. 覆">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-30T08:32:42.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java之监听器">
+<meta name="twitter:description" content="被监听的对象：三个域对象request、session、servletContext监听器，8个监听器，监听域对象的创建和销毁，监听域对象的属性变化  编写一个监听器去实现监听器接口 覆盖监听器的方法 在web.xml中进行配置  （1）ServletContextListener（最重要）监听ServletContext对象的创建与销毁 1234使用：1. 编写一个监听器去实现监听器接口2. 覆">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">归档</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-java/java之监听器" class="post-java/java之监听器 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      java之监听器
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/04/17/java/java之监听器/" data-id="cjhstbvre0019m8tbcf7j2z8j" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>被监听的对象：三个域对象request、session、servletContext<br>监听器，8个监听器，监听域对象的创建和销毁，监听域对象的属性变化</p>
+<ol>
+<li>编写一个监听器去实现监听器接口</li>
+<li>覆盖监听器的方法</li>
+<li>在web.xml中进行配置</li>
+</ol>
+<h3 id="（1）ServletContextListener（最重要）"><a href="#（1）ServletContextListener（最重要）" class="headerlink" title="（1）ServletContextListener（最重要）"></a>（1）ServletContextListener（最重要）</h3><p>监听ServletContext对象的创建与销毁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用：</span><br><span class="line">1. 编写一个监听器去实现监听器接口</span><br><span class="line">2. 覆盖监听器的方法</span><br><span class="line">3. 在web.xml中进行配置</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">使用场景：初始化</span><br><span class="line">1. 数据库的连接</span><br><span class="line">2. 配置文件的加载</span><br><span class="line">3. 定时器（Timer/TimerTask）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class MyServletContextListener implements ServletContextListener &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void contextInitialized(ServletContextEvent servletContextEvent) &#123;</span><br><span class="line">        System.out.println(&quot;context创建了&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void contextDestroyed(ServletContextEvent servletContextEvent) &#123;</span><br><span class="line">        System.out.println(&quot;context销毁了&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;com.abblcg.test.MyServletContextListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="（2）HttpSessionListener"><a href="#（2）HttpSessionListener" class="headerlink" title="（2）HttpSessionListener"></a>（2）HttpSessionListener</h3><p>jsp文件默认会设置session=”true”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; session=&quot;true&quot; %&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="（3）ServletRequestListener"><a href="#（3）ServletRequestListener" class="headerlink" title="（3）ServletRequestListener"></a>（3）ServletRequestListener</h3><h3 id="（4）ServletContextAttibuteListener"><a href="#（4）ServletContextAttibuteListener" class="headerlink" title="（4）ServletContextAttibuteListener"></a>（4）ServletContextAttibuteListener</h3><h3 id="（5）HttpSessionAttributeListener"><a href="#（5）HttpSessionAttributeListener" class="headerlink" title="（5）HttpSessionAttributeListener"></a>（5）HttpSessionAttributeListener</h3><h3 id="（6）ServletRequestAriibuteListenr"><a href="#（6）ServletRequestAriibuteListenr" class="headerlink" title="（6）ServletRequestAriibuteListenr"></a>（6）ServletRequestAriibuteListenr</h3><h3 id="（7）HttpSessionBindingListener"><a href="#（7）HttpSessionBindingListener" class="headerlink" title="（7）HttpSessionBindingListener"></a>（7）HttpSessionBindingListener</h3><p>监听对象是否被Session绑定或移除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用：</span><br><span class="line">对象实现HttpSessionBindingListener接口</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class User implements HttpSessionBindingListener &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void valueBound(HttpSessionBindingEvent httpSessionBindingEvent) &#123;</span><br><span class="line">        System.out.println(&quot;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void valueUnbound(HttpSessionBindingEvent httpSessionBindingEvent) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HttpSession session = req.getSession();</span><br><span class="line">User user = new User();</span><br><span class="line">session.setAttribute(&quot;user&quot;, user);</span><br></pre></td></tr></table></figure>
+<h3 id="（8）HttpSessionActivationListener"><a href="#（8）HttpSessionActivationListener" class="headerlink" title="（8）HttpSessionActivationListener"></a>（8）HttpSessionActivationListener</h3><p>监听Session中的对象是否序列化或反序列化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用：</span><br><span class="line">对象实现HttpSessionActivationListener接口，并实现Serializable接口，会被自动序列化或者反序列化</span><br></pre></td></tr></table></figure>
+<p>一般情况下，服务器启动的时候自动反序列化，服务器关闭的时候自动序列化<br>也可以设置自动序列化的时间周期<br>在META-INF目录下写context.xml，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;Context&gt;</span><br><span class="line">    &lt;!-- maxIdleSwap:session中的对象多长时间不使用就钝化 --&gt;</span><br><span class="line">    &lt;!-- directory:钝化后的对象的文件写到磁盘的哪个目录下  配置钝化的对象文件在												work/catalina/localhost/钝化文件 --&gt;</span><br><span class="line">    &lt;Manager className=&quot;org.apache.catalina.session.PersistentManager&quot; maxIdleSwap=&quot;1&quot;&gt;</span><br><span class="line">        &lt;Store className=&quot;org.apache.catalina.session.FileStore&quot; directory=&quot;/requesttest&quot;/&gt;</span><br><span class="line">    &lt;/Manager&gt;</span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/04/17/java/java之监听器/">
+    <time datetime="2015-04-16T16:00:00.000Z" class="entry-date">
+        2015-04-17
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2015/05/12/java/java之下载文件名乱码/" rel="prev"><span class="meta-nav">←</span> java之下载文件名乱码</a></span>
+    
+    
+        <span class="nav-next"><a href="/2015/04/14/java/java之session持久化/" rel="next">java之session持久化 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
