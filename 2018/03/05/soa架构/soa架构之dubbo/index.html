@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？一般会想到http请求，但是，开发效率低，维护成本高
+dubbo的出现duboo底层是基于socket传输，传输速度快需要配合zookeeper使用
+zookeeper提供一个注册信息中介的作用服务方和消费方需要向" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>soa架构之dubbo | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？一般会想到http请求，但是，开发效率低，维护成本高 dubbo的出现duboo底层是基于socket传输，传输速度快需要配合zookeeper使用 zookeeper提供一个注册信息中介的作用服务方和消费方需要向zookeeper注册服务服务层就是服务方表现层就是消费方二者都必须创建相同包名的接口类配置好之后，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="soa架构之dubbo">
+<meta property="og:url" content="http://www.liuchao566.com/2018/03/05/soa架构/soa架构之dubbo/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？一般会想到http请求，但是，开发效率低，维护成本高 dubbo的出现duboo底层是基于socket传输，传输速度快需要配合zookeeper使用 zookeeper提供一个注册信息中介的作用服务方和消费方需要向zookeeper注册服务服务层就是服务方表现层就是消费方二者都必须创建相同包名的接口类配置好之后，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-07T08:39:42.979Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="soa架构之dubbo">
+<meta name="twitter:description" content="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？一般会想到http请求，但是，开发效率低，维护成本高 dubbo的出现duboo底层是基于socket传输，传输速度快需要配合zookeeper使用 zookeeper提供一个注册信息中介的作用服务方和消费方需要向zookeeper注册服务服务层就是服务方表现层就是消费方二者都必须创建相同包名的接口类配置好之后，">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-soa架构/soa架构之dubbo" class="post-soa架构/soa架构之dubbo post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      soa架构之dubbo
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/03/05/soa架构/soa架构之dubbo/" data-id="cjhstbvtf003ym8tby7qinxqn" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"><a href="#功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？" class="headerlink" title="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"></a>功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？</h3><p>一般会想到http请求，但是，开发效率低，维护成本高</p>
+<h3 id="dubbo的出现"><a href="#dubbo的出现" class="headerlink" title="dubbo的出现"></a>dubbo的出现</h3><p>duboo底层是基于socket传输，传输速度快<br>需要配合zookeeper使用</p>
+<p>zookeeper提供一个注册信息中介的作用<br>服务方和消费方需要向zookeeper注册服务<br>服务层就是服务方<br>表现层就是消费方<br>二者都必须创建相同包名的接口类<br>配置好之后，表现层就可以直接调用自己的接口访问服务层的接口数据</p>
+<h3 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a>spring配置</h3><p>服务提供方配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 使用dubbo发布服务 --&gt;</span><br><span class="line">&lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;</span><br><span class="line">&lt;dubbo:application name=&quot;myfbs_manager&quot;/&gt;</span><br><span class="line">&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;192.168.43.47:2181&quot;/&gt;</span><br><span class="line">&lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;</span><br><span class="line">&lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot;/&gt;</span><br><span class="line">&lt;!-- 声明需要暴露的服务接口 --&gt;</span><br><span class="line">&lt;dubbo:service interface=&quot;com.abblcg.service.TestService&quot; ref=&quot;testService&quot; timeout=&quot;100000&quot;/&gt;</span><br><span class="line">&lt;bean name=&quot;testService&quot; class=&quot;com.abblcg.service.impl.TestServiceImpl&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>服务消费方配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--引用dubbo服务--&gt;</span><br><span class="line">&lt;dubbo:application name=&quot;myfbs_manager_web&quot;/&gt;</span><br><span class="line">&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;192.168.43.47:2181&quot;/&gt;</span><br><span class="line">&lt;dubbo:reference interface=&quot;com.abblcg.service.TestService&quot; id=&quot;testService&quot;/&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/03/05/soa架构/soa架构之dubbo/">
+    <time datetime="2018-03-04T16:00:00.000Z" class="entry-date">
+        2018-03-05
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/04/21/tornado/tornado基本搭建/" rel="prev"><span class="meta-nav">←</span> tornado基本搭建</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/03/02/正则表达式/正则表达式/" rel="next">正则表达式 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

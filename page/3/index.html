@@ -48,8 +48,6 @@
                 
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
                 
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">归档</a></li>
-                
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
                 
                 </ul>
@@ -58,6 +56,247 @@
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-python/python之字符串-魔法方法" class="post-python/python之字符串-魔法方法 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/11/04/python/python之字符串-魔法方法/">python之字符串-魔法方法</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/11/04/python/python之字符串-魔法方法/" data-id="cjhstbvsx003bm8tb4p7w96mw" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">test1 = &quot;abcdEa123&quot;</span><br><span class="line">test2 = &quot;i am &#123;name&#125;, age &#123;age&#125;&quot;</span><br><span class="line">test3 = &quot;姓名\t年龄\t性别\n张三\t18\t男\n李四\t25\t女&quot;</span><br><span class="line">test4 = &quot;123&quot;</span><br><span class="line">test5 = &quot;\t123   &quot;</span><br><span class="line">test6 = &quot;abc123中国&quot;</span><br><span class="line">test7 = &quot;d://a//b//c.txt&quot;</span><br><span class="line"></span><br><span class="line"># 首字母大写</span><br><span class="line">print(test1.capitalize())</span><br><span class="line"></span><br><span class="line"># 所有变小写（更牛逼）</span><br><span class="line">print(test1.casefold())</span><br><span class="line"></span><br><span class="line"># 所有变小写</span><br><span class="line">print(test1.lower())</span><br><span class="line"></span><br><span class="line"># 字符串拉伸长度，其它位置填充指定字符，默认为空</span><br><span class="line">print(test1.center(20))</span><br><span class="line">print(test1.center(20, &apos;*&apos;))</span><br><span class="line">print(test1.ljust(20, &apos;*&apos;))</span><br><span class="line">print(test1.rjust(20, &apos;*&apos;))</span><br><span class="line"></span><br><span class="line"># 包含指定字符的个数</span><br><span class="line">print(test1.count(&apos;a&apos;))</span><br><span class="line"></span><br><span class="line"># 查找指定字符位置</span><br><span class="line">print(test1.find(&apos;ab&apos;))</span><br><span class="line"></span><br><span class="line"># 替换字符串标记</span><br><span class="line">print(test2.format(name=&apos;mayun&apos;, age=18))</span><br><span class="line">print(test2.format_map(&#123;&apos;name&apos;: &apos;mayun&apos;, &apos;age&apos;: 18&#125;))</span><br><span class="line"></span><br><span class="line"># 判断是否是字母或数字</span><br><span class="line">print(test1.isalnum())</span><br><span class="line"></span><br><span class="line"># 判断是否是字母、汉字</span><br><span class="line">print(test1.isalpha())</span><br><span class="line"></span><br><span class="line"># 判断是否是数字</span><br><span class="line">print(test4.isdecimal())</span><br><span class="line">print(test4.isdigit())</span><br><span class="line"></span><br><span class="line"># 制表工具，一般写表格数据到文件时会用到</span><br><span class="line">print(test3.expandtabs(20))</span><br><span class="line"></span><br><span class="line"># 去除左右空白</span><br><span class="line">print(test5.strip())</span><br><span class="line">print(test5.rstrip())</span><br><span class="line">print(test5.lstrip())</span><br><span class="line"></span><br><span class="line"># 首尾去除指定字符串</span><br><span class="line">print(test6.strip(&apos;c1&apos;))</span><br><span class="line">print(test6.lstrip(&apos;abc中国&apos;))</span><br><span class="line">print(test6.rstrip(&apos;abc中国&apos;))</span><br><span class="line"></span><br><span class="line"># 分割字符串</span><br><span class="line">print(test7.partition(&apos;.&apos;))</span><br><span class="line">print(test7.split(&apos;.&apos;))</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/11/04/python/python之字符串-魔法方法/">
+    <time datetime="2016-11-03T16:00:00.000Z" class="entry-date">
+        2016-11-04
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-python/python之字符串-格式化" class="post-python/python之字符串-格式化 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/11/03/python/python之字符串-格式化/">python之字符串-格式化</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/11/03/python/python之字符串-格式化/" data-id="cjhstbvt1003gm8tbx5hl7l2a" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="字符串操作1-基本操作"><a href="#字符串操作1-基本操作" class="headerlink" title="字符串操作1-%基本操作"></a>字符串操作1-%基本操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(&apos;i am %s&apos; % &apos;张三&apos;)</span><br><span class="line">print(&apos;i am %s, age %d&apos; % (&apos;张三&apos;, 18))</span><br><span class="line">print(&apos;i am %(name)s, age %(age)d&apos; % &#123;&apos;name&apos;:&apos;张三&apos;, &apos;age&apos;:18&#125;)</span><br><span class="line">print(&quot;percent %.2f&quot; % 99.12345)</span><br><span class="line">print(&quot;percent %.2f%%&quot; % 99.12345)</span><br></pre></td></tr></table></figure>
+<h3 id="字符串操作1-深入"><a href="#字符串操作1-深入" class="headerlink" title="字符串操作1-%深入"></a>字符串操作1-%深入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%[(name)][flags][width].[precision]typecode</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. name可选，用于选择指定的key</span><br><span class="line">2. flags可选（+ - 空格 0）</span><br><span class="line">3. width可选，占有宽度</span><br><span class="line">4. .precision可选，小数点后保留的位数</span><br><span class="line">5. typecode必选(常用的有s,d)</span><br></pre></td></tr></table></figure>
+<h3 id="字符串操作1-format基本操作"><a href="#字符串操作1-format基本操作" class="headerlink" title="字符串操作1-format基本操作"></a>字符串操作1-format基本操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(&apos;i am %s&apos; % &apos;张三&apos;.format(name=&apos;mayun&apos;, age=18))</span><br><span class="line">print(&apos;i am %s&apos; % &apos;张三&apos;.format_map(&#123;&apos;name&apos;: &apos;mayun&apos;, &apos;age&apos;: 18&#125;))</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/11/03/python/python之字符串-格式化/">
+    <time datetime="2016-11-02T16:00:00.000Z" class="entry-date">
+        2016-11-03
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-python/python之字符串-操作" class="post-python/python之字符串-操作 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/11/01/python/python之字符串-操作/">python之字符串-操作</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/11/01/python/python之字符串-操作/" data-id="cjhstbvsy003cm8tbi8d21etv" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">str = &apos;abcdefg&apos;</span><br><span class="line"></span><br><span class="line"># 倒序</span><br><span class="line">str = str[-1::-1]</span><br><span class="line">str = str[::-1]</span><br><span class="line"></span><br><span class="line"># 截取&apos;bcd&apos;</span><br><span class="line">str = str[1:4]</span><br><span class="line"></span><br><span class="line"># 截取&apos;bcdef&apos;</span><br><span class="line">str = str[1:-1]</span><br><span class="line"></span><br><span class="line"># 截取&apos;bdf&apos;</span><br><span class="line">str = str[1:-1:2]</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/11/01/python/python之字符串-操作/">
+    <time datetime="2016-10-31T16:00:00.000Z" class="entry-date">
+        2016-11-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-效率/windows之快捷命令行" class="post-效率/windows之快捷命令行 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/10/25/效率/windows之快捷命令行/">windows之快捷命令行</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/25/效率/windows之快捷命令行/" data-id="cji89ty26000ftstb1y9usa0w" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="查看端口号占用"><a href="#查看端口号占用" class="headerlink" title="查看端口号占用"></a>查看端口号占用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano | findstr &quot;:80 &quot;</span><br><span class="line">tasklist /fi &quot;PID eq 8992&quot;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/10/25/效率/windows之快捷命令行/">
+    <time datetime="2016-10-24T16:00:00.000Z" class="entry-date">
+        2016-10-25
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/效率/">效率</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-python/python之装饰器" class="post-python/python之装饰器 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/10/22/python/python之装饰器/">python之装饰器</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/22/python/python之装饰器/" data-id="cjhstbvt4003km8tbkor5zi7l" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>为源函数添加附加功能而不修改源函数的函数<br>装饰器=高阶函数+函数嵌套+闭包</p>
+<h3 id="案例：统计方法运行时间"><a href="#案例：统计方法运行时间" class="headerlink" title="案例：统计方法运行时间"></a>案例：统计方法运行时间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def timer(method_name):</span><br><span class="line">    def timer_func(func):</span><br><span class="line">        def wrapper(*args, **kwargs):</span><br><span class="line">            start_time = time.time()</span><br><span class="line">            res = func(*args, **kwargs)</span><br><span class="line">            stop_time = time.time()</span><br><span class="line">            print(&quot;%s函数运行时间是%s&quot; % (method_name, stop_time - start_time))</span><br><span class="line">            return res</span><br><span class="line">        return wrapper</span><br><span class="line">    return timer_func</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@timer(method_name=&apos;test&apos;)</span><br><span class="line">def test():</span><br><span class="line">    time.sleep(1)</span><br><span class="line">    print(&quot;test方法运行中&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test()</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/10/22/python/python之装饰器/">
+    <time datetime="2016-10-21T16:00:00.000Z" class="entry-date">
+        2016-10-22
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
   
     <article id="post-python/python之生成器" class="post-python/python之生成器 post type-post status-publish format-standard hentry">
     <!---->
@@ -212,6 +451,54 @@
 
 
   
+    <article id="post-python/python之函数-匿名函数" class="post-python/python之函数-匿名函数 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/10/05/python/python之函数-匿名函数/">python之函数-匿名函数</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/05/python/python之函数-匿名函数/" data-id="cjhstbvsf002mm8tb2e1s3az0" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def calc(x):</span><br><span class="line">	return x+1</span><br><span class="line"></span><br><span class="line">print(calc(5))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">calc = lambda x:x+1</span><br><span class="line"></span><br><span class="line">print(calc(5))</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/10/05/python/python之函数-匿名函数/">
+    <time datetime="2016-10-04T16:00:00.000Z" class="entry-date">
+        2016-10-05
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-python/python之函数-高阶函数" class="post-python/python之函数-高阶函数 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -268,315 +555,10 @@
 
 
   
-    <article id="post-python/python之函数-匿名函数" class="post-python/python之函数-匿名函数 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/10/05/python/python之函数-匿名函数/">python之函数-匿名函数</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/05/python/python之函数-匿名函数/" data-id="cjhstbvsf002mm8tb2e1s3az0" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def calc(x):</span><br><span class="line">	return x+1</span><br><span class="line"></span><br><span class="line">print(calc(5))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">calc = lambda x:x+1</span><br><span class="line"></span><br><span class="line">print(calc(5))</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/10/05/python/python之函数-匿名函数/">
-    <time datetime="2016-10-04T16:00:00.000Z" class="entry-date">
-        2016-10-05
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-python/python之排序" class="post-python/python之排序 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/10/04/python/python之排序/">python之排序</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/04/python/python之排序/" data-id="cjhstbvt3003jm8tbfzzcjdfr" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="字典排序"><a href="#字典排序" class="headerlink" title="字典排序"></a>字典排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">stus = [</span><br><span class="line">    &#123;&quot;name&quot;:&quot;zhangsan&quot;, &quot;age&quot;:16&#125;, </span><br><span class="line">    &#123;&quot;name&quot;:&quot;lisi&quot;, &quot;age&quot;:25&#125;, </span><br><span class="line">    &#123;&quot;name&quot;:&quot;wangwu&quot;, &quot;age&quot;:32&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>按照age排序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stus.sort(key = lambda x:x[&apos;age&apos;])</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;[&#123;&apos;age&apos;: 17, &apos;name&apos;: &apos;wangwu&apos;&#125;, &#123;&apos;age&apos;: 18, &apos;name&apos;: &apos;zhangsan&apos;&#125;, &#123;&apos;age&apos;: 19, &apos;name&apos;: &apos;lisi&apos;&#125;]</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/10/04/python/python之排序/">
-    <time datetime="2016-10-03T16:00:00.000Z" class="entry-date">
-        2016-10-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-python/python之集合-魔法方法" class="post-python/python之集合-魔法方法 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/10/03/python/python之集合-魔法方法/">python之集合-魔法方法</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/03/python/python之集合-魔法方法/" data-id="cjhstbvtb003tm8tbj8tue3ej" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;3,1,5,8,0&#125;</span><br><span class="line"></span><br><span class="line"># 删除不存在元素会报错</span><br><span class="line">set1.remove(9)</span><br><span class="line"></span><br><span class="line"># 删除不存在元素不会报错</span><br><span class="line">set1.discard(9)</span><br></pre></td></tr></table></figure>
-<h3 id="交集、差集、并集"><a href="#交集、差集、并集" class="headerlink" title="交集、差集、并集"></a>交集、差集、并集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">list1 = &#123;3,1,5,8,0&#125;</span><br><span class="line">list2 = &#123;3,1,7&#125;</span><br><span class="line"></span><br><span class="line">set1 = set(list1)</span><br><span class="line">set2 = set(list2)</span><br><span class="line"></span><br><span class="line"># 求交集</span><br><span class="line">print(set1.intersection(set2))</span><br><span class="line">print(set1&amp;set2)</span><br><span class="line"></span><br><span class="line"># 求并集</span><br><span class="line">print(set1.union(set2))</span><br><span class="line">print(set1|set2)</span><br><span class="line"></span><br><span class="line"># 求差集</span><br><span class="line">print(set1-set2)</span><br><span class="line">print(set1.difference(set2))</span><br><span class="line">print(set2-set1)</span><br><span class="line">print(set2.difference(set1))</span><br><span class="line"></span><br><span class="line"># 交叉补集</span><br><span class="line">print(set1.symmetric_difference(set2))</span><br><span class="line">print(set1^set2)</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/10/03/python/python之集合-魔法方法/">
-    <time datetime="2016-10-02T16:00:00.000Z" class="entry-date">
-        2016-10-03
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-python/python之字典-魔法方法" class="post-python/python之字典-魔法方法 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/10/03/python/python之字典-魔法方法/">python之字典-魔法方法</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/03/python/python之字典-魔法方法/" data-id="cjhstbvsu0038m8tbs0zmpn7x" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="去除字典的keys和values"><a href="#去除字典的keys和values" class="headerlink" title="去除字典的keys和values"></a>去除字典的keys和values</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dict = &#123;&apos;name&apos;:&apos;张三&apos;,&apos;age&apos;:18&#125;</span><br><span class="line">print(list(dict.keys()))</span><br><span class="line">print(list(dict.values()))</span><br></pre></td></tr></table></figure>
-<h3 id="生成字典，key为一个list"><a href="#生成字典，key为一个list" class="headerlink" title="生成字典，key为一个list"></a>生成字典，key为一个list</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dict = &#123;&#125;</span><br><span class="line">v = dict.fromkeys([&apos;name&apos;,&apos;age&apos;,&apos;school&apos;])</span><br><span class="line">print(v)</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/10/03/python/python之字典-魔法方法/">
-    <time datetime="2016-10-02T16:00:00.000Z" class="entry-date">
-        2016-10-03
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-python/python之列表-魔法方法" class="post-python/python之列表-魔法方法 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/10/02/python/python之列表-魔法方法/">python之列表-魔法方法</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/02/python/python之列表-魔法方法/" data-id="cjhstbvst0036m8tbd7egksu9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="字符串转列表"><a href="#字符串转列表" class="headerlink" title="字符串转列表"></a>字符串转列表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str1 = &quot;abcdefg&quot;</span><br><span class="line"></span><br><span class="line">list1 = list(str1)</span><br><span class="line">print(list1)</span><br></pre></td></tr></table></figure>
-<h3 id="列表转字符串"><a href="#列表转字符串" class="headerlink" title="列表转字符串"></a>列表转字符串</h3><p>–如果列表中有数字，只能用for循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">list1 = [1,2,3,&apos;4&apos;,&apos;a&apos;]</span><br><span class="line">str1 = &apos;&apos;</span><br><span class="line">for i in list1:</span><br><span class="line">    str1 += str(i)</span><br><span class="line">print(str1)</span><br></pre></td></tr></table></figure>
-<p>–如果列表中只有字符串，可以用join</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list1 = [&apos;4&apos;,&apos;a&apos;]</span><br><span class="line">str1 = &apos;&apos;.join(list1)</span><br><span class="line">print(str1)</span><br></pre></td></tr></table></figure>
-<h3 id="列表取值"><a href="#列表取值" class="headerlink" title="列表取值"></a>列表取值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">list1 = [&apos;4&apos;,&apos;a&apos;,&apos;中&apos;]</span><br><span class="line"></span><br><span class="line"># 索引取值</span><br><span class="line">print(list1[0])</span><br><span class="line"></span><br><span class="line"># 切片取值</span><br><span class="line">print(list1[0:2])</span><br></pre></td></tr></table></figure>
-<h3 id="列表去重"><a href="#列表去重" class="headerlink" title="列表去重"></a>列表去重</h3><p>–先转set，在转回list</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list1 = [1,1,2]</span><br><span class="line">list1 = list(set(list1))</span><br><span class="line">print(list1)</span><br></pre></td></tr></table></figure>
-<h3 id="列表合并"><a href="#列表合并" class="headerlink" title="列表合并"></a>列表合并</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list1 = [1,2]</span><br><span class="line">list2 = [3,4]</span><br><span class="line">list3 = list1.extend(list2)</span><br></pre></td></tr></table></figure>
-<h3 id="列表遍历带角标"><a href="#列表遍历带角标" class="headerlink" title="列表遍历带角标"></a>列表遍历带角标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i,value in list1:</span><br><span class="line">	print(i,value)</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/10/02/python/python之列表-魔法方法/">
-    <time datetime="2016-10-01T16:00:00.000Z" class="entry-date">
-        2016-10-02
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-python/python之基本数据类型" class="post-python/python之基本数据类型 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/10/01/python/python之基本数据类型/">python之基本数据类型</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/01/python/python之基本数据类型/" data-id="cjhstbvsr0033m8tbkuifm2gb" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="数字-整型、浮点型、布尔型、复数型"><a href="#数字-整型、浮点型、布尔型、复数型" class="headerlink" title="数字(整型、浮点型、布尔型、复数型)"></a>数字(整型、浮点型、布尔型、复数型)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num1 = 100</span><br><span class="line">num2 = 100.00</span><br><span class="line">isNum = TRUE</span><br></pre></td></tr></table></figure>
-<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = &quot;hello world&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list = [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
-<h3 id="元祖"><a href="#元祖" class="headerlink" title="元祖"></a>元祖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tup = (1,2,3,4,5)</span><br></pre></td></tr></table></figure>
-<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set1 = &#123;1,2,3,4,5&#125;</span><br><span class="line"></span><br><span class="line"># 创建空集合不能=&#123;&#125;，&#123;&#125;用于空字典</span><br><span class="line">set2 = set()</span><br></pre></td></tr></table></figure>
-<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict = &#123;&quot;name&quot;:&quot;张三&quot;,&quot;age&quot;:16&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/10/01/python/python之基本数据类型/">
-    <time datetime="2016-09-30T16:00:00.000Z" class="entry-date">
-        2016-10-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -588,7 +570,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

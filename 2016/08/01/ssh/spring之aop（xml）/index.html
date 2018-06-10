@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="案例1：统计dao方法执行的时间
+创建普通类
+
+123456public class DemoDao &amp;#123;    public void save() &amp;#123;    &amp;#125;&amp;#125;
+
+创建增强类
+
+123456789101112131415public class DemoD" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>spring之aop（xml） | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="案例1：统计dao方法执行的时间 创建普通类  123456public class DemoDao &amp;#123;    public void save() &amp;#123;    &amp;#125;&amp;#125;  创建增强类  123456789101112131415public class DemoDaoProxy &amp;#123;    private long startTime;    publi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring之aop（xml）">
+<meta property="og:url" content="http://www.liuchao566.com/2016/08/01/ssh/spring之aop（xml）/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="案例1：统计dao方法执行的时间 创建普通类  123456public class DemoDao &amp;#123;    public void save() &amp;#123;    &amp;#125;&amp;#125;  创建增强类  123456789101112131415public class DemoDaoProxy &amp;#123;    private long startTime;    publi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-01T08:34:53.144Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring之aop（xml）">
+<meta name="twitter:description" content="案例1：统计dao方法执行的时间 创建普通类  123456public class DemoDao &amp;#123;    public void save() &amp;#123;    &amp;#125;&amp;#125;  创建增强类  123456789101112131415public class DemoDaoProxy &amp;#123;    private long startTime;    publi">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-ssh/spring之aop（xml）" class="post-ssh/spring之aop（xml） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      spring之aop（xml）
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之aop（xml）/" data-id="cji89ty1r0001tstbibk10bo5" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="案例1：统计dao方法执行的时间"><a href="#案例1：统计dao方法执行的时间" class="headerlink" title="案例1：统计dao方法执行的时间"></a>案例1：统计dao方法执行的时间</h3><ol>
+<li>创建普通类</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDao &#123;</span><br><span class="line"></span><br><span class="line">    public void save() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建增强类</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDaoProxy &#123;</span><br><span class="line"></span><br><span class="line">    private long startTime;</span><br><span class="line"></span><br><span class="line">    public void beforeMethod() &#123;</span><br><span class="line">        startTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;beforeMethod&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void afterMethod() &#123;</span><br><span class="line">        long doTime = System.currentTimeMillis() - startTime;</span><br><span class="line">        System.out.println(&quot;afterMethod&quot;);</span><br><span class="line">        System.out.println(&quot;执行时间：&quot; + doTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>applicationContext.xml配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean name=&quot;demoDao&quot; class=&quot;com.abblcg.myblog.web.DemoDao&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;bean name=&quot;demoDaoProxy&quot; class=&quot;com.abblcg.myblog.web.DemoDaoProxy&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;aop:config&gt;</span><br><span class="line">        &lt;aop:pointcut id=&quot;pointcut1&quot; expression=&quot;execution(* com.abblcg.myblog.web.DemoDao.save(..))&quot;&gt;&lt;/aop:pointcut&gt;</span><br><span class="line">        &lt;aop:aspect ref=&quot;demoDaoProxy&quot;&gt;</span><br><span class="line">            &lt;aop:before method=&quot;beforeMethod&quot; pointcut-ref=&quot;pointcut1&quot;&gt;&lt;/aop:before&gt;</span><br><span class="line">            &lt;aop:after method=&quot;afterMethod&quot; pointcut-ref=&quot;pointcut1&quot;&gt;&lt;/aop:after&gt;</span><br><span class="line">        &lt;/aop:aspect&gt;</span><br><span class="line">    &lt;/aop:config&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>测试并打印方法执行时间</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line"></span><br><span class="line">DemoDao demoDao = (DemoDao) applicationContext.getBean(&quot;demoDao&quot;);</span><br><span class="line">demoDao.save();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeMethod</span><br><span class="line">afterMethod</span><br><span class="line">执行时间：15</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>execution表达式说明</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">execution:</span><br><span class="line">		匹配方法的执行(常用)		</span><br><span class="line">		execution(表达式)</span><br><span class="line">表达式语法：execution([修饰符] 返回值类型 包名.类名.方法名(参数))</span><br><span class="line">写法说明：</span><br><span class="line">	全匹配方式：</span><br><span class="line">		public void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	访问修饰符可以省略	</span><br><span class="line">		void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	返回值可以使用*号，表示任意返回值</span><br><span class="line">		* com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	包名可以使用*号，表示任意包，但是有几级包，需要写几个*</span><br><span class="line">		* *.*.*.*.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	使用..来表示当前包，及其子包</span><br><span class="line">		* com..CustomerServiceImpl.saveCustomer()</span><br><span class="line">	类名可以使用*号，表示任意类</span><br><span class="line">		* com..*.saveCustomer()</span><br><span class="line">	方法名可以使用*号，表示任意方法</span><br><span class="line">		* com..*.*()</span><br><span class="line">	参数列表可以使用*，表示参数可以是任意数据类型，但是必须有参数</span><br><span class="line">		* com..*.*(*)</span><br><span class="line">	参数列表可以使用..表示有无参数均可，有参数可以是任意类型</span><br><span class="line">		* com..*.*(..)</span><br><span class="line">	全通配方式：</span><br><span class="line">		* *..*.*(..)</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/08/01/ssh/spring之aop（xml）/">
+    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
+        2016-08-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2016/08/01/ssh/spring之ioc（注解）/" rel="prev"><span class="meta-nav">←</span> spring之ioc（注解）</a></span>
+    
+    
+        <span class="nav-next"><a href="/2016/08/01/ssh/spring之ioc（xml）/" rel="next">spring之ioc（xml） <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

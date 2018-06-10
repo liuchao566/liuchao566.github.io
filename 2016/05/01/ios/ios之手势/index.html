@@ -4,6 +4,11 @@
   <meta charset="utf-8">
   
   
+  <meta name="description" content="ios的手势跟android的差不多，略有区别
+在初始方法中定义手势，设置selector
+
+123456789101112131415161718//多指手势let pan = UIPanGestureRecognizer(target:self,action:#selector(handlePa" />
+  
 
   
   
@@ -13,14 +18,17 @@
   
   <title>ios之手势 | 刘朝的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="ios的手势跟android的差不多，略有区别 在初始方法中定义手势，设置selector  123456789101112131415161718//多指手势let pan = UIPanGestureRecognizer(target:self,action:#selector(handlePanGesture(_:)))pan.maximumNumberOfTouches = 1self.a">
+<meta property="og:type" content="article">
 <meta property="og:title" content="ios之手势">
 <meta property="og:url" content="http://www.liuchao566.com/2016/05/01/ios/ios之手势/index.html">
 <meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="ios的手势跟android的差不多，略有区别 在初始方法中定义手势，设置selector  123456789101112131415161718//多指手势let pan = UIPanGestureRecognizer(target:self,action:#selector(handlePanGesture(_:)))pan.maximumNumberOfTouches = 1self.a">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-31T04:09:31.494Z">
+<meta property="og:updated_time" content="2018-06-10T01:51:05.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios之手势">
+<meta name="twitter:description" content="ios的手势跟android的差不多，略有区别 在初始方法中定义手势，设置selector  123456789101112131415161718//多指手势let pan = UIPanGestureRecognizer(target:self,action:#selector(handlePanGesture(_:)))pan.maximumNumberOfTouches = 1self.a">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -48,8 +56,6 @@
                 <ul id="menu-main" class="nav-menu">
                 
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
-                
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">归档</a></li>
                 
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
                 
@@ -79,7 +85,18 @@
 
     <div class="entry-content">
       
-        
+        <h3 id="ios的手势跟android的差不多，略有区别"><a href="#ios的手势跟android的差不多，略有区别" class="headerlink" title="ios的手势跟android的差不多，略有区别"></a>ios的手势跟android的差不多，略有区别</h3><ol>
+<li>在初始方法中定义手势，设置selector</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//多指手势</span><br><span class="line">let pan = UIPanGestureRecognizer(target:self,action:#selector(handlePanGesture(_:)))</span><br><span class="line">pan.maximumNumberOfTouches = 1</span><br><span class="line">self.addGestureRecognizer(pan)</span><br><span class="line">        </span><br><span class="line">//长按</span><br><span class="line">let longPress = UILongPressGestureRecognizer(target:self,action:#selector(handleLongPressGesture(_:)))</span><br><span class="line">self.addGestureRecognizer(longPress)</span><br><span class="line"></span><br><span class="line">//轻点</span><br><span class="line">let tapSingle=UITapGestureRecognizer(target:self,action:#selector(handleTapSingleGesture(_:)))</span><br><span class="line">tapSingle.numberOfTapsRequired = 1</span><br><span class="line">tapSingle.numberOfTouchesRequired = 1</span><br><span class="line">self.addGestureRecognizer(tapSingle)</span><br><span class="line">        </span><br><span class="line">//缩放</span><br><span class="line">let pinch = UIPinchGestureRecognizer(target:self,action:#selector(handlePinchGesture(_:)))</span><br><span class="line">self.addGestureRecognizer(pinch)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>设置selector事件（回调）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@objc func handlePanGesture(_ recognizer:UISwipeGestureRecognizer) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">@objc func handleLongPressGesture(_ recognizer:UISwipeGestureRecognizer) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">@objc func handleTapSingleGesture(_ recognizer:UISwipeGestureRecognizer) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">@objc func handlePinchGesture(_ recognizer:UISwipeGestureRecognizer) &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>UISwipeGestureRecognizer对象中的状态</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">switch recognizer.state &#123;</span><br><span class="line">case .began,</span><br><span class="line">     .changed:</span><br><span class="line">case .ended,</span><br><span class="line">     .cancelled:</span><br><span class="line">default: break</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div><!-- .entry-content -->
 
@@ -124,7 +141,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

@@ -48,8 +48,6 @@
                 
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
                 
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">归档</a></li>
-                
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
                 
                 </ul>
@@ -58,6 +56,259 @@
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-soa架构/dubbo之python" class="post-soa架构/dubbo之python post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/06/07/soa架构/dubbo之python/">dubbo之python</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/06/07/soa架构/dubbo之python/" data-id="cji89ty2r000mtstb4xny1qk9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="Dubbo调用方式"><a href="#Dubbo调用方式" class="headerlink" title="Dubbo调用方式"></a>Dubbo调用方式</h1><p>Dubbo本身支持多种远程调用方式，例如Dubbo RPC（二进制序列化 + tcp协议）、http invoker（二进制序列化 + http协议）、hessian（二进制序列化 + http协议）、WebServices （文本序列化 + http协议）等。</p>
+<h1 id="python可以使用hessian-http这种方式调用"><a href="#python可以使用hessian-http这种方式调用" class="headerlink" title="python可以使用hessian+http这种方式调用"></a>python可以使用hessian+http这种方式调用</h1><p>安装python-hessian</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from pyhessian.client import HessianProxy</span><br><span class="line"> </span><br><span class="line">url = &apos;http://192.168.0.101:20880/&apos;  # 接口地址</span><br><span class="line">interface = &apos;com.abblcg.service.TestService&apos; # 接口名</span><br><span class="line">full_url = url + interface</span><br><span class="line">params=&apos;test&apos;# 参数</span><br><span class="line"> </span><br><span class="line">service = HessianProxy(full_url)</span><br><span class="line">res = service.test(params) #test是接口里的方法</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
+<h1 id="当然你得先有个java版的服务提供方"><a href="#当然你得先有个java版的服务提供方" class="headerlink" title="当然你得先有个java版的服务提供方"></a>当然你得先有个java版的服务提供方</h1><p>见<a href="http://liuchao566.xyz/2016/03/01/soa%E6%9E%B6%E6%9E%84/soa%E6%9E%B6%E6%9E%84%E4%B9%8Bdubbo/" target="_blank" rel="noopener">《soa架构之dubbo》</a></p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/06/07/soa架构/dubbo之python/">
+    <time datetime="2018-06-06T16:00:00.000Z" class="entry-date">
+        2018-06-07
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-java/java之springmvc与struts2的区别" class="post-java/java之springmvc与struts2的区别 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/05/01/java/java之springmvc与struts2的区别/">java之springmvc与struts2的区别</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/05/01/java/java之springmvc与struts2的区别/" data-id="cji89ty27000htstb8pybqnv3" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、springmvc的入口是一个servlet即前端控制器，而struts2入口是一个filter过滤器。</span><br><span class="line">2、springmvc是基于方法开发(一个url对应一个方法)，请求参数传递到方法的形参，可以设计为单例或多例(建议单例)，struts2是基于类开发，传递参数是通过类的属性，只能设计为多例。</span><br><span class="line">3、Struts采用值栈存储请求和响应的数据，通过OGNL存取数据， springmvc通过参数解析器是将request请求内容解析，并给方法形参赋值，将数据和视图封装成ModelAndView对象，最后又将ModelAndView中的模型数据通过request域传输到页面。Jsp视图解析器默认使用jstl。</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/05/01/java/java之springmvc与struts2的区别/">
+    <time datetime="2018-04-30T16:00:00.000Z" class="entry-date">
+        2018-05-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-java/java之mybatis与hibernate的区别" class="post-java/java之mybatis与hibernate的区别 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/05/01/java/java之mybatis与hibernate的区别/">java之mybatis与hibernate的区别</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/05/01/java/java之mybatis与hibernate的区别/" data-id="cji89ty1u0002tstbcwxi4zr9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、Mybatis和hibernate不同，它不完全是一个ORM框架，因为MyBatis需要程序员自己编写Sql语句。mybatis可以通过XML或注解方式灵活配置要运行的sql语句，并将java对象和sql语句映射生成最终执行的sql，最后将sql执行的结果再映射生成java对象。</span><br><span class="line">2、Mybatis学习门槛低，简单易学，程序员直接编写原生态sql，可严格控制sql执行性能，灵活度高，非常适合对关系数据模型要求不高的软件开发，例如互联网软件、企业运营类软件等，因为这类软件需求变化频繁，一但需求变化要求成果输出迅速。但是灵活的前提是mybatis无法做到数据库无关性，如果需要实现支持多种数据库的软件则需要自定义多套sql映射文件，工作量大。</span><br><span class="line">3、Hibernate对象/关系映射能力强，数据库无关性好，对于关系模型要求高的软件（例如需求固定的定制化软件）如果用hibernate开发可以节省很多代码，提高效率。但是Hibernate的学习门槛高，要精通门槛更高，而且怎么设计O/R映射，在性能和对象模型之间如何权衡，以及怎样用好Hibernate需要具有很强的经验和能力才行。</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/05/01/java/java之mybatis与hibernate的区别/">
+    <time datetime="2018-04-30T16:00:00.000Z" class="entry-date">
+        2018-05-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-tornado/tornado基本搭建" class="post-tornado/tornado基本搭建 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/04/21/tornado/tornado基本搭建/">tornado基本搭建</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/04/21/tornado/tornado基本搭建/" data-id="cjhu1i83d0000eotbb4pb1x1h" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="在项目根目录下，新建start-server-py入口文件"><a href="#在项目根目录下，新建start-server-py入口文件" class="headerlink" title="在项目根目录下，新建start_server.py入口文件"></a>在项目根目录下，新建start_server.py入口文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">import tornado.httpserver</span><br><span class="line">import tornado.ioloop</span><br><span class="line">import tornado.options</span><br><span class="line">import tornado.web</span><br><span class="line">from tornado.options import options, define</span><br><span class="line"></span><br><span class="line">import config</span><br><span class="line">from urls import urls</span><br><span class="line"></span><br><span class="line">define(&quot;port&quot;, default=8000, type=int, help=&quot;run server on the given port&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Application(tornado.web.Application):</span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        super(Application, self).__init__(*args, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    options.log_file_prefix = config.log_path</span><br><span class="line">    options.logging = config.log_level</span><br><span class="line">    tornado.options.parse_command_line()</span><br><span class="line">    app = Application(urls, **config.settings)</span><br><span class="line">    http_server = tornado.httpserver.HTTPServer(app)</span><br><span class="line">    http_server.listen(options.port)</span><br><span class="line">    tornado.ioloop.IOLoop.current().start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="在项目根目录下，创建templates目录，作为模板目录，创建login-html文件，如下"><a href="#在项目根目录下，创建templates目录，作为模板目录，创建login-html文件，如下" class="headerlink" title="在项目根目录下，创建templates目录，作为模板目录，创建login.html文件，如下"></a>在项目根目录下，创建templates目录，作为模板目录，创建login.html文件，如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">    &lt;link href=&quot;&#123;&#123; static_url(&apos;css/bootstrap.min.css&apos;) &#125;&#125;&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;link href=&quot;&#123;&#123; static_url(&apos;css/custom.min.css&apos;) &#125;&#125;&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body class=&quot;nav-md&quot;&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;form class=&quot;form-signin&quot; action=&quot;/login_action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">        &#123;% module xsrf_form_html() %&#125;</span><br><span class="line">        &lt;h2 class=&quot;form-signin-heading&quot;&gt;请登录&lt;/h2&gt;</span><br><span class="line">        &lt;label for=&quot;inputEmail&quot; class=&quot;sr-only&quot;&gt;手机号&lt;/label&gt;</span><br><span class="line">        &lt;input type=&quot;tel&quot; id=&quot;inputEmail&quot; class=&quot;form-control&quot; placeholder=&quot;请输入手机号&quot; autofocus name=&quot;mobile&quot;&gt;</span><br><span class="line">        &lt;label for=&quot;inputPassword&quot; class=&quot;sr-only&quot;&gt;密码&lt;/label&gt;</span><br><span class="line">        &lt;input type=&quot;password&quot; id=&quot;inputPassword&quot; class=&quot;form-control&quot; placeholder=&quot;请输入密码&quot; name=&quot;password&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;checkbox&quot;&gt;</span><br><span class="line">            &lt;label&gt;</span><br><span class="line">                &lt;input type=&quot;checkbox&quot; value=&quot;remember-me&quot;&gt; 记住我</span><br><span class="line">            &lt;/label&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;button class=&quot;btn btn-lg btn-primary btn-block&quot; type=&quot;submit&quot;&gt;登录&lt;/button&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt; &lt;!-- /container --&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;&#123;&#123; static_url(&apos;js/jquery.min.js&apos;) &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;&#123;&#123; static_url(&apos;js/bootstrap.min.js&apos;) &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;&#123;&#123; static_url(&apos;js/custom.min.js&apos;) &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="在项目根目录下，创建statics目录，作为静态资源目录，导入js、css等文件"><a href="#在项目根目录下，创建statics目录，作为静态资源目录，导入js、css等文件" class="headerlink" title="在项目根目录下，创建statics目录，作为静态资源目录，导入js、css等文件"></a>在项目根目录下，创建statics目录，作为静态资源目录，导入js、css等文件</h3><h3 id="在项目根目录下，创建config文件，作为项目配置文件"><a href="#在项目根目录下，创建config文件，作为项目配置文件" class="headerlink" title="在项目根目录下，创建config文件，作为项目配置文件"></a>在项目根目录下，创建config文件，作为项目配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"># Tornado app配置</span><br><span class="line">settings = &#123;</span><br><span class="line">    &apos;template_path&apos;: os.path.join(os.path.dirname(__file__), &apos;templates&apos;),</span><br><span class="line">    &apos;static_path&apos;: os.path.join(os.path.dirname(__file__), &apos;statics&apos;),</span><br><span class="line">    &apos;debug&apos;: False,</span><br><span class="line">    &apos;autoreload&apos;: False,</span><br><span class="line">    &apos;cookie_secret&apos;: &quot;FhLXI+BRRomtuaG47hoXEg3JCdi0BUi8vrpWmoxaoyI=&quot;,</span><br><span class="line">    &apos;xsrf_cookies&apos;: True,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 日志</span><br><span class="line">log_path = os.path.join(os.path.dirname(__file__), &apos;logs/log&apos;)</span><br><span class="line">log_level = &quot;debug&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="在项目根目录下，创建urls文件，作为项目路由文件"><a href="#在项目根目录下，创建urls文件，作为项目路由文件" class="headerlink" title="在项目根目录下，创建urls文件，作为项目路由文件"></a>在项目根目录下，创建urls文件，作为项目路由文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">from handlers import Index, User</span><br><span class="line"></span><br><span class="line">urls = [</span><br><span class="line">    (r&quot;/login&quot;, User.LoginUIHandler),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="在项目根目录下，创建handlers目录，创建User-py文件，作为控制层"><a href="#在项目根目录下，创建handlers目录，创建User-py文件，作为控制层" class="headerlink" title="在项目根目录下，创建handlers目录，创建User.py文件，作为控制层"></a>在项目根目录下，创建handlers目录，创建User.py文件，作为控制层</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">from handlers.BaseHandler import BaseHandler</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class LoginUIHandler(BaseHandler):</span><br><span class="line"></span><br><span class="line">    def get(self):</span><br><span class="line">        self.render(&apos;login.html&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">from tornado.web import RequestHandler, StaticFileHandler</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class BaseHandler(RequestHandler):</span><br><span class="line">    def prepare(self):</span><br><span class="line">        print &apos;prepare&apos;</span><br><span class="line"></span><br><span class="line">class StaticFileBaseHandler(StaticFileHandler):</span><br><span class="line"></span><br><span class="line">    def data_received(self, chunk):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        super(StaticFileBaseHandler, self).__init__(*args, **kwargs)</span><br></pre></td></tr></table></figure>
+<h3 id="运行start-server-py，打开localhost-8000-login即可"><a href="#运行start-server-py，打开localhost-8000-login即可" class="headerlink" title="运行start_server.py，打开localhost:8000/login即可"></a>运行start_server.py，打开localhost:8000/login即可</h3>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/04/21/tornado/tornado基本搭建/">
+    <time datetime="2018-04-20T16:00:00.000Z" class="entry-date">
+        2018-04-21
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/tornado/">tornado</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-soa架构/soa架构之dubbo" class="post-soa架构/soa架构之dubbo post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/03/05/soa架构/soa架构之dubbo/">soa架构之dubbo</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/03/05/soa架构/soa架构之dubbo/" data-id="cjhstbvtf003ym8tby7qinxqn" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"><a href="#功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？" class="headerlink" title="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"></a>功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？</h3><p>一般会想到http请求，但是，开发效率低，维护成本高</p>
+<h3 id="dubbo的出现"><a href="#dubbo的出现" class="headerlink" title="dubbo的出现"></a>dubbo的出现</h3><p>duboo底层是基于socket传输，传输速度快<br>需要配合zookeeper使用</p>
+<p>zookeeper提供一个注册信息中介的作用<br>服务方和消费方需要向zookeeper注册服务<br>服务层就是服务方<br>表现层就是消费方<br>二者都必须创建相同包名的接口类<br>配置好之后，表现层就可以直接调用自己的接口访问服务层的接口数据</p>
+<h3 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a>spring配置</h3><p>服务提供方配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 使用dubbo发布服务 --&gt;</span><br><span class="line">&lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;</span><br><span class="line">&lt;dubbo:application name=&quot;myfbs_manager&quot;/&gt;</span><br><span class="line">&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;192.168.43.47:2181&quot;/&gt;</span><br><span class="line">&lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;</span><br><span class="line">&lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot;/&gt;</span><br><span class="line">&lt;!-- 声明需要暴露的服务接口 --&gt;</span><br><span class="line">&lt;dubbo:service interface=&quot;com.abblcg.service.TestService&quot; ref=&quot;testService&quot; timeout=&quot;100000&quot;/&gt;</span><br><span class="line">&lt;bean name=&quot;testService&quot; class=&quot;com.abblcg.service.impl.TestServiceImpl&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>服务消费方配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--引用dubbo服务--&gt;</span><br><span class="line">&lt;dubbo:application name=&quot;myfbs_manager_web&quot;/&gt;</span><br><span class="line">&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;192.168.43.47:2181&quot;/&gt;</span><br><span class="line">&lt;dubbo:reference interface=&quot;com.abblcg.service.TestService&quot; id=&quot;testService&quot;/&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/03/05/soa架构/soa架构之dubbo/">
+    <time datetime="2018-03-04T16:00:00.000Z" class="entry-date">
+        2018-03-05
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
   
     <article id="post-正则表达式/正则表达式" class="post-正则表达式/正则表达式 post type-post status-publish format-standard hentry">
     <!---->
@@ -108,53 +359,6 @@
 
 
   
-    <article id="post-tornado/tornado基本搭建" class="post-tornado/tornado基本搭建 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2018/01/01/tornado/tornado基本搭建/">tornado基本搭建</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/01/01/tornado/tornado基本搭建/" data-id="cjhu1i83d0000eotbb4pb1x1h" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2018/01/01/tornado/tornado基本搭建/">
-    <time datetime="2017-12-31T16:00:00.000Z" class="entry-date">
-        2018-01-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/tornado/">tornado</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
     <article id="post-前端/html之分页" class="post-前端/html之分页 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -176,7 +380,7 @@
 
     <div class="entry-content">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;pagenation&quot;&gt;</span><br><span class="line">    &#123;% if page.has_previous %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">    &#123;% for pindex in paginator.page_range %&#125;</span><br><span class="line">        &#123;% if pindex == page.num %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">	&#123;% if page.has_next %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+        <h1 id="以django的模板引擎为例"><a href="#以django的模板引擎为例" class="headerlink" title="以django的模板引擎为例"></a>以django的模板引擎为例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;pagenation&quot;&gt;</span><br><span class="line">    &#123;% if page.has_previous %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">    &#123;% for pindex in paginator.page_range %&#125;</span><br><span class="line">        &#123;% if pindex == page.num %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">	&#123;% if page.has_next %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
@@ -355,214 +559,10 @@
 
 
   
-    <article id="post-django/django之配置路由" class="post-django/django之配置路由 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2017/07/12/django/django之配置路由/">django之配置路由</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2017/07/12/django/django之配置路由/" data-id="cjhstbvqx000lm8tb0092a3my" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="配置djangotest目录下urls-py"><a href="#配置djangotest目录下urls-py" class="headerlink" title="配置djangotest目录下urls.py"></a>配置djangotest目录下urls.py</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path(r&apos;&apos;, include(&apos;myshop.urls&apos;)),</span><br></pre></td></tr></table></figure>
-<h3 id="配置myshop目录下urls-py"><a href="#配置myshop目录下urls-py" class="headerlink" title="配置myshop目录下urls.py"></a>配置myshop目录下urls.py</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path(r&apos;&apos;, views.index),</span><br></pre></td></tr></table></figure>
-<h3 id="编写views-py"><a href="#编写views-py" class="headerlink" title="编写views.py"></a>编写views.py</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def index(request):</span><br><span class="line">    return HttpResponse(&quot;哈哈&quot;)</span><br></pre></td></tr></table></figure>
-<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2017/07/12/django/django之配置路由/">
-    <time datetime="2017-07-11T16:00:00.000Z" class="entry-date">
-        2017-07-12
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/django/">django</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-django/django之创建模板" class="post-django/django之创建模板 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2017/07/09/django/django之创建模板/">django之创建模板</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2017/07/09/django/django之创建模板/" data-id="cjhstbvqg0004m8tb2age3kwg" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="配置项目根目录下创建templates目录"><a href="#配置项目根目录下创建templates目录" class="headerlink" title="配置项目根目录下创建templates目录"></a>配置项目根目录下创建templates目录</h3><h3 id="配置settings-py"><a href="#配置settings-py" class="headerlink" title="配置settings.py"></a>配置settings.py</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;DIRS&apos;: [os.path.join(BASE_DIR, &apos;templates&apos;), ],</span><br></pre></td></tr></table></figure>
-<h3 id="在templates目录下创建index-html"><a href="#在templates目录下创建index-html" class="headerlink" title="在templates目录下创建index.html"></a>在templates目录下创建index.html</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">呵呵</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="编写views-py"><a href="#编写views-py" class="headerlink" title="编写views.py"></a>编写views.py</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def index(request):</span><br><span class="line">    return render(request, &apos;index.html&apos;)</span><br></pre></td></tr></table></figure>
-<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2017/07/09/django/django之创建模板/">
-    <time datetime="2017-07-08T16:00:00.000Z" class="entry-date">
-        2017-07-09
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/django/">django</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-django/django之创建静态目录" class="post-django/django之创建静态目录 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2017/07/04/django/django之创建静态目录/">django之创建静态目录</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2017/07/04/django/django之创建静态目录/" data-id="cjhstbvql0009m8tbwfj39f4t" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="配置项目根目录下创建static目录"><a href="#配置项目根目录下创建static目录" class="headerlink" title="配置项目根目录下创建static目录"></a>配置项目根目录下创建static目录</h3><h3 id="配置settings-py"><a href="#配置settings-py" class="headerlink" title="配置settings.py"></a>配置settings.py</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">STATICFILES_DIRS = [</span><br><span class="line">    os.path.join(BASE_DIR, &apos;/static&apos;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="将js、css、font静态资源放入static目录下"><a href="#将js、css、font静态资源放入static目录下" class="headerlink" title="将js、css、font静态资源放入static目录下"></a>将js、css、font静态资源放入static目录下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static/js/jquery-ui.min.js</span><br></pre></td></tr></table></figure>
-<h3 id="在index-html中加入静态资源"><a href="#在index-html中加入静态资源" class="headerlink" title="在index.html中加入静态资源"></a>在index.html中加入静态资源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load staticfiles %&#125;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;&#123;% static &quot;/js/jquery-ui.min.js&quot; %&#125;&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8000</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2017/07/04/django/django之创建静态目录/">
-    <time datetime="2017-07-03T16:00:00.000Z" class="entry-date">
-        2017-07-04
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/django/">django</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-django/django之创建项目" class="post-django/django之创建项目 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2017/07/02/django/django之创建项目/">django之创建项目</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2017/07/02/django/django之创建项目/" data-id="cjhstbvqk0008m8tbkh9fktxi" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject djangotest</span><br></pre></td></tr></table></figure>
-<h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp myshop</span><br></pre></td></tr></table></figure>
-<h3 id="配置settings-py"><a href="#配置settings-py" class="headerlink" title="配置settings.py"></a>配置settings.py</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    &apos;myshop&apos;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="开启服务器"><a href="#开启服务器" class="headerlink" title="开启服务器"></a>开启服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2017/07/02/django/django之创建项目/">
-    <time datetime="2017-07-01T16:00:00.000Z" class="entry-date">
-        2017-07-02
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/django/">django</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -574,7 +574,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

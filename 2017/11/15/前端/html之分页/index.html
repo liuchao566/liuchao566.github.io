@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   
-  <meta name="description" content="1234567891011121314151617&amp;lt;div class=&amp;quot;pagenation&amp;quot;&amp;gt;    &amp;#123;% if page.has_previous %&amp;#125;	    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;上一页&amp;lt;/a&amp;gt" />
+  <meta name="description" content="以django的模板引擎为例1234567891011121314151617&amp;lt;div class=&amp;quot;pagenation&amp;quot;&amp;gt;    &amp;#123;% if page.has_previous %&amp;#125;	    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;g" />
   
 
   
@@ -15,17 +15,17 @@
   
   <title>html之分页 | 刘朝的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1234567891011121314151617&amp;lt;div class=&amp;quot;pagenation&amp;quot;&amp;gt;    &amp;#123;% if page.has_previous %&amp;#125;	    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;上一页&amp;lt;/a&amp;gt;    &amp;#123;% endif %&amp;#125;    &amp;#123;% for pindex i">
+  <meta name="description" content="以django的模板引擎为例1234567891011121314151617&amp;lt;div class=&amp;quot;pagenation&amp;quot;&amp;gt;    &amp;#123;% if page.has_previous %&amp;#125;	    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;上一页&amp;lt;/a&amp;gt;    &amp;#123;% endif %&amp;#125;    &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="html之分页">
 <meta property="og:url" content="http://www.liuchao566.com/2017/11/15/前端/html之分页/index.html">
 <meta property="og:site_name" content="刘朝的技术博客">
-<meta property="og:description" content="1234567891011121314151617&amp;lt;div class=&amp;quot;pagenation&amp;quot;&amp;gt;    &amp;#123;% if page.has_previous %&amp;#125;	    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;上一页&amp;lt;/a&amp;gt;    &amp;#123;% endif %&amp;#125;    &amp;#123;% for pindex i">
+<meta property="og:description" content="以django的模板引擎为例1234567891011121314151617&amp;lt;div class=&amp;quot;pagenation&amp;quot;&amp;gt;    &amp;#123;% if page.has_previous %&amp;#125;	    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;上一页&amp;lt;/a&amp;gt;    &amp;#123;% endif %&amp;#125;    &amp;#123;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-31T04:17:57.820Z">
+<meta property="og:updated_time" content="2018-06-10T01:52:42.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="html之分页">
-<meta name="twitter:description" content="1234567891011121314151617&amp;lt;div class=&amp;quot;pagenation&amp;quot;&amp;gt;    &amp;#123;% if page.has_previous %&amp;#125;	    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;上一页&amp;lt;/a&amp;gt;    &amp;#123;% endif %&amp;#125;    &amp;#123;% for pindex i">
+<meta name="twitter:description" content="以django的模板引擎为例1234567891011121314151617&amp;lt;div class=&amp;quot;pagenation&amp;quot;&amp;gt;    &amp;#123;% if page.has_previous %&amp;#125;	    &amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;上一页&amp;lt;/a&amp;gt;    &amp;#123;% endif %&amp;#125;    &amp;#123;">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -53,8 +53,6 @@
                 <ul id="menu-main" class="nav-menu">
                 
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
-                
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">归档</a></li>
                 
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
                 
@@ -84,7 +82,7 @@
 
     <div class="entry-content">
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;pagenation&quot;&gt;</span><br><span class="line">    &#123;% if page.has_previous %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">    &#123;% for pindex in paginator.page_range %&#125;</span><br><span class="line">        &#123;% if pindex == page.num %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">	&#123;% if page.has_next %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+        <h1 id="以django的模板引擎为例"><a href="#以django的模板引擎为例" class="headerlink" title="以django的模板引擎为例"></a>以django的模板引擎为例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;pagenation&quot;&gt;</span><br><span class="line">    &#123;% if page.has_previous %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">    &#123;% for pindex in paginator.page_range %&#125;</span><br><span class="line">        &#123;% if pindex == page.num %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">	&#123;% if page.has_next %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
@@ -110,7 +108,7 @@
 <nav class="nav-single">
     <h3 class="assistive-text">文章导航</h3>
     
-        <span class="nav-previous"><a href="/2018/01/01/tornado/tornado基本搭建/" rel="prev"><span class="meta-nav">←</span> tornado基本搭建</a></span>
+        <span class="nav-previous"><a href="/2018/03/02/正则表达式/正则表达式/" rel="prev"><span class="meta-nav">←</span> 正则表达式</a></span>
     
     
         <span class="nav-next"><a href="/2017/11/03/前端/jquery之多选/" rel="next">jquery之多选 <span class="meta-nav">→</span></a></span>
@@ -130,7 +128,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

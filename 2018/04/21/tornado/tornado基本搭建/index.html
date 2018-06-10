@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="在项目根目录下，新建start_server.py入口文件12345678910111213141516171819202122232425262728293031# coding:utf-8import tornado.httpserverimport tornado.ioloopimport t" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>tornado基本搭建 | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在项目根目录下，新建start_server.py入口文件12345678910111213141516171819202122232425262728293031# coding:utf-8import tornado.httpserverimport tornado.ioloopimport tornado.optionsimport tornado.webfrom tornado.optio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tornado基本搭建">
+<meta property="og:url" content="http://www.liuchao566.com/2018/04/21/tornado/tornado基本搭建/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="在项目根目录下，新建start_server.py入口文件12345678910111213141516171819202122232425262728293031# coding:utf-8import tornado.httpserverimport tornado.ioloopimport tornado.optionsimport tornado.webfrom tornado.optio">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-31T06:36:38.266Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tornado基本搭建">
+<meta name="twitter:description" content="在项目根目录下，新建start_server.py入口文件12345678910111213141516171819202122232425262728293031# coding:utf-8import tornado.httpserverimport tornado.ioloopimport tornado.optionsimport tornado.webfrom tornado.optio">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-tornado/tornado基本搭建" class="post-tornado/tornado基本搭建 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      tornado基本搭建
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/04/21/tornado/tornado基本搭建/" data-id="cjhu1i83d0000eotbb4pb1x1h" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="在项目根目录下，新建start-server-py入口文件"><a href="#在项目根目录下，新建start-server-py入口文件" class="headerlink" title="在项目根目录下，新建start_server.py入口文件"></a>在项目根目录下，新建start_server.py入口文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">import tornado.httpserver</span><br><span class="line">import tornado.ioloop</span><br><span class="line">import tornado.options</span><br><span class="line">import tornado.web</span><br><span class="line">from tornado.options import options, define</span><br><span class="line"></span><br><span class="line">import config</span><br><span class="line">from urls import urls</span><br><span class="line"></span><br><span class="line">define(&quot;port&quot;, default=8000, type=int, help=&quot;run server on the given port&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Application(tornado.web.Application):</span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        super(Application, self).__init__(*args, **kwargs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    options.log_file_prefix = config.log_path</span><br><span class="line">    options.logging = config.log_level</span><br><span class="line">    tornado.options.parse_command_line()</span><br><span class="line">    app = Application(urls, **config.settings)</span><br><span class="line">    http_server = tornado.httpserver.HTTPServer(app)</span><br><span class="line">    http_server.listen(options.port)</span><br><span class="line">    tornado.ioloop.IOLoop.current().start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<h3 id="在项目根目录下，创建templates目录，作为模板目录，创建login-html文件，如下"><a href="#在项目根目录下，创建templates目录，作为模板目录，创建login-html文件，如下" class="headerlink" title="在项目根目录下，创建templates目录，作为模板目录，创建login.html文件，如下"></a>在项目根目录下，创建templates目录，作为模板目录，创建login.html文件，如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;title&gt;&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">    &lt;link href=&quot;&#123;&#123; static_url(&apos;css/bootstrap.min.css&apos;) &#125;&#125;&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">    &lt;link href=&quot;&#123;&#123; static_url(&apos;css/custom.min.css&apos;) &#125;&#125;&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body class=&quot;nav-md&quot;&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;form class=&quot;form-signin&quot; action=&quot;/login_action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">        &#123;% module xsrf_form_html() %&#125;</span><br><span class="line">        &lt;h2 class=&quot;form-signin-heading&quot;&gt;请登录&lt;/h2&gt;</span><br><span class="line">        &lt;label for=&quot;inputEmail&quot; class=&quot;sr-only&quot;&gt;手机号&lt;/label&gt;</span><br><span class="line">        &lt;input type=&quot;tel&quot; id=&quot;inputEmail&quot; class=&quot;form-control&quot; placeholder=&quot;请输入手机号&quot; autofocus name=&quot;mobile&quot;&gt;</span><br><span class="line">        &lt;label for=&quot;inputPassword&quot; class=&quot;sr-only&quot;&gt;密码&lt;/label&gt;</span><br><span class="line">        &lt;input type=&quot;password&quot; id=&quot;inputPassword&quot; class=&quot;form-control&quot; placeholder=&quot;请输入密码&quot; name=&quot;password&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;checkbox&quot;&gt;</span><br><span class="line">            &lt;label&gt;</span><br><span class="line">                &lt;input type=&quot;checkbox&quot; value=&quot;remember-me&quot;&gt; 记住我</span><br><span class="line">            &lt;/label&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;button class=&quot;btn btn-lg btn-primary btn-block&quot; type=&quot;submit&quot;&gt;登录&lt;/button&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt; &lt;!-- /container --&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;&#123;&#123; static_url(&apos;js/jquery.min.js&apos;) &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;&#123;&#123; static_url(&apos;js/bootstrap.min.js&apos;) &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;&#123;&#123; static_url(&apos;js/custom.min.js&apos;) &#125;&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="在项目根目录下，创建statics目录，作为静态资源目录，导入js、css等文件"><a href="#在项目根目录下，创建statics目录，作为静态资源目录，导入js、css等文件" class="headerlink" title="在项目根目录下，创建statics目录，作为静态资源目录，导入js、css等文件"></a>在项目根目录下，创建statics目录，作为静态资源目录，导入js、css等文件</h3><h3 id="在项目根目录下，创建config文件，作为项目配置文件"><a href="#在项目根目录下，创建config文件，作为项目配置文件" class="headerlink" title="在项目根目录下，创建config文件，作为项目配置文件"></a>在项目根目录下，创建config文件，作为项目配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"># Tornado app配置</span><br><span class="line">settings = &#123;</span><br><span class="line">    &apos;template_path&apos;: os.path.join(os.path.dirname(__file__), &apos;templates&apos;),</span><br><span class="line">    &apos;static_path&apos;: os.path.join(os.path.dirname(__file__), &apos;statics&apos;),</span><br><span class="line">    &apos;debug&apos;: False,</span><br><span class="line">    &apos;autoreload&apos;: False,</span><br><span class="line">    &apos;cookie_secret&apos;: &quot;FhLXI+BRRomtuaG47hoXEg3JCdi0BUi8vrpWmoxaoyI=&quot;,</span><br><span class="line">    &apos;xsrf_cookies&apos;: True,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 日志</span><br><span class="line">log_path = os.path.join(os.path.dirname(__file__), &apos;logs/log&apos;)</span><br><span class="line">log_level = &quot;debug&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="在项目根目录下，创建urls文件，作为项目路由文件"><a href="#在项目根目录下，创建urls文件，作为项目路由文件" class="headerlink" title="在项目根目录下，创建urls文件，作为项目路由文件"></a>在项目根目录下，创建urls文件，作为项目路由文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">from handlers import Index, User</span><br><span class="line"></span><br><span class="line">urls = [</span><br><span class="line">    (r&quot;/login&quot;, User.LoginUIHandler),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="在项目根目录下，创建handlers目录，创建User-py文件，作为控制层"><a href="#在项目根目录下，创建handlers目录，创建User-py文件，作为控制层" class="headerlink" title="在项目根目录下，创建handlers目录，创建User.py文件，作为控制层"></a>在项目根目录下，创建handlers目录，创建User.py文件，作为控制层</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">from handlers.BaseHandler import BaseHandler</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class LoginUIHandler(BaseHandler):</span><br><span class="line"></span><br><span class="line">    def get(self):</span><br><span class="line">        self.render(&apos;login.html&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">from tornado.web import RequestHandler, StaticFileHandler</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class BaseHandler(RequestHandler):</span><br><span class="line">    def prepare(self):</span><br><span class="line">        print &apos;prepare&apos;</span><br><span class="line"></span><br><span class="line">class StaticFileBaseHandler(StaticFileHandler):</span><br><span class="line"></span><br><span class="line">    def data_received(self, chunk):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">    def __init__(self, *args, **kwargs):</span><br><span class="line">        super(StaticFileBaseHandler, self).__init__(*args, **kwargs)</span><br></pre></td></tr></table></figure>
+<h3 id="运行start-server-py，打开localhost-8000-login即可"><a href="#运行start-server-py，打开localhost-8000-login即可" class="headerlink" title="运行start_server.py，打开localhost:8000/login即可"></a>运行start_server.py，打开localhost:8000/login即可</h3>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/04/21/tornado/tornado基本搭建/">
+    <time datetime="2018-04-20T16:00:00.000Z" class="entry-date">
+        2018-04-21
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/tornado/">tornado</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/05/01/java/java之mybatis与hibernate的区别/" rel="prev"><span class="meta-nav">←</span> java之mybatis与hibernate的区别</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/03/05/soa架构/soa架构之dubbo/" rel="next">soa架构之dubbo <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="拦截器只用场景：验证登录
+配置全局结果视图
+
+1234&amp;lt;!-- 全局结果视图 --&amp;gt;&amp;lt;global-results&amp;gt;	&amp;lt;result name=&amp;quot;login&amp;quot; type=&amp;quot;&amp;quot;&amp;gt;/user/loginUI&amp;lt;/result" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>struts2之拦截器 | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="拦截器只用场景：验证登录 配置全局结果视图  1234&amp;lt;!-- 全局结果视图 --&amp;gt;&amp;lt;global-results&amp;gt;	&amp;lt;result name=&amp;quot;login&amp;quot; type=&amp;quot;&amp;quot;&amp;gt;/user/loginUI&amp;lt;/result&amp;gt;&amp;lt;/global-results&amp;gt;  创建验证登录拦截器  1234567891">
+<meta property="og:type" content="article">
+<meta property="og:title" content="struts2之拦截器">
+<meta property="og:url" content="http://www.liuchao566.com/2016/07/28/ssh/struts2之拦截器/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="拦截器只用场景：验证登录 配置全局结果视图  1234&amp;lt;!-- 全局结果视图 --&amp;gt;&amp;lt;global-results&amp;gt;	&amp;lt;result name=&amp;quot;login&amp;quot; type=&amp;quot;&amp;quot;&amp;gt;/user/loginUI&amp;lt;/result&amp;gt;&amp;lt;/global-results&amp;gt;  创建验证登录拦截器  1234567891">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-01T08:34:53.179Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="struts2之拦截器">
+<meta name="twitter:description" content="拦截器只用场景：验证登录 配置全局结果视图  1234&amp;lt;!-- 全局结果视图 --&amp;gt;&amp;lt;global-results&amp;gt;	&amp;lt;result name=&amp;quot;login&amp;quot; type=&amp;quot;&amp;quot;&amp;gt;/user/loginUI&amp;lt;/result&amp;gt;&amp;lt;/global-results&amp;gt;  创建验证登录拦截器  1234567891">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-ssh/struts2之拦截器" class="post-ssh/struts2之拦截器 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      struts2之拦截器
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之拦截器/" data-id="cji89ty22000btstb17wbzhpj" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="拦截器只用场景：验证登录"><a href="#拦截器只用场景：验证登录" class="headerlink" title="拦截器只用场景：验证登录"></a>拦截器只用场景：验证登录</h3><ol>
+<li>配置全局结果视图</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 全局结果视图 --&gt;</span><br><span class="line">&lt;global-results&gt;</span><br><span class="line">	&lt;result name=&quot;login&quot; type=&quot;&quot;&gt;/user/loginUI&lt;/result&gt;</span><br><span class="line">&lt;/global-results&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建验证登录拦截器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class CheckLoginInterceptor extends MethodFilterInterceptor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected String doIntercept(ActionInvocation actionInvocation) throws Exception &#123;</span><br><span class="line">        Map&lt;String, Object&gt; sessions = ActionContext.getContext().getSession();</span><br><span class="line">        if (sessions.get(&quot;user&quot;) != null)&#123;</span><br><span class="line">            return actionInvocation.invoke();</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;login&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在struts.xml中配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 声明拦截器 --&gt;</span><br><span class="line">&lt;interceptors&gt;</span><br><span class="line">    &lt;interceptor name=&quot;checkLogin&quot; class=&quot;com.abblcg.web.interceptors.CheckLoginInterceptor&quot;/&gt;</span><br><span class="line">    &lt;!-- 定义一个拦截器栈 --&gt;</span><br><span class="line">    &lt;interceptor-stack name=&quot;myDefaultStack&quot;&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;checkLogin&quot;&gt;</span><br><span class="line">            &lt;!-- 由于我们使用了继承MethodFilterInterceptor，</span><br><span class="line">                此时我们可以告知拦截器，排除掉登录方法 --&gt;</span><br><span class="line">            &lt;param name=&quot;excludeMethods&quot;&gt;login&lt;/param&gt;</span><br><span class="line">			&lt;param name=&quot;excludeMethods&quot;&gt;loginUI&lt;/param&gt;</span><br><span class="line">        &lt;/interceptor-ref&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;defaultStack&quot;&gt;&lt;/interceptor-ref&gt;</span><br><span class="line">    &lt;/interceptor-stack&gt;</span><br><span class="line">&lt;/interceptors&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修改默认拦截器栈，设置我们自定义的拦截器栈，</span><br><span class="line">    这样的话我们写的所有动作都有了检查登录功能。并且排除了登录方法--&gt;</span><br><span class="line">&lt;default-interceptor-ref name=&quot;myDefaultStack&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>这样访问的时候只有</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之拦截器/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2016/07/28/ssh/struts2之配置文件/" rel="prev"><span class="meta-nav">←</span> struts2之配置文件</a></span>
+    
+    
+        <span class="nav-next"><a href="/2016/07/28/ssh/struts2之数据获取/" rel="next">struts2之数据获取 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

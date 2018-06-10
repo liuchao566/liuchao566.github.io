@@ -48,8 +48,6 @@
                 
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
                 
-                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">归档</a></li>
-                
                     <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
                 
                 </ul>
@@ -59,7 +57,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-android/android之eventbus使用" class="post-android/android之eventbus使用 post type-post status-publish format-standard hentry">
+    <article id="post-ssh/spring之aop（xml）" class="post-ssh/spring之aop（xml） post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -67,408 +65,54 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/04/12/android/android之eventbus使用/">android之eventbus使用</a>
+      <a class="article-title" href="/2016/08/01/ssh/spring之aop（xml）/">spring之aop（xml）</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/04/12/android/android之eventbus使用/" data-id="cjhstbvqi0006m8tbmk4ir2ow" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之aop（xml）/" data-id="cji89ty1r0001tstbibk10bo5" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="eventbus简介"><a href="#eventbus简介" class="headerlink" title="eventbus简介"></a>eventbus简介</h3><p>我们在开发android项目的时候，模块间的通讯一般都会用broadcaster机制，eventbus的出现让这一应用场景更加简单</p>
-<h3 id="eventbus使用"><a href="#eventbus使用" class="headerlink" title="eventbus使用"></a>eventbus使用</h3><p>1.导包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;org.greenrobot:eventbus:3.1.1&apos;</span><br></pre></td></tr></table></figure></p>
-<p>2.在activity和fragment中编写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line"> public void onStart() &#123;</span><br><span class="line">     super.onStart();</span><br><span class="line">     EventBus.getDefault().register(this);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line"> public void onStop() &#123;</span><br><span class="line">     super.onStop();</span><br><span class="line">     EventBus.getDefault().unregister(this);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>3.发送消息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EventBus.getDefault().post(new MessageEvent());</span><br></pre></td></tr></table></figure>
-<p>4.接受消息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Subscribe(threadMode = ThreadMode.MAIN)  </span><br><span class="line">public void onMessageEvent(MessageEvent event) &#123;/* Do something */&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="eventbus缺点"><a href="#eventbus缺点" class="headerlink" title="eventbus缺点"></a>eventbus缺点</h3><p>消息类型多了不便于维护，最好文档注释写详细</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/04/12/android/android之eventbus使用/">
-    <time datetime="2016-04-11T16:00:00.000Z" class="entry-date">
-        2016-04-12
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/android/">android</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-java/java之实现生产者-消费者模型" class="post-java/java之实现生产者-消费者模型 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/java/java之实现生产者-消费者模型/">java之实现生产者-消费者模型</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/java/java之实现生产者-消费者模型/" data-id="cjhstbvrf001am8tbur6z9gg9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>转<a href="https://monkeysayhi.github.io/2017/10/08/Java%E5%AE%9E%E7%8E%B0%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B/" target="_blank" rel="noopener">《Java实现生产者-消费者模型》</a></p>
-<p>考查Java的并发编程时，手写“生产者-消费者模型”是一个经典问题。有如下几个考点：</p>
-<ul>
-<li>对Java并发模型的理解</li>
-<li>对Java并发编程接口的熟练程度</li>
-<li>bug free</li>
-<li>coding style</li>
-</ul>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/java/java之实现生产者-消费者模型/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-soa架构/soa架构之dubbo" class="post-soa架构/soa架构之dubbo post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/soa架构/soa架构之dubbo/">soa架构之dubbo</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/soa架构/soa架构之dubbo/" data-id="cjhstbvtf003ym8tby7qinxqn" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"><a href="#功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？" class="headerlink" title="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"></a>功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？</h3><p>一般会想到http请求，但是，开发效率低，维护成本高</p>
-<h3 id="dubbo的出现"><a href="#dubbo的出现" class="headerlink" title="dubbo的出现"></a>dubbo的出现</h3><p>duboo底层是基于socket传输，传输速度快<br>需要配合zookeeper使用</p>
-<p>zookeeper提供一个注册信息中介的作用<br>服务方和消费方需要向zookeeper注册服务<br>服务层就是服务方<br>表现层就是消费方<br>二者都必须创建相同包名的接口类<br>配置好之后，表现层就可以直接调用自己的接口访问服务层的接口数据</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/soa架构/soa架构之dubbo/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-soa架构/soa架构之ActiveMQ" class="post-soa架构/soa架构之ActiveMQ post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/soa架构/soa架构之ActiveMQ/">ActiveMQ</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/soa架构/soa架构之ActiveMQ/" data-id="cjhstbvtd003wm8tbojtco2ev" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="ActiveMQ消息发布订阅框架"><a href="#ActiveMQ消息发布订阅框架" class="headerlink" title="ActiveMQ消息发布订阅框架"></a>ActiveMQ消息发布订阅框架</h3><p>与android的eventbus框架和handle机制一样用于消息通讯<br>底层单例设计，维护消息队列<br>发布者发布消息，订阅者负责设置监听回调即可获取消息</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/soa架构/soa架构之ActiveMQ/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-爬虫/爬虫之极限验证码登录" class="post-爬虫/爬虫之极限验证码登录 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/爬虫/爬虫之极限验证码登录/">爬虫之极限验证码登录</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/爬虫/爬虫之极限验证码登录/" data-id="cjhstbvu2004tm8tblqcg00qf" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>转<a href="http://www.cnblogs.com/caoxing2017/p/8311036.html" target="_blank" rel="noopener">《爬虫项目：破解极验滑动验证码》</a> </p>
-<p>###代码片段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver import ActionChains</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line">from selenium.webdriver.common.keys import Keys</span><br><span class="line">from selenium.webdriver.support import expected_conditions as EC</span><br><span class="line">from selenium.webdriver.support.wait import WebDriverWait</span><br><span class="line">from PIL import Image</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">def get_snap(driver):</span><br><span class="line">    driver.save_screenshot(&apos;full_snap.png&apos;)</span><br><span class="line">    page_snap_obj=Image.open(&apos;full_snap.png&apos;)</span><br><span class="line">    return page_snap_obj</span><br><span class="line"></span><br><span class="line">def get_image(driver):</span><br><span class="line">    img=driver.find_element_by_class_name(&apos;geetest_canvas_img&apos;)</span><br><span class="line">    time.sleep(2)</span><br><span class="line">    location=img.location</span><br><span class="line">    size=img.size</span><br><span class="line"></span><br><span class="line">    left=location[&apos;x&apos;]</span><br><span class="line">    top=location[&apos;y&apos;]</span><br><span class="line">    right=left+size[&apos;width&apos;]</span><br><span class="line">    bottom=top+size[&apos;height&apos;]</span><br><span class="line"></span><br><span class="line">    page_snap_obj=get_snap(driver)</span><br><span class="line">    image_obj=page_snap_obj.crop((left,top,right,bottom))</span><br><span class="line">    # image_obj.show()</span><br><span class="line">    return image_obj</span><br><span class="line"></span><br><span class="line">def get_distance(image1,image2):</span><br><span class="line">    start=57</span><br><span class="line">    threhold=60</span><br><span class="line"></span><br><span class="line">    for i in range(start,image1.size[0]):</span><br><span class="line">        for j in range(image1.size[1]):</span><br><span class="line">            rgb1=image1.load()[i,j]</span><br><span class="line">            rgb2=image2.load()[i,j]</span><br><span class="line">            res1=abs(rgb1[0]-rgb2[0])</span><br><span class="line">            res2=abs(rgb1[1]-rgb2[1])</span><br><span class="line">            res3=abs(rgb1[2]-rgb2[2])</span><br><span class="line">            # print(res1,res2,res3)</span><br><span class="line">            if not (res1 &lt; threhold and res2 &lt; threhold and res3 &lt; threhold):</span><br><span class="line">                return i-7</span><br><span class="line">    return i-7</span><br><span class="line"></span><br><span class="line">def get_tracks(distance):</span><br><span class="line">    distance+=20 #先滑过一点，最后再反着滑动回来</span><br><span class="line">    v=0</span><br><span class="line">    t=0.2</span><br><span class="line">    forward_tracks=[]</span><br><span class="line"></span><br><span class="line">    current=0</span><br><span class="line">    mid=distance*3/5</span><br><span class="line">    while current &lt; distance:</span><br><span class="line">        if current &lt; mid:</span><br><span class="line">            a=2</span><br><span class="line">        else:</span><br><span class="line">            a=-3</span><br><span class="line"></span><br><span class="line">        s=v*t+0.5*a*(t**2)</span><br><span class="line">        v=v+a*t</span><br><span class="line">        current+=s</span><br><span class="line">        forward_tracks.append(round(s))</span><br><span class="line"></span><br><span class="line">    #反着滑动到准确位置</span><br><span class="line">    back_tracks=[-3,-3,-2,-2,-2,-2,-2,-1,-1,-1] #总共等于-20</span><br><span class="line"></span><br><span class="line">    return &#123;&apos;forward_tracks&apos;:forward_tracks,&apos;back_tracks&apos;:back_tracks&#125;</span><br><span class="line"></span><br><span class="line">def crack(driver): #破解滑动认证</span><br><span class="line">    # 1、点击按钮，得到没有缺口的图片</span><br><span class="line">    button = driver.find_element_by_class_name(&apos;geetest_radar_tip&apos;)</span><br><span class="line">    button.click()</span><br><span class="line"></span><br><span class="line">    # 2、获取没有缺口的图片</span><br><span class="line">    image1 = get_image(driver)</span><br><span class="line"></span><br><span class="line">    # 3、点击滑动按钮，得到有缺口的图片</span><br><span class="line">    button = driver.find_element_by_class_name(&apos;geetest_slider_button&apos;)</span><br><span class="line">    button.click()</span><br><span class="line"></span><br><span class="line">    # 4、获取有缺口的图片</span><br><span class="line">    image2 = get_image(driver)</span><br><span class="line"></span><br><span class="line">    # 5、对比两种图片的像素点，找出位移</span><br><span class="line">    distance = get_distance(image1, image2)</span><br><span class="line"></span><br><span class="line">    # 6、模拟人的行为习惯，根据总位移得到行为轨迹</span><br><span class="line">    tracks = get_tracks(distance)</span><br><span class="line">    print(tracks)</span><br><span class="line"></span><br><span class="line">    # 7、按照行动轨迹先正向滑动，后反滑动</span><br><span class="line">    button = driver.find_element_by_class_name(&apos;geetest_slider_button&apos;)</span><br><span class="line">    ActionChains(driver).click_and_hold(button).perform()</span><br><span class="line"></span><br><span class="line">    # 正常人类总是自信满满地开始正向滑动，自信地表现是疯狂加速</span><br><span class="line">    for track in tracks[&apos;forward_tracks&apos;]:</span><br><span class="line">        ActionChains(driver).move_by_offset(xoffset=track, yoffset=0).perform()</span><br><span class="line"></span><br><span class="line">    # 结果傻逼了，正常的人类停顿了一下，回过神来发现，卧槽，滑过了,然后开始反向滑动</span><br><span class="line">    time.sleep(0.5)</span><br><span class="line">    for back_track in tracks[&apos;back_tracks&apos;]:</span><br><span class="line">        ActionChains(driver).move_by_offset(xoffset=back_track, yoffset=0).perform()</span><br><span class="line"></span><br><span class="line">    # 小范围震荡一下，进一步迷惑极验后台，这一步可以极大地提高成功率</span><br><span class="line">    ActionChains(driver).move_by_offset(xoffset=-3, yoffset=0).perform()</span><br><span class="line">    ActionChains(driver).move_by_offset(xoffset=3, yoffset=0).perform()</span><br><span class="line"></span><br><span class="line">    # 成功后，骚包人类总喜欢默默地欣赏一下自己拼图的成果，然后恋恋不舍地松开那只脏手</span><br><span class="line">    time.sleep(0.5)</span><br><span class="line">    ActionChains(driver).release().perform()</span><br><span class="line"></span><br><span class="line">def login_cnblogs(username,password):</span><br><span class="line">    driver = webdriver.Chrome()</span><br><span class="line">    try:</span><br><span class="line">        # 1、输入账号密码回车</span><br><span class="line">        driver.implicitly_wait(3)</span><br><span class="line">        driver.get(&apos;https://passport.cnblogs.com/user/signin&apos;)</span><br><span class="line"></span><br><span class="line">        input_username = driver.find_element_by_id(&apos;input1&apos;)</span><br><span class="line">        input_pwd = driver.find_element_by_id(&apos;input2&apos;)</span><br><span class="line">        signin = driver.find_element_by_id(&apos;signin&apos;)</span><br><span class="line"></span><br><span class="line">        input_username.send_keys(username)</span><br><span class="line">        input_pwd.send_keys(password)</span><br><span class="line">        signin.click()</span><br><span class="line"></span><br><span class="line">        # 2、破解滑动认证</span><br><span class="line">        crack(driver)</span><br><span class="line"></span><br><span class="line">        time.sleep(10)  # 睡时间长一点，确定登录成功</span><br><span class="line">    finally:</span><br><span class="line">        driver.close()</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    login_cnblogs(username=&apos;linhaifeng&apos;,password=&apos;xxxx&apos;)</span><br><span class="line"></span><br><span class="line">修订版</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/爬虫/爬虫之极限验证码登录/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/爬虫/">爬虫</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-soa架构/soa架构之sso系统（单点登录）" class="post-soa架构/soa架构之sso系统（单点登录） post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/soa架构/soa架构之sso系统（单点登录）/">soa架构之sso系统（单点登录</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/soa架构/soa架构之sso系统（单点登录）/" data-id="cjhstbvth0041m8tbczcss3py" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="集群环境下，session一般不能共享，登录之后其它系统不能共享登录信息"><a href="#集群环境下，session一般不能共享，登录之后其它系统不能共享登录信息" class="headerlink" title="集群环境下，session一般不能共享，登录之后其它系统不能共享登录信息"></a>集群环境下，session一般不能共享，登录之后其它系统不能共享登录信息</h3><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>可以使用redis模拟session，实现session的统一管理</p>
-<p>登录实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1、登录提交用户名密码</span><br><span class="line">2、登录成功后生成token，token相当于原来的jsessionid，字符串，可以使用uuid</span><br><span class="line">3、把用户信息保存到redis，key就是token，value就是user对象的json格式</span><br><span class="line">4、使用String类型保存session信息，可以使用&quot;user:token&quot;为key</span><br><span class="line">5、设置key的过期时间，模拟session的过期时间，一般半个小时</span><br><span class="line">6、把token写入cookie中</span><br><span class="line">7、Cookie需要跨域。例如www.e3.com\sso.e3.com\order.e3.com，可以使用工具类</span><br><span class="line">8、登录成功</span><br></pre></td></tr></table></figure>
-<p>使用实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、从url中取参数。</span><br><span class="line">2、根据token查询redis</span><br><span class="line">3、如果查询不到数据，返回用户已经过期</span><br><span class="line">4、如果查询到数据，说明用户已经登录</span><br><span class="line">5、需要重置key的过期时间</span><br><span class="line">6、把json数据转换成user对象返回</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/soa架构/soa架构之sso系统（单点登录）/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-爬虫/爬虫之有道翻译" class="post-爬虫/爬虫之有道翻译 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/爬虫/爬虫之有道翻译/">爬虫之有道翻译</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/爬虫/爬虫之有道翻译/" data-id="cjhstbvu5004xm8tbgx84boee" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="爬虫地址"><a href="#爬虫地址" class="headerlink" title="爬虫地址"></a>爬虫地址</h3><p>在使用有道翻译的时候，点击翻译按钮，有道会通过ajax请求数据，post请求地址为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://fanyi.youdao.com/translate_o?smartresult=dict&amp;smartresult=rule</span><br></pre></td></tr></table></figure>
-<h3 id="通过Fiddler找出请求参数，如下"><a href="#通过Fiddler找出请求参数，如下" class="headerlink" title="通过Fiddler找出请求参数，如下"></a>通过Fiddler找出请求参数，如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;i&quot;:&quot;你好&quot;,</span><br><span class="line">&quot;from&quot;:&quot;AUTO&quot;,</span><br><span class="line">&quot;to&quot;:&quot;AUTO&quot;,</span><br><span class="line">&quot;smartresult&quot;:&quot;dict&quot;,</span><br><span class="line">&quot;client&quot;:&quot;fanyideskweb&quot;,</span><br><span class="line">&quot;salt&quot;:&quot;1527416416994&quot;,</span><br><span class="line">&quot;sign&quot;:&quot;757fb8086c0821b45bd963856de650d0&quot;,</span><br><span class="line">&quot;doctype&quot;:&quot;json&quot;,</span><br><span class="line">&quot;version&quot;:&quot;2.1&quot;,</span><br><span class="line">&quot;keyfrom&quot;:&quot;fanyi.web&quot;,</span><br><span class="line">&quot;action&quot;:&quot;FY_BY_CLICKBUTTION&quot;,</span><br><span class="line">&quot;typoResult&quot;:&quot;false&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="对比连续两次请求，发现只有i、salt、sign总是变化，查看有道ajax请求的js代码，如下："><a href="#对比连续两次请求，发现只有i、salt、sign总是变化，查看有道ajax请求的js代码，如下：" class="headerlink" title="对比连续两次请求，发现只有i、salt、sign总是变化，查看有道ajax请求的js代码，如下："></a>对比连续两次请求，发现只有i、salt、sign总是变化，查看有道ajax请求的js代码，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://shared.ydstatic.com/fanyi/newweb/v1.0.9/scripts/newweb/fanyi.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>通过webstorm格式化fanyi.min.js代码，找到翻译按钮（id为transMachine）请求的ajax代码，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">t.asyRequest = function (e) &#123;</span><br><span class="line">    var t = e.i, i = &quot;&quot; + ((new Date).getTime() + parseInt(10 * Math.random(), 10)),</span><br><span class="line">        o = n.md5(&quot;fanyideskweb&quot; + t + i + &quot;ebSeFb%=XZ%T[KZ)c(sy!&quot;);</span><br><span class="line">    r &amp;&amp; r.abort(), r = n.ajax(&#123;</span><br><span class="line">        type: &quot;POST&quot;,</span><br><span class="line">        contentType: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;,</span><br><span class="line">        url: &quot;/bbk/translate_m.do&quot;,</span><br><span class="line">        data: &#123;</span><br><span class="line">            i: e.i,</span><br><span class="line">            client: &quot;fanyideskweb&quot;,</span><br><span class="line">            salt: i,</span><br><span class="line">            sign: o,</span><br><span class="line">            tgt: e.tgt,</span><br><span class="line">            from: e.from,</span><br><span class="line">            to: e.to,</span><br><span class="line">            doctype: &quot;json&quot;,</span><br><span class="line">            version: &quot;3.0&quot;,</span><br><span class="line">            cache: !0</span><br><span class="line">        &#125;,</span><br><span class="line">        dataType: &quot;json&quot;,</span><br><span class="line">        success: function (t) &#123;</span><br><span class="line">            t &amp;&amp; 0 == t.errorCode ? e.success &amp;&amp; e.success(t) : e.error &amp;&amp; e.error(t)</span><br><span class="line">        &#125;,</span><br><span class="line">        error: function (e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>js代码中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">代表salt，是一个时间戳</span><br><span class="line">var r = &quot;&quot; + ((new Date).getTime() + parseInt(10 * Math.random(), 10));</span><br><span class="line"></span><br><span class="line">代表sign，其中t需要追溯上文，e.i好像是需要翻译的字符串</span><br><span class="line">var t = e.i, i = n.md5(&quot;fanyideskweb&quot; + t + r + &quot;ebSeFb%=XZ%T[KZ)c(sy!&quot;);</span><br></pre></td></tr></table></figure>
-<h3 id="翻译成python代码，如下"><a href="#翻译成python代码，如下" class="headerlink" title="翻译成python代码，如下"></a>翻译成python代码，如下</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"># coding:utf-8</span><br><span class="line"></span><br><span class="line">import urllib</span><br><span class="line">import urllib2</span><br><span class="line">import time</span><br><span class="line">import random</span><br><span class="line">import hashlib</span><br><span class="line">import json</span><br><span class="line"></span><br><span class="line">def strToDict(string):</span><br><span class="line">    dict_req = &#123;&#125;</span><br><span class="line">    string = str(string)</span><br><span class="line">    entrys = string.split(&apos;&amp;&apos;)</span><br><span class="line">    index = 0</span><br><span class="line">    for entry in entrys:</span><br><span class="line">        key = entry.split(&apos;=&apos;)[0]</span><br><span class="line">        value = entry.split(&apos;=&apos;)[1]</span><br><span class="line">        dict_req[key] = value</span><br><span class="line"></span><br><span class="line">        string_entry = &apos;&quot;%s&quot;:&quot;%s&quot;,&apos; % (key, value)</span><br><span class="line"></span><br><span class="line">        if index == len(entrys) - 1:</span><br><span class="line">            string_entry = string_entry[:-1]</span><br><span class="line">        # print string_entry</span><br><span class="line">        index += 1</span><br><span class="line">    return dict_req</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def printDict(dict_obj):</span><br><span class="line">    for key, value in dict_obj.items():</span><br><span class="line">        print &apos;&quot;%s&quot;:&quot;%s&quot;&apos; % (key, value)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># POST请求的目标URL</span><br><span class="line">url = &quot;http://fanyi.youdao.com/translate_o?smartresult=dict&amp;smartresult=rule&quot;</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    &apos;Host&apos;: &apos;fanyi.youdao.com&apos;,</span><br><span class="line">    &apos;Accept&apos;: &apos;application/json, text/javascript, */*; q=0.01&apos;,</span><br><span class="line">    &apos;Origin&apos;: &apos;http://fanyi.youdao.com&apos;,</span><br><span class="line">    &apos;X-Requested-With&apos;: &apos;XMLHttpRequest&apos;,</span><br><span class="line">    &apos;User-Agent&apos;: &apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36&apos;,</span><br><span class="line">    &apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded; charset=UTF-8&apos;,</span><br><span class="line">    &apos;Referer&apos;: &apos;http://fanyi.youdao.com/&apos;,</span><br><span class="line">    &apos;Accept-Language&apos;: &apos;zh-CN,zh;q=0.9&apos;,</span><br><span class="line">    &apos;Cookie&apos;: &apos;OUTFOX_SEARCH_USER_ID=666316964@61.148.245.243&apos;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line"># formdata = &#123;</span><br><span class="line">#     &quot;i&quot;: &quot;你好&quot;,</span><br><span class="line">#     &quot;from&quot;: &quot;AUTO&quot;,</span><br><span class="line">#     &quot;to&quot;: &quot;AUTO&quot;,</span><br><span class="line">#     &quot;smartresult&quot;: &quot;dict&quot;,</span><br><span class="line">#     &quot;client&quot;: &quot;fanyideskweb&quot;,</span><br><span class="line">#     &quot;salt&quot;: &quot;1527418365763&quot;,</span><br><span class="line">#     &quot;sign&quot;: &quot;757fb8086c0821b45bd963856de650d0&quot;,</span><br><span class="line">#     &quot;doctype&quot;: &quot;json&quot;,</span><br><span class="line">#     &quot;version&quot;: &quot;2.1&quot;,</span><br><span class="line">#     &quot;keyfrom&quot;: &quot;fanyi.web&quot;,</span><br><span class="line">#     &quot;action&quot;: &quot;FY_BY_CLICKBUTTION&quot;,</span><br><span class="line">#     &quot;typoResult&quot;: &quot;false&quot;</span><br><span class="line"># &#125;</span><br><span class="line"></span><br><span class="line">dict_req = strToDict(&apos;i=%E5%93%88%E5%93%88&amp;from=AUTO&amp;to=AUTO&amp;smartresult=dict&amp;client=fanyideskweb&amp;salt=1527416416994&amp;sign=757fb8086c0821b45bd963856de650d0&amp;doctype=json&amp;version=2.1&amp;keyfrom=fanyi.web&amp;action=FY_BY_CLICKBUTTION&amp;typoResult=false&apos;)</span><br><span class="line"></span><br><span class="line">dict_req[&apos;i&apos;]=&apos;你好&apos;</span><br><span class="line"></span><br><span class="line">salt = str(int(time.time()*1000)+random.randint(1, 10))</span><br><span class="line"></span><br><span class="line">sign = hashlib.md5(&apos;fanyideskweb&apos;+dict_req[&apos;i&apos;]+salt+&apos;ebSeFb%=XZ%T[KZ)c(sy!&apos;).hexdigest()</span><br><span class="line"></span><br><span class="line">dict_req[&apos;salt&apos;]=salt</span><br><span class="line">dict_req[&apos;sign&apos;]=sign</span><br><span class="line"></span><br><span class="line">printDict(dict_req)</span><br><span class="line"></span><br><span class="line">data = urllib.urlencode(dict_req).encode(&apos;utf-8&apos;)</span><br><span class="line"></span><br><span class="line">request = urllib2.Request(url, data=data, headers=headers)</span><br><span class="line"></span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line"></span><br><span class="line">json_result = response.read()</span><br><span class="line"></span><br><span class="line">print json_result</span><br><span class="line">print json.loads(json_result)[&apos;translateResult&apos;][0][0][&apos;src&apos;]</span><br></pre></td></tr></table></figure>
-<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;Cookie&apos;: &apos;OUTFOX_SEARCH_USER_ID=666316964@61.148.245.243&apos;</span><br></pre></td></tr></table></figure>
-<p>一定要添加，否则返回50</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/爬虫/爬虫之有道翻译/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/爬虫/">爬虫</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-soa架构/soa架构之负载均衡（ngnix）" class="post-soa架构/soa架构之负载均衡（ngnix） post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/soa架构/soa架构之负载均衡（ngnix）/">soa架构之负载均衡（ngnix）</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/soa架构/soa架构之负载均衡（ngnix）/" data-id="cjhstbvtk0046m8tbu92j253a" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="nginx能干什么"><a href="#nginx能干什么" class="headerlink" title="nginx能干什么"></a>nginx能干什么</h3><ol>
-<li>可以做网页静态服务器（js，css，img等）</li>
-<li>反向代理，负载均衡，实现访问一个ip地址，调用不同tomcat集群来共同分摊服务器压力</li>
+        <h3 id="案例1：统计dao方法执行的时间"><a href="#案例1：统计dao方法执行的时间" class="headerlink" title="案例1：统计dao方法执行的时间"></a>案例1：统计dao方法执行的时间</h3><ol>
+<li>创建普通类</li>
 </ol>
-<p>多个域名可以绑定一个ip，将多个域名配置到ngnix中，可以实现多个域名访问各自的tomcat服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  www.abblcg.com;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html-abblcg;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  www.liuchao566.com;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html-liuchao566;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDao &#123;</span><br><span class="line"></span><br><span class="line">    public void save() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建增强类</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDaoProxy &#123;</span><br><span class="line"></span><br><span class="line">    private long startTime;</span><br><span class="line"></span><br><span class="line">    public void beforeMethod() &#123;</span><br><span class="line">        startTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;beforeMethod&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void afterMethod() &#123;</span><br><span class="line">        long doTime = System.currentTimeMillis() - startTime;</span><br><span class="line">        System.out.println(&quot;afterMethod&quot;);</span><br><span class="line">        System.out.println(&quot;执行时间：&quot; + doTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>applicationContext.xml配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean name=&quot;demoDao&quot; class=&quot;com.abblcg.myblog.web.DemoDao&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;bean name=&quot;demoDaoProxy&quot; class=&quot;com.abblcg.myblog.web.DemoDaoProxy&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;aop:config&gt;</span><br><span class="line">        &lt;aop:pointcut id=&quot;pointcut1&quot; expression=&quot;execution(* com.abblcg.myblog.web.DemoDao.save(..))&quot;&gt;&lt;/aop:pointcut&gt;</span><br><span class="line">        &lt;aop:aspect ref=&quot;demoDaoProxy&quot;&gt;</span><br><span class="line">            &lt;aop:before method=&quot;beforeMethod&quot; pointcut-ref=&quot;pointcut1&quot;&gt;&lt;/aop:before&gt;</span><br><span class="line">            &lt;aop:after method=&quot;afterMethod&quot; pointcut-ref=&quot;pointcut1&quot;&gt;&lt;/aop:after&gt;</span><br><span class="line">        &lt;/aop:aspect&gt;</span><br><span class="line">    &lt;/aop:config&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>测试并打印方法执行时间</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line"></span><br><span class="line">DemoDao demoDao = (DemoDao) applicationContext.getBean(&quot;demoDao&quot;);</span><br><span class="line">demoDao.save();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeMethod</span><br><span class="line">afterMethod</span><br><span class="line">执行时间：15</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>execution表达式说明</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">execution:</span><br><span class="line">		匹配方法的执行(常用)		</span><br><span class="line">		execution(表达式)</span><br><span class="line">表达式语法：execution([修饰符] 返回值类型 包名.类名.方法名(参数))</span><br><span class="line">写法说明：</span><br><span class="line">	全匹配方式：</span><br><span class="line">		public void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	访问修饰符可以省略	</span><br><span class="line">		void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	返回值可以使用*号，表示任意返回值</span><br><span class="line">		* com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	包名可以使用*号，表示任意包，但是有几级包，需要写几个*</span><br><span class="line">		* *.*.*.*.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	使用..来表示当前包，及其子包</span><br><span class="line">		* com..CustomerServiceImpl.saveCustomer()</span><br><span class="line">	类名可以使用*号，表示任意类</span><br><span class="line">		* com..*.saveCustomer()</span><br><span class="line">	方法名可以使用*号，表示任意方法</span><br><span class="line">		* com..*.*()</span><br><span class="line">	参数列表可以使用*，表示参数可以是任意数据类型，但是必须有参数</span><br><span class="line">		* com..*.*(*)</span><br><span class="line">	参数列表可以使用..表示有无参数均可，有参数可以是任意类型</span><br><span class="line">		* com..*.*(..)</span><br><span class="line">	全通配方式：</span><br><span class="line">		* *..*.*(..)</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/03/01/soa架构/soa架构之负载均衡（ngnix）/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
+    <a href="/2016/08/01/ssh/spring之aop（xml）/">
+    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
+        2016-08-01
     </time>
 </a>
     
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
   </div>
 
     
@@ -481,7 +125,7 @@
 
 
   
-    <article id="post-soa架构/soa架构之概述" class="post-soa架构/soa架构之概述 post type-post status-publish format-standard hentry">
+    <article id="post-ssh/spring之ioc（xml）" class="post-ssh/spring之ioc（xml） post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -489,43 +133,95 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/soa架构/soa架构之概述/">soa架构之概述</a>
+      <a class="article-title" href="/2016/08/01/ssh/spring之ioc（xml）/">spring之ioc（xml）</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/soa架构/soa架构之概述/" data-id="cjhstbvtm0048m8tbtin6wgoy" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之ioc（xml）/" data-id="cji89ty1n0000tstbw92kysww" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h1 id="系统架构的种类"><a href="#系统架构的种类" class="headerlink" title="系统架构的种类"></a>系统架构的种类</h1><ol>
-<li><p>传统架构<br>单个项目，分为表现层、业务层、持久层</p>
-</li>
-<li><p>加上负载均衡<br>利用负载均衡服务器（如Nginx服务器），添加应用到多个服务器（如tomcat），做成tomcat集群。<br>服务器集群不宜过多，一般5个左右，达到最佳服务能力</p>
-</li>
-<li><p>分布式<br>按照功能把系统拆分多个功能点（如登录系统、订单系统、财务系统），每个系统是单独一个应用，放在多台服务器就是集群</p>
-</li>
-<li><p>基于soa架构设计<br>在上面基础再细分一下，把单个功能点拆分成表现层和服务层<br>表现层负责处理页面的加护<br>服务层负责业务逻辑处理<br>这样会用到dubbo和zookeeper，还有Nginx</p>
-</li>
+        <h3 id="applicationContext-xml文件如下："><a href="#applicationContext-xml文件如下：" class="headerlink" title="applicationContext.xml文件如下："></a>applicationContext.xml文件如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </span><br><span class="line">	   xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">		http://www.springframework.org/schema/beans/spring-beans.xsd &quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id=&quot;userDao&quot; class=&quot;com.abblcg.springdemo.dao.impl.UserDaoImpl&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;bean id=&quot;userService&quot; class=&quot;com.abblcg.springdemo.service.impl.UserServiceImpl&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;userDao&quot; ref=&quot;userDao&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="单纯的java项目，获取对象方式："><a href="#单纯的java项目，获取对象方式：" class="headerlink" title="单纯的java项目，获取对象方式："></a>单纯的java项目，获取对象方式：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line">IUserService us = (IUserService) ac.getBean(&quot;userService&quot;);</span><br><span class="line">us.add(new User());</span><br></pre></td></tr></table></figure>
+<h3 id="javaweb项目，以struts2为例，获取对象方式："><a href="#javaweb项目，以struts2为例，获取对象方式：" class="headerlink" title="javaweb项目，以struts2为例，获取对象方式："></a>javaweb项目，以struts2为例，获取对象方式：</h3><ol>
+<li>配置文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置struts2的核心过滤器器: --&gt;</span><br><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 配置Spring的核心监听器: --&gt;</span><br><span class="line">&lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>获取<br>在UserServiceImpl获取</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class UserServiceImpl implements IUserService &#123;</span><br><span class="line"></span><br><span class="line">    private IUserDao userDao;</span><br><span class="line"></span><br><span class="line">    public void setUserDao(IUserDao userDao) &#123;</span><br><span class="line">        this.userDao = userDao;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/08/01/ssh/spring之ioc（xml）/">
+    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
+        2016-08-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/spring" class="post-ssh/spring post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/08/01/ssh/spring/">spring</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring/" data-id="cjhstbvts004gm8tbzert5127" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="spring的bean管理方式：xml配置和注解配置"><a href="#spring的bean管理方式：xml配置和注解配置" class="headerlink" title="spring的bean管理方式：xml配置和注解配置"></a>spring的bean管理方式：xml配置和注解配置</h3><p><img src="/images/java/spring.jpg" alt=""></p>
+<h3 id="spring最大的两个特点：和面向切面编程"><a href="#spring最大的两个特点：和面向切面编程" class="headerlink" title="spring最大的两个特点：和面向切面编程"></a>spring最大的两个特点：和面向切面编程</h3><ol>
+<li>反转控制<br>对象的创建不在直接new，而是丢给spring生产</li>
+<li>面向切面编程<br>比如类方法功能加强，底层基于动态代理，类似装饰设计模式</li>
 </ol>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/03/01/soa架构/soa架构之概述/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
+    <a href="/2016/08/01/ssh/spring/">
+    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
+        2016-08-01
     </time>
 </a>
     
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
   </div>
 
     
@@ -538,7 +234,7 @@
 
 
   
-    <article id="post-soa架构/soa架构之redis" class="post-soa架构/soa架构之redis post type-post status-publish format-standard hentry">
+    <article id="post-ssh/spring之aop（注解）" class="post-ssh/spring之aop（注解） post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -546,36 +242,427 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/soa架构/soa架构之redis/">soa架构之redis</a>
+      <a class="article-title" href="/2016/08/01/ssh/spring之aop（注解）/">spring之aop（注解）</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/soa架构/soa架构之redis/" data-id="cjhstbvti0043m8tb0ys9dxmo" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之aop（注解）/" data-id="cji89ty1v0003tstb5ita5ml1" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="redis的五种数据类型"><a href="#redis的五种数据类型" class="headerlink" title="redis的五种数据类型"></a>redis的五种数据类型</h3><p>redis是以key-value形式进行存取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string</span><br><span class="line">hash</span><br><span class="line">list</span><br><span class="line">set</span><br><span class="line">sortdset：有顺序不能重复</span><br></pre></td></tr></table></figure>
-<h3 id="缓存同步"><a href="#缓存同步" class="headerlink" title="缓存同步"></a>缓存同步</h3><p>对所有的增删改操作都要做缓存删除操作，以便在取的时候重新存缓存</p>
+        <h3 id="案例1：统计dao方法执行的时间"><a href="#案例1：统计dao方法执行的时间" class="headerlink" title="案例1：统计dao方法执行的时间"></a>案例1：统计dao方法执行的时间</h3><p>applicationContext.xml文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line"></span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">        http://www.springframework.org/schema/context</span><br><span class="line">        http://www.springframework.org/schema/context/spring-context.xsd &quot;&gt;</span><br><span class="line">    &lt;!-- 告知spring框架在，读取配置文件，创建容器时，扫描注解，依据注解创建对象，并存入容器中 --&gt;</span><br><span class="line">    &lt;context:component-scan base-package=&quot;com.abblcg.springdemo&quot;&gt;&lt;/context:component-scan&gt;</span><br><span class="line">	&lt;aop:aspectj-autoproxy/&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建普通类</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDao &#123;</span><br><span class="line"></span><br><span class="line">    public void save() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建增强类</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Component(&quot;ddp&quot;)</span><br><span class="line">@Aspect//表明当前类是一个切面类</span><br><span class="line">public class DemoDaoProxy &#123;</span><br><span class="line"></span><br><span class="line">    private long startTime;</span><br><span class="line"></span><br><span class="line">	@Before(&quot;execution(* com.abblcg.springdemo.service.impl.*.*(..))&quot;)//表示前置通知</span><br><span class="line">    public void beforeMethod() &#123;</span><br><span class="line">        startTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;beforeMethod&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	@After(&quot;execution(* com.abblcg.springdemo.service.impl.*.*(..))&quot;)//表示前置通知</span><br><span class="line">    public void afterMethod() &#123;</span><br><span class="line">        long doTime = System.currentTimeMillis() - startTime;</span><br><span class="line">        System.out.println(&quot;afterMethod&quot;);</span><br><span class="line">        System.out.println(&quot;执行时间：&quot; + doTime);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>测试并打印方法执行时间</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line"></span><br><span class="line">DemoDao demoDao = (DemoDao) applicationContext.getBean(&quot;demoDao&quot;);</span><br><span class="line">demoDao.save();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeMethod</span><br><span class="line">afterMethod</span><br><span class="line">执行时间：15</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>execution表达式说明</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">execution:</span><br><span class="line">		匹配方法的执行(常用)		</span><br><span class="line">		execution(表达式)</span><br><span class="line">表达式语法：execution([修饰符] 返回值类型 包名.类名.方法名(参数))</span><br><span class="line">写法说明：</span><br><span class="line">	全匹配方式：</span><br><span class="line">		public void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	访问修饰符可以省略	</span><br><span class="line">		void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	返回值可以使用*号，表示任意返回值</span><br><span class="line">		* com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	包名可以使用*号，表示任意包，但是有几级包，需要写几个*</span><br><span class="line">		* *.*.*.*.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	使用..来表示当前包，及其子包</span><br><span class="line">		* com..CustomerServiceImpl.saveCustomer()</span><br><span class="line">	类名可以使用*号，表示任意类</span><br><span class="line">		* com..*.saveCustomer()</span><br><span class="line">	方法名可以使用*号，表示任意方法</span><br><span class="line">		* com..*.*()</span><br><span class="line">	参数列表可以使用*，表示参数可以是任意数据类型，但是必须有参数</span><br><span class="line">		* com..*.*(*)</span><br><span class="line">	参数列表可以使用..表示有无参数均可，有参数可以是任意类型</span><br><span class="line">		* com..*.*(..)</span><br><span class="line">	全通配方式：</span><br><span class="line">		* *..*.*(..)</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/03/01/soa架构/soa架构之redis/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
+    <a href="/2016/08/01/ssh/spring之aop（注解）/">
+    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
+        2016-08-01
     </time>
 </a>
     
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2之配置文件" class="post-ssh/struts2之配置文件 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之配置文件/">struts2之配置文件</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之配置文件/" data-id="cji89ty2p000ktstb1ur686n3" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="默认的struts-xml配置，如下："><a href="#默认的struts-xml配置，如下：" class="headerlink" title="默认的struts.xml配置，如下："></a>默认的struts.xml配置，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE struts PUBLIC</span><br><span class="line">        &quot;-//Apache Software Foundation//DTD Struts Configuration 2.3//EN&quot;</span><br><span class="line">        &quot;http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;struts&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.i18n.encoding&quot; value=&quot;utf-8&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.multipart.maxSize&quot; value=&quot;2048000&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;package name=&quot;myDefault&quot; extends=&quot;struts-default&quot; namespace=&quot;/user&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;defaultAction&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot; type=&quot;dispatcher&quot;&gt;/index.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;login&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;login&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot; type=&quot;dispatcher&quot;&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line">    &lt;/package&gt;</span><br><span class="line">&lt;/struts&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="constant有多个配置，如下："><a href="#constant有多个配置，如下：" class="headerlink" title="constant有多个配置，如下："></a>constant有多个配置，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#编码</span><br><span class="line">struts.i18n.encoding=utf-8</span><br><span class="line"></span><br><span class="line">#文件上传大小限制</span><br><span class="line">struts.multipart.maxSize=2014000</span><br><span class="line"></span><br><span class="line">#开发者模式</span><br><span class="line">struts.devMode=True</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="package"><a href="#package" class="headerlink" title="package"></a>package</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">namespace默认为&quot;&quot;，如需要，可以写成</span><br><span class="line">namespace=&quot;/user&quot;</span><br><span class="line">访问的是后需要在action之前加上user</span><br><span class="line">localhost:8080/user/login</span><br></pre></td></tr></table></figure>
+<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">action的写法有很多种：</span><br><span class="line">&lt;action name=&quot;addUser&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;addUser&quot;&gt;</span><br><span class="line">访问方式：</span><br><span class="line">localhost:8080/addUser</span><br><span class="line"></span><br><span class="line">&lt;action name=&quot;user/*&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;addUser&quot; method=&quot;add&quot;&gt;</span><br><span class="line">访问方式：</span><br><span class="line">localhost:8080/user/add</span><br><span class="line">默认method可以省去</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之配置文件/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2之拦截器" class="post-ssh/struts2之拦截器 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之拦截器/">struts2之拦截器</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之拦截器/" data-id="cji89ty22000btstb17wbzhpj" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="拦截器只用场景：验证登录"><a href="#拦截器只用场景：验证登录" class="headerlink" title="拦截器只用场景：验证登录"></a>拦截器只用场景：验证登录</h3><ol>
+<li>配置全局结果视图</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 全局结果视图 --&gt;</span><br><span class="line">&lt;global-results&gt;</span><br><span class="line">	&lt;result name=&quot;login&quot; type=&quot;&quot;&gt;/user/loginUI&lt;/result&gt;</span><br><span class="line">&lt;/global-results&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建验证登录拦截器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class CheckLoginInterceptor extends MethodFilterInterceptor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected String doIntercept(ActionInvocation actionInvocation) throws Exception &#123;</span><br><span class="line">        Map&lt;String, Object&gt; sessions = ActionContext.getContext().getSession();</span><br><span class="line">        if (sessions.get(&quot;user&quot;) != null)&#123;</span><br><span class="line">            return actionInvocation.invoke();</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;login&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在struts.xml中配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 声明拦截器 --&gt;</span><br><span class="line">&lt;interceptors&gt;</span><br><span class="line">    &lt;interceptor name=&quot;checkLogin&quot; class=&quot;com.abblcg.web.interceptors.CheckLoginInterceptor&quot;/&gt;</span><br><span class="line">    &lt;!-- 定义一个拦截器栈 --&gt;</span><br><span class="line">    &lt;interceptor-stack name=&quot;myDefaultStack&quot;&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;checkLogin&quot;&gt;</span><br><span class="line">            &lt;!-- 由于我们使用了继承MethodFilterInterceptor，</span><br><span class="line">                此时我们可以告知拦截器，排除掉登录方法 --&gt;</span><br><span class="line">            &lt;param name=&quot;excludeMethods&quot;&gt;login&lt;/param&gt;</span><br><span class="line">			&lt;param name=&quot;excludeMethods&quot;&gt;loginUI&lt;/param&gt;</span><br><span class="line">        &lt;/interceptor-ref&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;defaultStack&quot;&gt;&lt;/interceptor-ref&gt;</span><br><span class="line">    &lt;/interceptor-stack&gt;</span><br><span class="line">&lt;/interceptors&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修改默认拦截器栈，设置我们自定义的拦截器栈，</span><br><span class="line">    这样的话我们写的所有动作都有了检查登录功能。并且排除了登录方法--&gt;</span><br><span class="line">&lt;default-interceptor-ref name=&quot;myDefaultStack&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>这样访问的时候只有</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之拦截器/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2之数据获取" class="post-ssh/struts2之数据获取 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之数据获取/">struts2之数据获取</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之数据获取/" data-id="cji89ty200009tstblrfkkf26" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="第一种，传统方式，使用request获取"><a href="#第一种，传统方式，使用request获取" class="headerlink" title="第一种，传统方式，使用request获取"></a>第一种，传统方式，使用request获取</h3><h3 id="第一种，使用struts内置的属性驱动和模型驱动获取"><a href="#第一种，使用struts内置的属性驱动和模型驱动获取" class="headerlink" title="第一种，使用struts内置的属性驱动和模型驱动获取"></a>第一种，使用struts内置的属性驱动和模型驱动获取</h3><ol>
+<li>属性驱动1</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=&quot;username&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private String username;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>属性驱动2</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;user.username&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;user.password&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private User user;</span><br><span class="line"></span><br><span class="line">    public void setUser(User user) &#123;</span><br><span class="line">        this.user = user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>属性驱动3</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;users[0].name&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;users[1].name&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private List&lt;User&gt; users;</span><br><span class="line"></span><br><span class="line">    public void setUsers(List&lt;User&gt; users) &#123;</span><br><span class="line">        this.users = users;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>属性驱动4</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;users[&apos;one&apos;].name&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;users[&apos;two&apos;].name&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private Map&lt;String, User&gt; users;</span><br><span class="line"></span><br><span class="line">    public void setUsers(Map&lt;String, User&gt; users) &#123;</span><br><span class="line">        this.users = users;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>模型驱动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;username&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;password&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport implements ModelDriven&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private User user = new User();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public User getModel() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之数据获取/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2之访问servletAPI" class="post-ssh/struts2之访问servletAPI post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之访问servletAPI/">struts2之访问servletAPI</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之访问servletAPI/" data-id="cji89ty24000dtstb312wwv3g" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="访问方式有三种"><a href="#访问方式有三种" class="headerlink" title="访问方式有三种"></a>访问方式有三种</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.使用ActionContext，建议使用，耦合性最低</span><br><span class="line">ActionContext context = ActionContext.getContext();</span><br><span class="line">context.getSession();</span><br><span class="line">context.getApplication();</span><br><span class="line"></span><br><span class="line">2.使用ServletActionContext</span><br><span class="line">HttpServletRequest request = ServletActionContext.getRequest();</span><br><span class="line">HttpServletResponse response = ServletActionContext.getResponse();</span><br><span class="line">HttpSession session = request.getSession();</span><br><span class="line">ServletContext application = ServletActionContext.getServletContext();</span><br><span class="line"></span><br><span class="line">3.分别实现ServletRequestAware，ServletResponseAware，SessionAware，ServletContextAware</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之访问servletAPI/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2之标签库" class="post-ssh/struts2之标签库 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之标签库/">struts2之标签库</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之标签库/" data-id="cji89ty1z0007tstb83roh035" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=&quot;/struts-tags&quot; prefix=&quot;s&quot; %&gt;</span><br><span class="line"></span><br><span class="line">//取值</span><br><span class="line">&lt;s:property value=&quot;#username&quot;/&gt;</span><br><span class="line"></span><br><span class="line">//循环</span><br><span class="line">&lt;s:iterator value=&quot;users&quot; var=&quot;user&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/s:iterator&gt;</span><br><span class="line"></span><br><span class="line">//判断</span><br><span class="line">&lt;s:if test=&quot;&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/s:if&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之标签库/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2" class="post-ssh/struts2 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2/">struts2</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2/" data-id="cjhstbvtq004dm8tb3tn9xicg" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ol>
+<li>导入各种包</li>
+<li>创建StrutsDemo1和StrutsDemo2类</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo1 &#123;</span><br><span class="line"></span><br><span class="line">    public String execute()&#123;</span><br><span class="line">        System.out.println(&quot;execute执行了&quot;);</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo2 extends ActionSupport &#123;</span><br><span class="line"></span><br><span class="line">    public String add() &#123;</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String del() &#123;</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>创建demo1.jsp和demo2.jsp</p>
+</li>
+<li><p>配置web.xml</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>配置struts.xml</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE struts PUBLIC</span><br><span class="line">        &quot;-//Apache Software Foundation//DTD Struts Configuration 2.0//EN&quot;</span><br><span class="line">        &quot;http://struts.apache.org/dtds/struts-2.0.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;struts&gt;</span><br><span class="line"></span><br><span class="line">    &lt;package name=&quot;demo&quot; extends=&quot;struts-default&quot; namespace=&quot;/&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;strutsDemo1&quot; class=&quot;com.abblcg.myblog.web.StrutsDemo1&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot;&gt;/demo1.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;strutsDemo2_*&quot; class=&quot;com.abblcg.myblog.web.StrutsDemo2&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot;&gt;/demo2.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/package&gt;</span><br><span class="line">&lt;/struts&gt;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>修改index.jsp</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;&lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo1.action&quot;&gt;点击跳转&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo2_add.action&quot;&gt;执行add方法&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo2_del.action&quot;&gt;执行del方法&lt;/a&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>浏览器访问localhost:8080</li>
+</ol>
+<h3 id="调用和访问servlet-api"><a href="#调用和访问servlet-api" class="headerlink" title="调用和访问servlet api"></a>调用和访问servlet api</h3><ol>
+<li>通过ActionContext访问</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ActionContext context ActionContext.getContext();</span><br><span class="line">context.put(&quot;name&quot;,&quot;张三&quot;);</span><br><span class="line">context.getApplication().put(&quot;name&quot;,&quot;张三&quot;);</span><br><span class="line">context.getSession().put(&quot;name&quot;,&quot;张三&quot;);</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>Action实现ServletRequestAware，ServletResponseAware，SessionAware，ServletContextAware接口</p>
+</li>
+<li><p>通过ServletActionContext访问</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpServletRequest request = ServletActionContext.getRequest();</span><br><span class="line">HttpServletResponse response = ServletActionContext.getResponse();</span><br><span class="line">ServletContext servletContext = ServletActionContext.getServletContext();</span><br><span class="line">PageContext pageContext = ServletActionContext.getPageContext();</span><br></pre></td></tr></table></figure>
+<h3 id="请求参数的获取与封装"><a href="#请求参数的获取与封装" class="headerlink" title="请求参数的获取与封装"></a>请求参数的获取与封装</h3><p>两种方式：</p>
+<ol>
+<li>属性驱动<h5 id="获取name属性"><a href="#获取name属性" class="headerlink" title="获取name属性"></a>获取name属性</h5></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="获取User对象"><a href="#获取User对象" class="headerlink" title="获取User对象"></a>获取User对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;user.name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;user.age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;user.birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;user.salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 &#123;</span><br><span class="line">    private User user;</span><br><span class="line"></span><br><span class="line">    public User getUser() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="获取List"><a href="#获取List" class="headerlink" title="获取List"></a>获取List</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;list[0].name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;list[0].age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;list[0].birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;list[0].salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 &#123;</span><br><span class="line">    private List&lt;User&gt; list;</span><br><span class="line"></span><br><span class="line">    public List&lt;User&gt; getList() &#123;</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="获取Map"><a href="#获取Map" class="headerlink" title="获取Map"></a>获取Map</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;map[&apos;one&apos;].name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;map[&apos;one&apos;].age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;map[&apos;one&apos;].birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;map[&apos;one&apos;].salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 &#123;</span><br><span class="line">    private Map&lt;String, User&gt; map;</span><br><span class="line"></span><br><span class="line">    public Map&lt;String, User&gt; getMap() &#123;</span><br><span class="line">        return map;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>模型驱动</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 implements ModelDriven(User)&#123;</span><br><span class="line">    private User user = new User();</span><br><span class="line"></span><br><span class="line">    public User getModel() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ValueStack详解"><a href="#ValueStack详解" class="headerlink" title="ValueStack详解"></a>ValueStack详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//先放着，ValueStack是封装了请求action的参数，并且能够通过OGNL表达式（比el表达式强大）读取</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
   </div>
 
     
@@ -591,7 +678,7 @@
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -603,7 +690,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 
