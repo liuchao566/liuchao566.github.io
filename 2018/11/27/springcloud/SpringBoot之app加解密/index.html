@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="app与springboot数据通讯，一般需要加解密处理
+作为app的入口登录，需要再验证之后生成token，可以借助JWT。token一方面存入redis，一方面返回给app。
+前提:
+1234567TestFilter doFilter beforeTestInterceptor preHand" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>SpringBoot之app加解密 | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="app与springboot数据通讯，一般需要加解密处理 作为app的入口登录，需要再验证之后生成token，可以借助JWT。token一方面存入redis，一方面返回给app。 前提: 1234567TestFilter doFilter beforeTestInterceptor preHandle executedTestController executedTestInterceptor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot之app加解密">
+<meta property="og:url" content="http://www.liuchao566.com/2018/11/27/springcloud/SpringBoot之app加解密/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="app与springboot数据通讯，一般需要加解密处理 作为app的入口登录，需要再验证之后生成token，可以借助JWT。token一方面存入redis，一方面返回给app。 前提: 1234567TestFilter doFilter beforeTestInterceptor preHandle executedTestController executedTestInterceptor">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-01T04:49:12.386Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringBoot之app加解密">
+<meta name="twitter:description" content="app与springboot数据通讯，一般需要加解密处理 作为app的入口登录，需要再验证之后生成token，可以借助JWT。token一方面存入redis，一方面返回给app。 前提: 1234567TestFilter doFilter beforeTestInterceptor preHandle executedTestController executedTestInterceptor">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-springcloud/SpringBoot之app加解密" class="post-springcloud/SpringBoot之app加解密 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      SpringBoot之app加解密
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/11/27/springcloud/SpringBoot之app加解密/" data-id="cjp4z7c6l0002swtbde1zu74k" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>app与springboot数据通讯，一般需要加解密处理</p>
+<p>作为app的入口登录，需要再验证之后生成token，可以借助JWT。<br>token一方面存入redis，一方面返回给app。</p>
+<p>前提:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TestFilter doFilter before</span><br><span class="line">TestInterceptor preHandle executed</span><br><span class="line">TestController executed</span><br><span class="line">TestInterceptor postHandle executed</span><br><span class="line">test.jsp is loading</span><br><span class="line">TestInterceptor afterCompletion executed</span><br><span class="line">TestFilter doFilter after</span><br></pre></td></tr></table></figure>
+<h3 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h3><p>（1）首次登陆，生成token，存入redis和ThreadLocal<br>（2）下次访问，先验证token的有效性（还可以限制访问次数）<br>（3）下次访问，从header取出token，通过截取token字符串作为aes加密秘钥和md5签名秘钥（与app约定）<br>（4）先aes解密成json字符串，再（排序）生成签名，与app传过来的签名进行比较<br>（5）有效的数据放行，进入controller层</p>
+<h3 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h3><p>使用 @ControllerAdvice &amp; ResponseBodyAdvice 拦截Controller方法默认返回参数，统一处理返回值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/manage/user&quot;)</span><br><span class="line">public class TestController &#123;</span><br><span class="line"> </span><br><span class="line">    private Logger logger = LoggerFactory.getLogger(TestController.class);</span><br><span class="line"> </span><br><span class="line">    @GetMapping(&quot;/edit/&#123;id&#125;&quot;)</span><br><span class="line">    public AppMessage edit(@PathVariable Integer id) &#123;</span><br><span class="line">        if (null == id) &#123;</span><br><span class="line">            return R.error(1000, &quot;会员ID不能为空&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        // 查询会员对象</span><br><span class="line">        User user = userService.queryById(id);</span><br><span class="line">        if (user == null) &#123;</span><br><span class="line">            return R.error(1001, &quot;根据会员ID未查询到对应会员&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        return R.success(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@ControllerAdvice</span><br><span class="line">public class TestResponseBodyAdvice implements ResponseBodyAdvice &#123;</span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) &#123;</span><br><span class="line"> </span><br><span class="line">        if (null != o &amp;&amp; o instanceof R) &#123;</span><br><span class="line">			Map map = new HashMap();</span><br><span class="line">			//TODO 可以对o进行加密处理</span><br><span class="line">			map.put(&quot;data&quot;, o);</span><br><span class="line">			return map;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">        return o;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    @Override</span><br><span class="line">    public boolean supports(MethodParameter methodParameter, Class aClass) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/11/27/springcloud/SpringBoot之app加解密/">
+    <time datetime="2018-11-26T16:00:00.000Z" class="entry-date">
+        2018-11-27
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/SpringCloud/">SpringCloud</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2018/11/28/springcloud/SpringCloud之Feign/" rel="prev"><span class="meta-nav">←</span> SpringCloud之Feign</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/11/27/java/java之hashmap原理/" rel="next">java之hashmap原理 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

@@ -57,7 +57,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-ssh/spring之aop（xml）" class="post-ssh/spring之aop（xml） post type-post status-publish format-standard hentry">
+    <article id="post-ssm/springmvc" class="post-ssm/springmvc post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -65,105 +65,151 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/08/01/ssh/spring之aop（xml）/">spring之aop（xml）</a>
+      <a class="article-title" href="/2016/08/23/ssm/springmvc/">springmvc</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之aop（xml）/" data-id="cji89ty1r0001tstbibk10bo5" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/23/ssm/springmvc/" data-id="cjhstbvtx004mm8tbtz8cu62s" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="案例1：统计dao方法执行的时间"><a href="#案例1：统计dao方法执行的时间" class="headerlink" title="案例1：统计dao方法执行的时间"></a>案例1：统计dao方法执行的时间</h3><ol>
-<li>创建普通类</li>
+        <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ol>
+<li>添加spring4依赖包</li>
+<li>在代码根目录下添加springmvc.xml</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDao &#123;</span><br><span class="line"></span><br><span class="line">    public void save() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建增强类</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDaoProxy &#123;</span><br><span class="line"></span><br><span class="line">    private long startTime;</span><br><span class="line"></span><br><span class="line">    public void beforeMethod() &#123;</span><br><span class="line">        startTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;beforeMethod&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void afterMethod() &#123;</span><br><span class="line">        long doTime = System.currentTimeMillis() - startTime;</span><br><span class="line">        System.out.println(&quot;afterMethod&quot;);</span><br><span class="line">        System.out.println(&quot;执行时间：&quot; + doTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</span><br><span class="line">	xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">	xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd</span><br><span class="line">        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd</span><br><span class="line">        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">     </span><br><span class="line">        &lt;!-- 扫描@Controler  @Service   --&gt;</span><br><span class="line">        &lt;context:component-scan base-package=&quot;com.abblcg&quot;/&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!-- 注解驱动 --&gt;</span><br><span class="line">        &lt;mvc:annotation-driven/&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;!-- 视图解释器 --&gt;</span><br><span class="line">        &lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</span><br><span class="line">        	&lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;</span><br><span class="line">        	&lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</span><br><span class="line">        &lt;/bean&gt;</span><br><span class="line">        </span><br><span class="line">   &lt;/beans&gt;</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>applicationContext.xml配置</li>
+<li>配置web.xml</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean name=&quot;demoDao&quot; class=&quot;com.abblcg.myblog.web.DemoDao&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;bean name=&quot;demoDaoProxy&quot; class=&quot;com.abblcg.myblog.web.DemoDaoProxy&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;aop:config&gt;</span><br><span class="line">        &lt;aop:pointcut id=&quot;pointcut1&quot; expression=&quot;execution(* com.abblcg.myblog.web.DemoDao.save(..))&quot;&gt;&lt;/aop:pointcut&gt;</span><br><span class="line">        &lt;aop:aspect ref=&quot;demoDaoProxy&quot;&gt;</span><br><span class="line">            &lt;aop:before method=&quot;beforeMethod&quot; pointcut-ref=&quot;pointcut1&quot;&gt;&lt;/aop:before&gt;</span><br><span class="line">            &lt;aop:after method=&quot;afterMethod&quot; pointcut-ref=&quot;pointcut1&quot;&gt;&lt;/aop:after&gt;</span><br><span class="line">        &lt;/aop:aspect&gt;</span><br><span class="line">    &lt;/aop:config&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 前端控制器 --&gt;</span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">	&lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;</span><br><span class="line">	&lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</span><br><span class="line">	&lt;!-- 默认找 /WEB-INF/[servlet的名称]-servlet.xml --&gt;</span><br><span class="line">	&lt;init-param&gt;</span><br><span class="line">		&lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">		&lt;param-value&gt;classpath:springmvc.xml&lt;/param-value&gt;</span><br><span class="line">	&lt;/init-param&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line"></span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">	&lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;</span><br><span class="line">	&lt;!-- </span><br><span class="line">		1. /*  拦截所有   jsp  js png .css  真的全拦截   建议不使用</span><br><span class="line">		2. *.action *.do 拦截以do action 结尾的请求     肯定能使用   ERP  </span><br><span class="line">		3. /  拦截所有 （不包括jsp) (包含.js .png.css)  强烈建议使用</span><br><span class="line">	 --&gt;</span><br><span class="line">	&lt;url-pattern&gt;*.action&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
 <ol start="4">
-<li>测试并打印方法执行时间</li>
+<li>编写TestController</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line"></span><br><span class="line">DemoDao demoDao = (DemoDao) applicationContext.getBean(&quot;demoDao&quot;);</span><br><span class="line">demoDao.save();</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeMethod</span><br><span class="line">afterMethod</span><br><span class="line">执行时间：15</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br><span class="line">public class TestController &#123;</span><br><span class="line"></span><br><span class="line">	@RequestMapping(value = &quot;/testFun&quot;)</span><br><span class="line">	public ModelAndView testFun()&#123;</span><br><span class="line">		</span><br><span class="line">		String str = &quot;测试数据&quot;;</span><br><span class="line">		</span><br><span class="line">		ModelAndView mav = new ModelAndView();</span><br><span class="line">		//添加数据</span><br><span class="line">		mav.addObject(&quot;str&quot;, str);</span><br><span class="line">		//设置页面</span><br><span class="line">		mav.setViewName(&quot;test&quot;);</span><br><span class="line">		return mav;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/08/23/ssm/springmvc/">
+    <time datetime="2016-08-22T16:00:00.000Z" class="entry-date">
+        2016-08-23
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssm/">ssm</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/hibernate" class="post-ssh/hibernate post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/08/09/ssh/hibernate/">hibernate</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/09/ssh/hibernate/" data-id="cjhstbvto004bm8tb1bl8gher" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ol>
+<li><p>添加hibernate依赖包</p>
+</li>
+<li><p>创建Customer对象文件及映射文件</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">package com.abblcg.myblog.domain;</span><br><span class="line"></span><br><span class="line">public class Customer &#123;</span><br><span class="line">    private Long cust_id;</span><br><span class="line">    private String cust_name;</span><br><span class="line"></span><br><span class="line">    public Long getCust_id() &#123;</span><br><span class="line">        return cust_id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCust_id(Long cust_id) &#123;</span><br><span class="line">        this.cust_id = cust_id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getCust_name() &#123;</span><br><span class="line">        return cust_name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCust_name(String cust_name) &#123;</span><br><span class="line">        this.cust_name = cust_name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Customer对象文件相同目录下添加Customer.hbm.xml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE hibernate-mapping PUBLIC</span><br><span class="line">        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;</span><br><span class="line">        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;</span><br><span class="line">&lt;!-- 配置表与实体对象的关系 --&gt;</span><br><span class="line">&lt;!-- package属性:填写一个包名.在元素内部凡是需要书写完整类名的属性,可以直接写简答类名了. --&gt;</span><br><span class="line">&lt;hibernate-mapping package=&quot;com.abblcg.myblog.domain&quot;&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">        class元素: 配置实体与表的对应关系的</span><br><span class="line">            name: 完整类名</span><br><span class="line">            table:数据库表名</span><br><span class="line">     --&gt;</span><br><span class="line">    &lt;class name=&quot;Customer&quot; table=&quot;cst_customer&quot;&gt;</span><br><span class="line">        &lt;!-- id元素:配置主键映射的属性</span><br><span class="line">                name: 填写主键对应属性名</span><br><span class="line">                column(可选): 填写表中的主键列名.默认值:列名会默认使用属性名</span><br><span class="line">                type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型.</span><br><span class="line">                        每个类型有三种填法: java类型|hibernate类型|数据库类型</span><br><span class="line">                not-null(可选):配置该属性(列)是否不能为空. 默认值:false</span><br><span class="line">                length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;id name=&quot;cust_id&quot;&gt;</span><br><span class="line">            &lt;!-- generator:主键生成策略(明天讲) --&gt;</span><br><span class="line">            &lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;</span><br><span class="line">        &lt;/id&gt;</span><br><span class="line">        &lt;!-- property元素:除id之外的普通属性映射</span><br><span class="line">                name: 填写属性名</span><br><span class="line">                column(可选): 填写列名</span><br><span class="line">                type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型.</span><br><span class="line">                        每个类型有三种填法: java类型|hibernate类型|数据库类型</span><br><span class="line">                not-null(可选):配置该属性(列)是否不能为空. 默认值:false</span><br><span class="line">                length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;property name=&quot;cust_name&quot; column=&quot;cust_name&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/class&gt;</span><br><span class="line">&lt;/hibernate-mapping&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在代码根目录下添加hibernate.cfg.xml</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE hibernate-configuration PUBLIC</span><br><span class="line">        &quot;-//Hibernate/Hibernate Configuration DTD 3.0//EN&quot;</span><br><span class="line">        &quot;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&quot;&gt;</span><br><span class="line">&lt;hibernate-configuration&gt;</span><br><span class="line">    &lt;session-factory&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!--</span><br><span class="line">        #hibernate.dialect org.hibernate.dialect.MySQLDialect</span><br><span class="line">        #hibernate.dialect org.hibernate.dialect.MySQLInnoDBDialect</span><br><span class="line">        #hibernate.dialect org.hibernate.dialect.MySQLMyISAMDialect</span><br><span class="line">        #hibernate.connection.driver_class com.mysql.jdbc.Driver</span><br><span class="line">        #hibernate.connection.url jdbc:mysql:///myblog_ssh</span><br><span class="line">        #hibernate.connection.username</span><br><span class="line">        #hibernate.connection.password</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;!-- 数据库驱动 --&gt;</span><br><span class="line">        &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;</span><br><span class="line">        &lt;!-- 数据库url --&gt;</span><br><span class="line">        &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql:///myblog_ssh&lt;/property&gt;</span><br><span class="line">        &lt;!-- 数据库连接用户名 --&gt;</span><br><span class="line">        &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;</span><br><span class="line">        &lt;!-- 数据库连接密码 --&gt;</span><br><span class="line">        &lt;property name=&quot;hibernate.connection.password&quot;&gt;&lt;/property&gt;</span><br><span class="line">        &lt;!-- 数据库方言</span><br><span class="line">            不同的数据库中,sql语法略有区别. 指定方言可以让hibernate框架在生成sql语句时.针对数据库的方言生成.</span><br><span class="line">            sql99标准:</span><br><span class="line">                DDL 定义语言  库表的增删改查</span><br><span class="line">                DCL 控制语言  事务 权限</span><br><span class="line">                DML 操纵语言  增删改查</span><br><span class="line">            注意: MYSQL在选择方言时,请选择最短的方言.</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;property name=&quot;hibernate.dialect&quot;&gt;org.hibernate.dialect.MySQLDialect&lt;/property&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;!-- #hibernate.show_sql true</span><br><span class="line">             #hibernate.format_sql true</span><br><span class="line">        --&gt;</span><br><span class="line">        &lt;!-- 将hibernate生成的sql语句打印到控制台 --&gt;</span><br><span class="line">        &lt;property name=&quot;hibernate.show_sql&quot;&gt;true&lt;/property&gt;</span><br><span class="line">        &lt;!-- 将hibernate生成的sql语句格式化(语法缩进) --&gt;</span><br><span class="line">        &lt;property name=&quot;hibernate.format_sql&quot;&gt;true&lt;/property&gt;</span><br><span class="line">        &lt;!--</span><br><span class="line">        ## auto schema export  自动导出表结构. 自动建表</span><br><span class="line">        #hibernate.hbm2ddl.auto create		自动建表.每次框架运行都会创建新的表.以前表将会被覆盖,表数据会丢失.(开发环境中测试使用)</span><br><span class="line">        #hibernate.hbm2ddl.auto create-drop 自动建表.每次框架运行结束都会将所有表删除.(开发环境中测试使用)</span><br><span class="line">        #hibernate.hbm2ddl.auto update(推荐使用) 自动生成表.如果已经存在不会再生成.如果表有变动.自动更新表(不会删除任何数据).</span><br><span class="line">        #hibernate.hbm2ddl.auto validate	校验.不自动生成表.每次启动会校验数据库中表是否正确.校验失败.</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;&gt;update&lt;/property&gt;</span><br><span class="line">        &lt;!-- 引入orm元数据</span><br><span class="line">            路径书写: 填写src下的路径</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;mapping resource=&quot;com/abblcg/myblog/domain/Customer.hbm.xml&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/session-factory&gt;</span><br><span class="line">&lt;/hibernate-configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>也可以添加hibernate.properties文件，但是xml配置更加灵活强大</p>
+<ol start="4">
+<li>编写测试代码</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Configuration cfg = new Configuration().configure();</span><br><span class="line">SessionFactory sessionFactory = cfg.buildSessionFactory();</span><br><span class="line">Session session = sessionFactory.openSession();</span><br><span class="line">Transaction transaction = session.beginTransaction();</span><br><span class="line">Customer customer = new Customer();</span><br><span class="line">customer.setCust_name(&quot;张三&quot;);</span><br><span class="line">session.save(customer);</span><br><span class="line">transaction.commit();</span><br><span class="line">session.close();</span><br><span class="line">sessionFactory.close();</span><br></pre></td></tr></table></figure>
 <ol start="5">
-<li>execution表达式说明</li>
+<li>结果：<br>cst_customer数据库自动生成并添加一条customer数据</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">execution:</span><br><span class="line">		匹配方法的执行(常用)		</span><br><span class="line">		execution(表达式)</span><br><span class="line">表达式语法：execution([修饰符] 返回值类型 包名.类名.方法名(参数))</span><br><span class="line">写法说明：</span><br><span class="line">	全匹配方式：</span><br><span class="line">		public void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	访问修饰符可以省略	</span><br><span class="line">		void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	返回值可以使用*号，表示任意返回值</span><br><span class="line">		* com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	包名可以使用*号，表示任意包，但是有几级包，需要写几个*</span><br><span class="line">		* *.*.*.*.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	使用..来表示当前包，及其子包</span><br><span class="line">		* com..CustomerServiceImpl.saveCustomer()</span><br><span class="line">	类名可以使用*号，表示任意类</span><br><span class="line">		* com..*.saveCustomer()</span><br><span class="line">	方法名可以使用*号，表示任意方法</span><br><span class="line">		* com..*.*()</span><br><span class="line">	参数列表可以使用*，表示参数可以是任意数据类型，但是必须有参数</span><br><span class="line">		* com..*.*(*)</span><br><span class="line">	参数列表可以使用..表示有无参数均可，有参数可以是任意类型</span><br><span class="line">		* com..*.*(..)</span><br><span class="line">	全通配方式：</span><br><span class="line">		* *..*.*(..)</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/08/01/ssh/spring之aop（xml）/">
-    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
-        2016-08-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/ssh/">ssh</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-ssh/spring之ioc（xml）" class="post-ssh/spring之ioc（xml） post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/08/01/ssh/spring之ioc（xml）/">spring之ioc（xml）</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之ioc（xml）/" data-id="cji89ty1n0000tstbw92kysww" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="applicationContext-xml文件如下："><a href="#applicationContext-xml文件如下：" class="headerlink" title="applicationContext.xml文件如下："></a>applicationContext.xml文件如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </span><br><span class="line">	   xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">		http://www.springframework.org/schema/beans/spring-beans.xsd &quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id=&quot;userDao&quot; class=&quot;com.abblcg.springdemo.dao.impl.UserDaoImpl&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;bean id=&quot;userService&quot; class=&quot;com.abblcg.springdemo.service.impl.UserServiceImpl&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;userDao&quot; ref=&quot;userDao&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="单纯的java项目，获取对象方式："><a href="#单纯的java项目，获取对象方式：" class="headerlink" title="单纯的java项目，获取对象方式："></a>单纯的java项目，获取对象方式：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line">IUserService us = (IUserService) ac.getBean(&quot;userService&quot;);</span><br><span class="line">us.add(new User());</span><br></pre></td></tr></table></figure>
-<h3 id="javaweb项目，以struts2为例，获取对象方式："><a href="#javaweb项目，以struts2为例，获取对象方式：" class="headerlink" title="javaweb项目，以struts2为例，获取对象方式："></a>javaweb项目，以struts2为例，获取对象方式：</h3><ol>
-<li>配置文件</li>
+<h3 id="hibernate的核心对象session"><a href="#hibernate的核心对象session" class="headerlink" title="hibernate的核心对象session"></a>hibernate的核心对象session</h3><p>session是线程不安全的，提供了大量的常用方法<br>save(),update(),saveOrUpdate()用于增加和修改对象<br>delete()用于删除对象<br>get(),load()主键查询<br>createQuery(),createSQLQuery()操作数据库对象<br>createCriteria()条件查询</p>
+<h3 id="hibernate主键生成策略"><a href="#hibernate主键生成策略" class="headerlink" title="hibernate主键生成策略"></a>hibernate主键生成策略</h3><p><img src="/images/java/hibernate01.png" alt=""></p>
+<h3 id="hibernate持久化三种状态"><a href="#hibernate持久化三种状态" class="headerlink" title="hibernate持久化三种状态"></a>hibernate持久化三种状态</h3><ol>
+<li>瞬时态<br>Customer customer = new Customer()是瞬时态</li>
+<li>持久态<br>session.save(customer)之后customer是持久态</li>
+<li>托管态<br>session.close()之后customer是托管态</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置struts2的核心过滤器器: --&gt;</span><br><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 配置Spring的核心监听器: --&gt;</span><br><span class="line">&lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="hibernate的一级缓存"><a href="#hibernate的一级缓存" class="headerlink" title="hibernate的一级缓存"></a>hibernate的一级缓存</h3><p>session第一次取对象的时候会从数据库中取并缓存到内存中，第二次直接从内存中取</p>
+<h3 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 事务隔离级别</span><br><span class="line">    1-Read uncommitted isolation</span><br><span class="line">    2-Read committed isolation</span><br><span class="line">    4-Repeatable read isolation</span><br><span class="line">    8-Serializable isolation</span><br><span class="line">--&gt;</span><br><span class="line">&lt;property name=&quot;hibernate.connection.isolation&quot;&gt;2&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="保证session从service层到dao层唯一"><a href="#保证session从service层到dao层唯一" class="headerlink" title="保证session从service层到dao层唯一"></a>保证session从service层到dao层唯一</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;property name=&quot;hibernate.current_session_context_class&quot;&gt;thread&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="hibernate三种操作数据库的方式"><a href="#hibernate三种操作数据库的方式" class="headerlink" title="hibernate三种操作数据库的方式"></a>hibernate三种操作数据库的方式</h3><ol>
+<li>Query</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Query query = session.createQuery(&quot;from Customer&quot;);</span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>获取<br>在UserServiceImpl获取</li>
+<li>Criteris</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class UserServiceImpl implements IUserService &#123;</span><br><span class="line"></span><br><span class="line">    private IUserDao userDao;</span><br><span class="line"></span><br><span class="line">    public void setUserDao(IUserDao userDao) &#123;</span><br><span class="line">        this.userDao = userDao;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Criteria criteria = session.createCriteria(Customer.class);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>SQLQuery</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQLQuery sqlQuery = session.createSQLQuery(&quot;select * from cst_customer&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="hibernate关系映射"><a href="#hibernate关系映射" class="headerlink" title="hibernate关系映射"></a>hibernate关系映射</h3><ol>
+<li>一对多</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Customer &#123;</span><br><span class="line">    private Long cust_id;</span><br><span class="line">    private String cust_name;</span><br><span class="line"></span><br><span class="line">    private Department department;</span><br><span class="line"></span><br><span class="line">    public Long getCust_id() &#123;</span><br><span class="line">        return cust_id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCust_id(Long cust_id) &#123;</span><br><span class="line">        this.cust_id = cust_id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getCust_name() &#123;</span><br><span class="line">        return cust_name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCust_name(String cust_name) &#123;</span><br><span class="line">        this.cust_name = cust_name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Department getDepartment() &#123;</span><br><span class="line">        return department;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDepartment(Department department) &#123;</span><br><span class="line">        this.department = department;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public class Department &#123;</span><br><span class="line">    private Long dept_id;</span><br><span class="line">    private String dept_name;</span><br><span class="line"></span><br><span class="line">    private Set&lt;Customer&gt; customers = new HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public Long getDept_id() &#123;</span><br><span class="line">        return dept_id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDept_id(Long dept_id) &#123;</span><br><span class="line">        this.dept_id = dept_id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getDept_name() &#123;</span><br><span class="line">        return dept_name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDept_name(String dept_name) &#123;</span><br><span class="line">        this.dept_name = dept_name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Set&lt;Customer&gt; getCustomers() &#123;</span><br><span class="line">        return customers;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCustomers(Set&lt;Customer&gt; customers) &#123;</span><br><span class="line">        this.customers = customers;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE hibernate-mapping PUBLIC</span><br><span class="line">        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;</span><br><span class="line">        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;</span><br><span class="line">&lt;!-- 配置表与实体对象的关系 --&gt;</span><br><span class="line">&lt;!-- package属性:填写一个包名.在元素内部凡是需要书写完整类名的属性,可以直接写简答类名了. --&gt;</span><br><span class="line">&lt;hibernate-mapping package=&quot;com.abblcg.myblog.domain&quot;&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">        class元素: 配置实体与表的对应关系的</span><br><span class="line">            name: 完整类名</span><br><span class="line">            table:数据库表名</span><br><span class="line">     --&gt;</span><br><span class="line">    &lt;class name=&quot;Customer&quot; table=&quot;cst_customer&quot;&gt;</span><br><span class="line">        &lt;!-- id元素:配置主键映射的属性</span><br><span class="line">                name: 填写主键对应属性名</span><br><span class="line">                column(可选): 填写表中的主键列名.默认值:列名会默认使用属性名</span><br><span class="line">                type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型.</span><br><span class="line">                        每个类型有三种填法: java类型|hibernate类型|数据库类型</span><br><span class="line">                not-null(可选):配置该属性(列)是否不能为空. 默认值:false</span><br><span class="line">                length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;id name=&quot;cust_id&quot;&gt;</span><br><span class="line">            &lt;!-- generator:主键生成策略(明天讲) --&gt;</span><br><span class="line">            &lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;</span><br><span class="line">        &lt;/id&gt;</span><br><span class="line">        &lt;!-- property元素:除id之外的普通属性映射</span><br><span class="line">                name: 填写属性名</span><br><span class="line">                column(可选): 填写列名</span><br><span class="line">                type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型.</span><br><span class="line">                        每个类型有三种填法: java类型|hibernate类型|数据库类型</span><br><span class="line">                not-null(可选):配置该属性(列)是否不能为空. 默认值:false</span><br><span class="line">                length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;property name=&quot;cust_name&quot; column=&quot;cust_name&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;many-to-one name=&quot;department&quot; class=&quot;com.abblcg.myblog.domain.Department&quot; column=&quot;dept_id&quot;&gt;&lt;/many-to-one&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/class&gt;</span><br><span class="line">&lt;/hibernate-mapping&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE hibernate-mapping PUBLIC</span><br><span class="line">        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;</span><br><span class="line">        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;</span><br><span class="line">&lt;!-- 配置表与实体对象的关系 --&gt;</span><br><span class="line">&lt;!-- package属性:填写一个包名.在元素内部凡是需要书写完整类名的属性,可以直接写简答类名了. --&gt;</span><br><span class="line">&lt;hibernate-mapping package=&quot;com.abblcg.myblog.domain&quot;&gt;</span><br><span class="line">    &lt;!--</span><br><span class="line">        class元素: 配置实体与表的对应关系的</span><br><span class="line">            name: 完整类名</span><br><span class="line">            table:数据库表名</span><br><span class="line">     --&gt;</span><br><span class="line">    &lt;class name=&quot;Department&quot; table=&quot;cst_department&quot;&gt;</span><br><span class="line">        &lt;!-- id元素:配置主键映射的属性</span><br><span class="line">                name: 填写主键对应属性名</span><br><span class="line">                column(可选): 填写表中的主键列名.默认值:列名会默认使用属性名</span><br><span class="line">                type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型.</span><br><span class="line">                        每个类型有三种填法: java类型|hibernate类型|数据库类型</span><br><span class="line">                not-null(可选):配置该属性(列)是否不能为空. 默认值:false</span><br><span class="line">                length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;id name=&quot;dept_id&quot;&gt;</span><br><span class="line">            &lt;!-- generator:主键生成策略(明天讲) --&gt;</span><br><span class="line">            &lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;</span><br><span class="line">        &lt;/id&gt;</span><br><span class="line">        &lt;!-- property元素:除id之外的普通属性映射</span><br><span class="line">                name: 填写属性名</span><br><span class="line">                column(可选): 填写列名</span><br><span class="line">                type(可选):填写列(属性)的类型.hibernate会自动检测实体的属性类型.</span><br><span class="line">                        每个类型有三种填法: java类型|hibernate类型|数据库类型</span><br><span class="line">                not-null(可选):配置该属性(列)是否不能为空. 默认值:false</span><br><span class="line">                length(可选):配置数据库中列的长度. 默认值:使用数据库类型的最大长度</span><br><span class="line">         --&gt;</span><br><span class="line">        &lt;property name=&quot;dept_name&quot; column=&quot;dept_name&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;set name=&quot;customers&quot;&gt;</span><br><span class="line">            &lt;key column=&quot;cust_dept_id&quot;&gt;&lt;/key&gt;</span><br><span class="line">            &lt;one-to-many class=&quot;com.abblcg.myblog.domain.Customer&quot;&gt;&lt;/one-to-many&gt;</span><br><span class="line">        &lt;/set&gt;</span><br><span class="line">    &lt;/class&gt;</span><br><span class="line">&lt;/hibernate-mapping&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>多对多</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//见一对多</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>级联保存或更新<br>cascade:是否操作关联对象<br>inverse:外键的维护权</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;set name=&quot;customers&quot; cascade=&quot;delete,save-update&quot; inverse=&quot;true&quot;&gt;</span><br><span class="line">    &lt;key column=&quot;cust_dept_id&quot;&gt;&lt;/key&gt;</span><br><span class="line">    &lt;one-to-many class=&quot;com.abblcg.myblog.domain.Customer&quot;&gt;&lt;/one-to-many&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="hibernate检索方式"><a href="#hibernate检索方式" class="headerlink" title="hibernate检索方式"></a>hibernate检索方式</h3><ol>
+<li>对象图导航检索</li>
+<li>OID检索方式</li>
+<li>HQL检索</li>
+<li>QBC检索</li>
+<li>本地检索方式</li>
+</ol>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/08/01/ssh/spring之ioc（xml）/">
-    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
-        2016-08-01
+    <a href="/2016/08/09/ssh/hibernate/">
+    <time datetime="2016-08-08T16:00:00.000Z" class="entry-date">
+        2016-08-09
     </time>
 </a>
     
@@ -182,7 +228,7 @@
 
 
   
-    <article id="post-ssh/spring" class="post-ssh/spring post type-post status-publish format-standard hentry">
+    <article id="post-ssh/spring之ioc（注解）" class="post-ssh/spring之ioc（注解） post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -190,30 +236,28 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/08/01/ssh/spring/">spring</a>
+      <a class="article-title" href="/2016/08/01/ssh/spring之ioc（注解）/">spring之ioc（注解）</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring/" data-id="cjhstbvts004gm8tbzert5127" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之ioc（注解）/" data-id="cji89ty1x0005tstb7lbgtxti" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="spring的bean管理方式：xml配置和注解配置"><a href="#spring的bean管理方式：xml配置和注解配置" class="headerlink" title="spring的bean管理方式：xml配置和注解配置"></a>spring的bean管理方式：xml配置和注解配置</h3><p><img src="/images/java/spring.jpg" alt=""></p>
-<h3 id="spring最大的两个特点：和面向切面编程"><a href="#spring最大的两个特点：和面向切面编程" class="headerlink" title="spring最大的两个特点：和面向切面编程"></a>spring最大的两个特点：和面向切面编程</h3><ol>
-<li>反转控制<br>对象的创建不在直接new，而是丢给spring生产</li>
-<li>面向切面编程<br>比如类方法功能加强，底层基于动态代理，类似装饰设计模式</li>
-</ol>
+        <h3 id="applicationContext-xml文件如下："><a href="#applicationContext-xml文件如下：" class="headerlink" title="applicationContext.xml文件如下："></a>applicationContext.xml文件如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line"></span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">        http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">        http://www.springframework.org/schema/context</span><br><span class="line">        http://www.springframework.org/schema/context/spring-context.xsd &quot;&gt;</span><br><span class="line">    &lt;!-- 告知spring框架在，读取配置文件，创建容器时，扫描注解，依据注解创建对象，并存入容器中 --&gt;</span><br><span class="line">    &lt;context:component-scan base-package=&quot;com.abblcg.springdemo&quot;&gt;&lt;/context:component-scan&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="javaweb项目"><a href="#javaweb项目" class="headerlink" title="javaweb项目"></a>javaweb项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Component(value = &quot;userDao&quot;)</span><br><span class="line">@Scope(value = &quot;singleton&quot;)</span><br><span class="line">public class UserDaoImpl implements IUserDao &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void add(User user) &#123;</span><br><span class="line">        System.out.println(&quot;IUserDao.add&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class UserServiceImpl implements IUserService &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private IUserDao userDao;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void add(User user) &#123;</span><br><span class="line">        System.out.println(&quot;IUserService.add&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/08/01/ssh/spring/">
+    <a href="/2016/08/01/ssh/spring之ioc（注解）/">
     <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
         2016-08-01
     </time>
@@ -300,7 +344,7 @@
 
 
   
-    <article id="post-ssh/struts2之配置文件" class="post-ssh/struts2之配置文件 post type-post status-publish format-standard hentry">
+    <article id="post-ssh/spring之aop（xml）" class="post-ssh/spring之aop（xml） post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -308,159 +352,48 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/07/28/ssh/struts2之配置文件/">struts2之配置文件</a>
+      <a class="article-title" href="/2016/08/01/ssh/spring之aop（xml）/">spring之aop（xml）</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之配置文件/" data-id="cji89ty2p000ktstb1ur686n3" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之aop（xml）/" data-id="cji89ty1r0001tstbibk10bo5" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="默认的struts-xml配置，如下："><a href="#默认的struts-xml配置，如下：" class="headerlink" title="默认的struts.xml配置，如下："></a>默认的struts.xml配置，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE struts PUBLIC</span><br><span class="line">        &quot;-//Apache Software Foundation//DTD Struts Configuration 2.3//EN&quot;</span><br><span class="line">        &quot;http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;struts&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.i18n.encoding&quot; value=&quot;utf-8&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.multipart.maxSize&quot; value=&quot;2048000&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;package name=&quot;myDefault&quot; extends=&quot;struts-default&quot; namespace=&quot;/user&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;defaultAction&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot; type=&quot;dispatcher&quot;&gt;/index.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;login&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;login&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot; type=&quot;dispatcher&quot;&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line">    &lt;/package&gt;</span><br><span class="line">&lt;/struts&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="constant有多个配置，如下："><a href="#constant有多个配置，如下：" class="headerlink" title="constant有多个配置，如下："></a>constant有多个配置，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#编码</span><br><span class="line">struts.i18n.encoding=utf-8</span><br><span class="line"></span><br><span class="line">#文件上传大小限制</span><br><span class="line">struts.multipart.maxSize=2014000</span><br><span class="line"></span><br><span class="line">#开发者模式</span><br><span class="line">struts.devMode=True</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h3 id="package"><a href="#package" class="headerlink" title="package"></a>package</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">namespace默认为&quot;&quot;，如需要，可以写成</span><br><span class="line">namespace=&quot;/user&quot;</span><br><span class="line">访问的是后需要在action之前加上user</span><br><span class="line">localhost:8080/user/login</span><br></pre></td></tr></table></figure>
-<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">action的写法有很多种：</span><br><span class="line">&lt;action name=&quot;addUser&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;addUser&quot;&gt;</span><br><span class="line">访问方式：</span><br><span class="line">localhost:8080/addUser</span><br><span class="line"></span><br><span class="line">&lt;action name=&quot;user/*&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;addUser&quot; method=&quot;add&quot;&gt;</span><br><span class="line">访问方式：</span><br><span class="line">localhost:8080/user/add</span><br><span class="line">默认method可以省去</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/07/28/ssh/struts2之配置文件/">
-    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
-        2016-07-28
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/ssh/">ssh</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-ssh/struts2之拦截器" class="post-ssh/struts2之拦截器 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/07/28/ssh/struts2之拦截器/">struts2之拦截器</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之拦截器/" data-id="cji89ty22000btstb17wbzhpj" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="拦截器只用场景：验证登录"><a href="#拦截器只用场景：验证登录" class="headerlink" title="拦截器只用场景：验证登录"></a>拦截器只用场景：验证登录</h3><ol>
-<li>配置全局结果视图</li>
+        <h3 id="案例1：统计dao方法执行的时间"><a href="#案例1：统计dao方法执行的时间" class="headerlink" title="案例1：统计dao方法执行的时间"></a>案例1：统计dao方法执行的时间</h3><ol>
+<li>创建普通类</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 全局结果视图 --&gt;</span><br><span class="line">&lt;global-results&gt;</span><br><span class="line">	&lt;result name=&quot;login&quot; type=&quot;&quot;&gt;/user/loginUI&lt;/result&gt;</span><br><span class="line">&lt;/global-results&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDao &#123;</span><br><span class="line"></span><br><span class="line">    public void save() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>创建验证登录拦截器</li>
+<li>创建增强类</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class CheckLoginInterceptor extends MethodFilterInterceptor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected String doIntercept(ActionInvocation actionInvocation) throws Exception &#123;</span><br><span class="line">        Map&lt;String, Object&gt; sessions = ActionContext.getContext().getSession();</span><br><span class="line">        if (sessions.get(&quot;user&quot;) != null)&#123;</span><br><span class="line">            return actionInvocation.invoke();</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;login&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class DemoDaoProxy &#123;</span><br><span class="line"></span><br><span class="line">    private long startTime;</span><br><span class="line"></span><br><span class="line">    public void beforeMethod() &#123;</span><br><span class="line">        startTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(&quot;beforeMethod&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void afterMethod() &#123;</span><br><span class="line">        long doTime = System.currentTimeMillis() - startTime;</span><br><span class="line">        System.out.println(&quot;afterMethod&quot;);</span><br><span class="line">        System.out.println(&quot;执行时间：&quot; + doTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>在struts.xml中配置</li>
+<li>applicationContext.xml配置</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 声明拦截器 --&gt;</span><br><span class="line">&lt;interceptors&gt;</span><br><span class="line">    &lt;interceptor name=&quot;checkLogin&quot; class=&quot;com.abblcg.web.interceptors.CheckLoginInterceptor&quot;/&gt;</span><br><span class="line">    &lt;!-- 定义一个拦截器栈 --&gt;</span><br><span class="line">    &lt;interceptor-stack name=&quot;myDefaultStack&quot;&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;checkLogin&quot;&gt;</span><br><span class="line">            &lt;!-- 由于我们使用了继承MethodFilterInterceptor，</span><br><span class="line">                此时我们可以告知拦截器，排除掉登录方法 --&gt;</span><br><span class="line">            &lt;param name=&quot;excludeMethods&quot;&gt;login&lt;/param&gt;</span><br><span class="line">			&lt;param name=&quot;excludeMethods&quot;&gt;loginUI&lt;/param&gt;</span><br><span class="line">        &lt;/interceptor-ref&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;defaultStack&quot;&gt;&lt;/interceptor-ref&gt;</span><br><span class="line">    &lt;/interceptor-stack&gt;</span><br><span class="line">&lt;/interceptors&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修改默认拦截器栈，设置我们自定义的拦截器栈，</span><br><span class="line">    这样的话我们写的所有动作都有了检查登录功能。并且排除了登录方法--&gt;</span><br><span class="line">&lt;default-interceptor-ref name=&quot;myDefaultStack&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean name=&quot;demoDao&quot; class=&quot;com.abblcg.myblog.web.DemoDao&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;bean name=&quot;demoDaoProxy&quot; class=&quot;com.abblcg.myblog.web.DemoDaoProxy&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;aop:config&gt;</span><br><span class="line">        &lt;aop:pointcut id=&quot;pointcut1&quot; expression=&quot;execution(* com.abblcg.myblog.web.DemoDao.save(..))&quot;&gt;&lt;/aop:pointcut&gt;</span><br><span class="line">        &lt;aop:aspect ref=&quot;demoDaoProxy&quot;&gt;</span><br><span class="line">            &lt;aop:before method=&quot;beforeMethod&quot; pointcut-ref=&quot;pointcut1&quot;&gt;&lt;/aop:before&gt;</span><br><span class="line">            &lt;aop:after method=&quot;afterMethod&quot; pointcut-ref=&quot;pointcut1&quot;&gt;&lt;/aop:after&gt;</span><br><span class="line">        &lt;/aop:aspect&gt;</span><br><span class="line">    &lt;/aop:config&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
 <ol start="4">
-<li>这样访问的时候只有</li>
+<li>测试并打印方法执行时间</li>
 </ol>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/07/28/ssh/struts2之拦截器/">
-    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
-        2016-07-28
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/ssh/">ssh</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-ssh/struts2之数据获取" class="post-ssh/struts2之数据获取 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/07/28/ssh/struts2之数据获取/">struts2之数据获取</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之数据获取/" data-id="cji89ty200009tstblrfkkf26" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="第一种，传统方式，使用request获取"><a href="#第一种，传统方式，使用request获取" class="headerlink" title="第一种，传统方式，使用request获取"></a>第一种，传统方式，使用request获取</h3><h3 id="第一种，使用struts内置的属性驱动和模型驱动获取"><a href="#第一种，使用struts内置的属性驱动和模型驱动获取" class="headerlink" title="第一种，使用struts内置的属性驱动和模型驱动获取"></a>第一种，使用struts内置的属性驱动和模型驱动获取</h3><ol>
-<li>属性驱动1</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=&quot;username&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private String username;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>属性驱动2</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;user.username&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;user.password&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private User user;</span><br><span class="line"></span><br><span class="line">    public void setUser(User user) &#123;</span><br><span class="line">        this.user = user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>属性驱动3</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;users[0].name&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;users[1].name&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private List&lt;User&gt; users;</span><br><span class="line"></span><br><span class="line">    public void setUsers(List&lt;User&gt; users) &#123;</span><br><span class="line">        this.users = users;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>属性驱动4</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;users[&apos;one&apos;].name&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;users[&apos;two&apos;].name&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private Map&lt;String, User&gt; users;</span><br><span class="line"></span><br><span class="line">    public void setUsers(Map&lt;String, User&gt; users) &#123;</span><br><span class="line">        this.users = users;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line"></span><br><span class="line">DemoDao demoDao = (DemoDao) applicationContext.getBean(&quot;demoDao&quot;);</span><br><span class="line">demoDao.save();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeMethod</span><br><span class="line">afterMethod</span><br><span class="line">执行时间：15</span><br></pre></td></tr></table></figure>
 <ol start="5">
-<li>模型驱动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;username&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;password&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport implements ModelDriven&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private User user = new User();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public User getModel() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li>execution表达式说明</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">execution:</span><br><span class="line">		匹配方法的执行(常用)		</span><br><span class="line">		execution(表达式)</span><br><span class="line">表达式语法：execution([修饰符] 返回值类型 包名.类名.方法名(参数))</span><br><span class="line">写法说明：</span><br><span class="line">	全匹配方式：</span><br><span class="line">		public void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	访问修饰符可以省略	</span><br><span class="line">		void com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	返回值可以使用*号，表示任意返回值</span><br><span class="line">		* com.abblcg.service.impl.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	包名可以使用*号，表示任意包，但是有几级包，需要写几个*</span><br><span class="line">		* *.*.*.*.CustomerServiceImpl.saveCustomer()</span><br><span class="line">	使用..来表示当前包，及其子包</span><br><span class="line">		* com..CustomerServiceImpl.saveCustomer()</span><br><span class="line">	类名可以使用*号，表示任意类</span><br><span class="line">		* com..*.saveCustomer()</span><br><span class="line">	方法名可以使用*号，表示任意方法</span><br><span class="line">		* com..*.*()</span><br><span class="line">	参数列表可以使用*，表示参数可以是任意数据类型，但是必须有参数</span><br><span class="line">		* com..*.*(*)</span><br><span class="line">	参数列表可以使用..表示有无参数均可，有参数可以是任意类型</span><br><span class="line">		* com..*.*(..)</span><br><span class="line">	全通配方式：</span><br><span class="line">		* *..*.*(..)</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/07/28/ssh/struts2之数据获取/">
-    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
-        2016-07-28
+    <a href="/2016/08/01/ssh/spring之aop（xml）/">
+    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
+        2016-08-01
     </time>
 </a>
     
@@ -479,7 +412,7 @@
 
 
   
-    <article id="post-ssh/struts2之访问servletAPI" class="post-ssh/struts2之访问servletAPI post type-post status-publish format-standard hentry">
+    <article id="post-ssh/spring" class="post-ssh/spring post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -487,28 +420,89 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/07/28/ssh/struts2之访问servletAPI/">struts2之访问servletAPI</a>
+      <a class="article-title" href="/2016/08/01/ssh/spring/">spring</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之访问servletAPI/" data-id="cji89ty24000dtstb312wwv3g" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring/" data-id="cjhstbvts004gm8tbzert5127" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="访问方式有三种"><a href="#访问方式有三种" class="headerlink" title="访问方式有三种"></a>访问方式有三种</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.使用ActionContext，建议使用，耦合性最低</span><br><span class="line">ActionContext context = ActionContext.getContext();</span><br><span class="line">context.getSession();</span><br><span class="line">context.getApplication();</span><br><span class="line"></span><br><span class="line">2.使用ServletActionContext</span><br><span class="line">HttpServletRequest request = ServletActionContext.getRequest();</span><br><span class="line">HttpServletResponse response = ServletActionContext.getResponse();</span><br><span class="line">HttpSession session = request.getSession();</span><br><span class="line">ServletContext application = ServletActionContext.getServletContext();</span><br><span class="line"></span><br><span class="line">3.分别实现ServletRequestAware，ServletResponseAware，SessionAware，ServletContextAware</span><br></pre></td></tr></table></figure>
+        <h3 id="spring的bean管理方式：xml配置和注解配置"><a href="#spring的bean管理方式：xml配置和注解配置" class="headerlink" title="spring的bean管理方式：xml配置和注解配置"></a>spring的bean管理方式：xml配置和注解配置</h3><p><img src="/images/java/spring.jpg" alt=""></p>
+<h3 id="spring最大的两个特点：和面向切面编程"><a href="#spring最大的两个特点：和面向切面编程" class="headerlink" title="spring最大的两个特点：和面向切面编程"></a>spring最大的两个特点：和面向切面编程</h3><ol>
+<li>反转控制<br>对象的创建不在直接new，而是丢给spring生产</li>
+<li>面向切面编程<br>比如类方法功能加强，底层基于动态代理，类似装饰设计模式</li>
+</ol>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/07/28/ssh/struts2之访问servletAPI/">
-    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
-        2016-07-28
+    <a href="/2016/08/01/ssh/spring/">
+    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
+        2016-08-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/spring之ioc（xml）" class="post-ssh/spring之ioc（xml） post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/08/01/ssh/spring之ioc（xml）/">spring之ioc（xml）</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/01/ssh/spring之ioc（xml）/" data-id="cji89ty1n0000tstbw92kysww" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="applicationContext-xml文件如下："><a href="#applicationContext-xml文件如下：" class="headerlink" title="applicationContext.xml文件如下："></a>applicationContext.xml文件如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </span><br><span class="line">	   xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans</span><br><span class="line">		http://www.springframework.org/schema/beans/spring-beans.xsd &quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;bean id=&quot;userDao&quot; class=&quot;com.abblcg.springdemo.dao.impl.UserDaoImpl&quot;&gt;&lt;/bean&gt;</span><br><span class="line">    &lt;bean id=&quot;userService&quot; class=&quot;com.abblcg.springdemo.service.impl.UserServiceImpl&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;userDao&quot; ref=&quot;userDao&quot;&gt;&lt;/property&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="单纯的java项目，获取对象方式："><a href="#单纯的java项目，获取对象方式：" class="headerlink" title="单纯的java项目，获取对象方式："></a>单纯的java项目，获取对象方式：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line">IUserService us = (IUserService) ac.getBean(&quot;userService&quot;);</span><br><span class="line">us.add(new User());</span><br></pre></td></tr></table></figure>
+<h3 id="javaweb项目，以struts2为例，获取对象方式："><a href="#javaweb项目，以struts2为例，获取对象方式：" class="headerlink" title="javaweb项目，以struts2为例，获取对象方式："></a>javaweb项目，以struts2为例，获取对象方式：</h3><ol>
+<li>配置文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 配置struts2的核心过滤器器: --&gt;</span><br><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 配置Spring的核心监听器: --&gt;</span><br><span class="line">&lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;</span><br><span class="line">&lt;/listener&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>获取<br>在UserServiceImpl获取</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class UserServiceImpl implements IUserService &#123;</span><br><span class="line"></span><br><span class="line">    private IUserDao userDao;</span><br><span class="line"></span><br><span class="line">    public void setUserDao(IUserDao userDao) &#123;</span><br><span class="line">        this.userDao = userDao;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/08/01/ssh/spring之ioc（xml）/">
+    <time datetime="2016-07-31T16:00:00.000Z" class="entry-date">
+        2016-08-01
     </time>
 </a>
     
@@ -675,6 +669,57 @@
 
 
   
+    <article id="post-ssh/struts2之配置文件" class="post-ssh/struts2之配置文件 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之配置文件/">struts2之配置文件</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之配置文件/" data-id="cji89ty2p000ktstb1ur686n3" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="默认的struts-xml配置，如下："><a href="#默认的struts-xml配置，如下：" class="headerlink" title="默认的struts.xml配置，如下："></a>默认的struts.xml配置，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE struts PUBLIC</span><br><span class="line">        &quot;-//Apache Software Foundation//DTD Struts Configuration 2.3//EN&quot;</span><br><span class="line">        &quot;http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;struts&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.i18n.encoding&quot; value=&quot;utf-8&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.multipart.maxSize&quot; value=&quot;2048000&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;package name=&quot;myDefault&quot; extends=&quot;struts-default&quot; namespace=&quot;/user&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;defaultAction&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot; type=&quot;dispatcher&quot;&gt;/index.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;login&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;login&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot; type=&quot;dispatcher&quot;&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line">    &lt;/package&gt;</span><br><span class="line">&lt;/struts&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="constant有多个配置，如下："><a href="#constant有多个配置，如下：" class="headerlink" title="constant有多个配置，如下："></a>constant有多个配置，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#编码</span><br><span class="line">struts.i18n.encoding=utf-8</span><br><span class="line"></span><br><span class="line">#文件上传大小限制</span><br><span class="line">struts.multipart.maxSize=2014000</span><br><span class="line"></span><br><span class="line">#开发者模式</span><br><span class="line">struts.devMode=True</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="package"><a href="#package" class="headerlink" title="package"></a>package</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">namespace默认为&quot;&quot;，如需要，可以写成</span><br><span class="line">namespace=&quot;/user&quot;</span><br><span class="line">访问的是后需要在action之前加上user</span><br><span class="line">localhost:8080/user/login</span><br></pre></td></tr></table></figure>
+<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">action的写法有很多种：</span><br><span class="line">&lt;action name=&quot;addUser&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;addUser&quot;&gt;</span><br><span class="line">访问方式：</span><br><span class="line">localhost:8080/addUser</span><br><span class="line"></span><br><span class="line">&lt;action name=&quot;user/*&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;addUser&quot; method=&quot;add&quot;&gt;</span><br><span class="line">访问方式：</span><br><span class="line">localhost:8080/user/add</span><br><span class="line">默认method可以省去</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之配置文件/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
   
     <nav id="pagination">
       <nav id="page-nav">
@@ -690,7 +735,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/SpringCloud/">SpringCloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 
