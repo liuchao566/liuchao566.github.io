@@ -57,6 +57,112 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-python/python之生成器" class="post-python/python之生成器 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/10/18/python/python之生成器/">python之生成器</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/18/python/python之生成器/" data-id="cjhstbvt7003om8tbsbxagou9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>生成器就是可迭代对象，它内部自己实现了<strong>iter</strong>()方法</p>
+<h3 id="表现形式"><a href="#表现形式" class="headerlink" title="表现形式"></a>表现形式</h3><p>1.生成器表达式（三元表达式）<br>2.方法中使用yield语句</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>延迟计算，省内存</p>
+<h3 id="三元表达式"><a href="#三元表达式" class="headerlink" title="三元表达式"></a>三元表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print([i for i in range(10)])</span><br><span class="line">print([i for i in range(10) if i &gt;= 5])</span><br></pre></td></tr></table></figure>
+<h3 id="三元表达式生成器案例"><a href="#三元表达式生成器案例" class="headerlink" title="三元表达式生成器案例"></a>三元表达式生成器案例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 并没有直接生成sell列表，而是生成一个可迭代对象（生成器）</span><br><span class="line">sell = (&apos;热干面%s&apos; %i for i in range(10))</span><br><span class="line">print(sell.__next__())</span><br><span class="line">print(next(sell))</span><br></pre></td></tr></table></figure>
+<h3 id="yield函数"><a href="#yield函数" class="headerlink" title="yield函数"></a>yield函数</h3><p>–案例一<br>缺点：一次性做完10碗热干面，占内存，效率低</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def sell_reganmian():</span><br><span class="line">    reganmian_list = []</span><br><span class="line">    for i in range(10):</span><br><span class="line">        reganmian_list.append(&apos;第%s碗热干面&apos; %i)</span><br><span class="line">    return reganmian_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(sell_reganmian())</span><br></pre></td></tr></table></figure>
+<p>–案例二<br>优点：延迟生产，吃一碗，做一碗，而不是一次性做完</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def sell_reganmian():</span><br><span class="line">    for i in range(10):</span><br><span class="line">        yield &apos;第%s碗热干面&apos; %i</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(next(sell_reganmian()))</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/10/18/python/python之生成器/">
+    <time datetime="2016-10-17T16:00:00.000Z" class="entry-date">
+        2016-10-18
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-python/python之迭代器" class="post-python/python之迭代器 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/10/15/python/python之迭代器/">python之迭代器</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/15/python/python之迭代器/" data-id="cjhstbvt9003rm8tbt9gm7e77" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="迭代器协议"><a href="#迭代器协议" class="headerlink" title="迭代器协议"></a>迭代器协议</h3><p>迭代器协议是指对象必须提供一个next方法，执行该方法返回迭代的一项，直到引起stopiteration异常，以终止迭代</p>
+<h3 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h3><p>对象内部定义一个<strong>iter</strong>()方法</p>
+<h3 id="那些python工具可以迭代可迭代对象"><a href="#那些python工具可以迭代可迭代对象" class="headerlink" title="那些python工具可以迭代可迭代对象"></a>那些python工具可以迭代可迭代对象</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for循环</span><br><span class="line">sun</span><br><span class="line">min</span><br><span class="line">max</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="for循环机制"><a href="#for循环机制" class="headerlink" title="for循环机制"></a>for循环机制</h3><p>字符串、列表、元祖、字典、集合、文件对象都不是可迭代对象，但是for循环会间接使用它们的可迭代对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str1 = &apos;hello&apos;</span><br><span class="line">str1_iter = str1.__iter__()</span><br><span class="line">print(str1_iter.__next__())</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/10/15/python/python之迭代器/">
+    <time datetime="2016-10-14T16:00:00.000Z" class="entry-date">
+        2016-10-15
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-python/python之range" class="post-python/python之range post type-post status-publish format-standard hentry">
     <!---->
 
@@ -86,54 +192,6 @@
     <a href="/2016/10/07/python/python之range/">
     <time datetime="2016-10-06T16:00:00.000Z" class="entry-date">
         2016-10-07
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-python/python之函数-匿名函数" class="post-python/python之函数-匿名函数 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/10/05/python/python之函数-匿名函数/">python之函数-匿名函数</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/05/python/python之函数-匿名函数/" data-id="cjhstbvsf002mm8tb2e1s3az0" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def calc(x):</span><br><span class="line">	return x+1</span><br><span class="line"></span><br><span class="line">print(calc(5))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">calc = lambda x:x+1</span><br><span class="line"></span><br><span class="line">print(calc(5))</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/10/05/python/python之函数-匿名函数/">
-    <time datetime="2016-10-04T16:00:00.000Z" class="entry-date">
-        2016-10-05
     </time>
 </a>
     
@@ -188,6 +246,54 @@
 
     <footer class="entry-meta">
     <a href="/2016/10/05/python/python之函数-高阶函数/">
+    <time datetime="2016-10-04T16:00:00.000Z" class="entry-date">
+        2016-10-05
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-python/python之函数-匿名函数" class="post-python/python之函数-匿名函数 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/10/05/python/python之函数-匿名函数/">python之函数-匿名函数</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/10/05/python/python之函数-匿名函数/" data-id="cjhstbvsf002mm8tb2e1s3az0" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def calc(x):</span><br><span class="line">	return x+1</span><br><span class="line"></span><br><span class="line">print(calc(5))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">calc = lambda x:x+1</span><br><span class="line"></span><br><span class="line">print(calc(5))</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/10/05/python/python之函数-匿名函数/">
     <time datetime="2016-10-04T16:00:00.000Z" class="entry-date">
         2016-10-05
     </time>
@@ -465,148 +571,6 @@
 
 
   
-    <article id="post-ssm/mybatis" class="post-ssm/mybatis post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/08/27/ssm/mybatis/">mybatis</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/27/ssm/mybatis/" data-id="cjhstbvtw004lm8tbl5yjdwzj" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ol>
-<li><p>添加mybatis依赖包</p>
-</li>
-<li><p>创建User对象</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class User &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private Integer age;</span><br><span class="line">    private Date birthday;</span><br><span class="line">    private Double salary;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Integer getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(Integer age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Date getBirthday() &#123;</span><br><span class="line">        return birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBirthday(Date birthday) &#123;</span><br><span class="line">        this.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Double getSalary() &#123;</span><br><span class="line">        return salary;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSalary(Double salary) &#123;</span><br><span class="line">        this.salary = salary;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>在代码根目录下添加sqlMapConfig.xml</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;!-- 和spring整合后 environments配置将废除    --&gt;</span><br><span class="line">    &lt;environments default=&quot;development&quot;&gt;</span><br><span class="line">        &lt;environment id=&quot;development&quot;&gt;</span><br><span class="line">            &lt;!-- 使用jdbc事务管理 --&gt;</span><br><span class="line">            &lt;transactionManager type=&quot;JDBC&quot;/&gt;</span><br><span class="line">            &lt;!-- 数据库连接池 --&gt;</span><br><span class="line">            &lt;dataSource type=&quot;POOLED&quot;&gt;</span><br><span class="line">                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/myblog_ssm?characterEncoding=utf-8&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;password&quot; value=&quot;&quot;/&gt;</span><br><span class="line">            &lt;/dataSource&gt;</span><br><span class="line">        &lt;/environment&gt;</span><br><span class="line">    &lt;/environments&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- Mapper的位置  Mapper.xml 写Sql语句的文件的位置 --&gt;</span><br><span class="line">    &lt;mappers&gt;</span><br><span class="line">        &lt;mapper resource=&quot;sqlmap/User.xml&quot;/&gt;</span><br><span class="line">    &lt;/mappers&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>在代码根目录下添加sqlmap/User.xml</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace=&quot;test&quot;&gt;</span><br><span class="line">    &lt;!-- 通过ID查询一个用户 --&gt;</span><br><span class="line">    &lt;select id=&quot;queryUserById&quot; parameterType=&quot;Integer&quot; resultType=&quot;com.abblcg.myblog.pojo.User&quot;&gt;</span><br><span class="line">		select * from user where id = #&#123;v&#125;</span><br><span class="line">	&lt;/select&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>编写测试代码</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 1. 创建SqlSessionFactoryBuilder对象</span><br><span class="line">SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();</span><br><span class="line">// 2. 加载SqlMapConfig.xml配置文件</span><br><span class="line">InputStream inputStream = Resources.getResourceAsStream(&quot;SqlMapConfig.xml&quot;);</span><br><span class="line">// 3. 创建SqlSessionFactory对象</span><br><span class="line">SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(inputStream);</span><br><span class="line">// 4. 创建SqlSession对象</span><br><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line">// 5. 执行SqlSession对象执行查询，获取结果User</span><br><span class="line">// 第一个参数是User.xml的statement的id，第二个参数是执行sql需要的参数；</span><br><span class="line">Object user = sqlSession.selectOne(&quot;queryUserById&quot;, 1);</span><br><span class="line">// 6. 打印结果</span><br><span class="line">System.out.println(user);</span><br><span class="line">// 7. 释放资源</span><br><span class="line">sqlSession.close();</span><br></pre></td></tr></table></figure>
-<h3 id="mybatis开发dao的两种方式"><a href="#mybatis开发dao的两种方式" class="headerlink" title="mybatis开发dao的两种方式"></a>mybatis开发dao的两种方式</h3><ol>
-<li><p>原始dao开发<br>编写dao接口及其实现（两个文件），然后用上面的测试代码，有点多此一举，例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void saveUser(User user) &#123;</span><br><span class="line">    // 创建SqlSession</span><br><span class="line">    SqlSession sqlSession = this.sqlSessionFactory.openSession();</span><br><span class="line">    // 执行保存逻辑</span><br><span class="line">    sqlSession.insert(&quot;saveUser&quot;, user);</span><br><span class="line">    // 提交事务</span><br><span class="line">    sqlSession.commit();</span><br><span class="line">    // 释放资源</span><br><span class="line">    sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>mapper动态代理<br>其实就在上面demo写个mapper（相当于dao），使用时不使用方法字符串，而是调用mapper的方法</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public interface UserMapper &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 根据id查询</span><br><span class="line">     *</span><br><span class="line">     * @param id</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    User queryUserById(int id);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 根据用户名查询用户</span><br><span class="line">     *</span><br><span class="line">     * @param username</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    List&lt;User&gt; queryUserByUsername(String username);</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 保存用户</span><br><span class="line">     *</span><br><span class="line">     * @param user</span><br><span class="line">     */</span><br><span class="line">    void saveUser(User user);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span><br><span class="line">&lt;mapper namespace=&quot;com.abblcg.myblog.pojo.UserMapper&quot;&gt;</span><br><span class="line">    &lt;!-- 根据用户id查询用户 --&gt;</span><br><span class="line">    &lt;!-- 2. id必须和Mapper接口方法名一致 --&gt;</span><br><span class="line">    &lt;!-- 3. parameterType必须和接口方法参数类型一致 --&gt;</span><br><span class="line">    &lt;!-- 4. resultType必须和接口方法返回值类型一致 --&gt;</span><br><span class="line">    &lt;select id=&quot;queryUserById&quot; parameterType=&quot;int&quot;</span><br><span class="line">            resultType=&quot;com.abblcg.myblog.pojo.User&quot;&gt;</span><br><span class="line">        select *</span><br><span class="line">        from user</span><br><span class="line">        where id = #&#123;id&#125;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 根据用户名查询用户 --&gt;</span><br><span class="line">    &lt;select id=&quot;queryUserByUsername&quot; parameterType=&quot;string&quot;</span><br><span class="line">            resultType=&quot;com.abblcg.myblog.pojo.User&quot;&gt;</span><br><span class="line">        select *</span><br><span class="line">        from user</span><br><span class="line">        where username like &apos;%$&#123;value&#125;%&apos;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- 保存用户 --&gt;</span><br><span class="line">    &lt;insert id=&quot;saveUser&quot; parameterType=&quot;com.abblcg.myblog.pojo.User&quot;&gt;</span><br><span class="line">        &lt;selectKey keyProperty=&quot;id&quot; keyColumn=&quot;id&quot; order=&quot;AFTER&quot;</span><br><span class="line">                   resultType=&quot;int&quot;&gt;</span><br><span class="line">            select last_insert_id()</span><br><span class="line">        &lt;/selectKey&gt;</span><br><span class="line">        insert into user(username,birthday,sex,address) values</span><br><span class="line">        (#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;);</span><br><span class="line">    &lt;/insert&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span><br><span class="line">        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;!-- 和spring整合后 environments配置将废除    --&gt;</span><br><span class="line">    &lt;environments default=&quot;development&quot;&gt;</span><br><span class="line">        &lt;environment id=&quot;development&quot;&gt;</span><br><span class="line">            &lt;!-- 使用jdbc事务管理 --&gt;</span><br><span class="line">            &lt;transactionManager type=&quot;JDBC&quot;/&gt;</span><br><span class="line">            &lt;!-- 数据库连接池 --&gt;</span><br><span class="line">            &lt;dataSource type=&quot;POOLED&quot;&gt;</span><br><span class="line">                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/myblog_ssm?characterEncoding=utf-8&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;</span><br><span class="line">                &lt;property name=&quot;password&quot; value=&quot;&quot;/&gt;</span><br><span class="line">            &lt;/dataSource&gt;</span><br><span class="line">        &lt;/environment&gt;</span><br><span class="line">    &lt;/environments&gt;</span><br><span class="line"></span><br><span class="line">    &lt;!-- Mapper的位置  Mapper.xml 写Sql语句的文件的位置 --&gt;</span><br><span class="line">    &lt;mappers&gt;</span><br><span class="line">        &lt;mapper resource=&quot;mapper/UserMapper.xml&quot;/&gt;</span><br><span class="line">    &lt;/mappers&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="玩转mybatis最重要的就是怎么编写mapper-xml文件，结合if，where，foreach标签，进行数据的操作"><a href="#玩转mybatis最重要的就是怎么编写mapper-xml文件，结合if，where，foreach标签，进行数据的操作" class="headerlink" title="玩转mybatis最重要的就是怎么编写mapper.xml文件，结合if，where，foreach标签，进行数据的操作"></a>玩转mybatis最重要的就是怎么编写mapper.xml文件，结合if，where，foreach标签，进行数据的操作</h3><h5 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h5><ol>
-<li>单表查询</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 通过ID查询一个用户 --&gt;</span><br><span class="line">&lt;select id=&quot;findUserById&quot; parameterType=&quot;Integer&quot; resultType=&quot;User&quot;&gt;</span><br><span class="line">	select * from user where id = #&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>一对一</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">3. 一对多</span><br></pre></td></tr></table></figure>
-<p><code>`</code></p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/08/27/ssm/mybatis/">
-    <time datetime="2016-08-26T16:00:00.000Z" class="entry-date">
-        2016-08-27
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/ssm/">ssm</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-ssm/springmvc之静态资源引用" class="post-ssm/springmvc之静态资源引用 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/08/24/ssm/springmvc之静态资源引用/">springmvc之静态资源引用</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/08/24/ssm/springmvc之静态资源引用/" data-id="cjhstbvtu004im8tbpv0n3w2l" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>web.xml中springmvc配置如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</span><br><span class="line">    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;springmvc&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
-<p>这样所有的请求资源都会被拦截，包括html、js，css，可以加.action、.do后缀。<br>但是rest风格的url不希望有后缀。<br>springmvc团队给出了两种配置方案</p>
-<ol>
-<li>采用&lt;mvc:default-servlet-handler /&gt;</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:default-servlet-handler default-servlet-name=&quot;所使用的Web服务器默认使用的Servlet名称&quot; /&gt;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>采用&lt;mvc:resources /&gt;</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;mvc:resources location=&quot;/css/&quot; mapping=&quot;/css/**&quot;/&gt;</span><br><span class="line">&lt;mvc:resources location=&quot;/js/&quot; mapping=&quot;/js/**&quot;/&gt;</span><br><span class="line">&lt;mvc:resources location=&quot;/fonts/&quot; mapping=&quot;/fonts/**&quot;/&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/08/24/ssm/springmvc之静态资源引用/">
-    <time datetime="2016-08-23T16:00:00.000Z" class="entry-date">
-        2016-08-24
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/ssm/">ssm</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
@@ -622,7 +586,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

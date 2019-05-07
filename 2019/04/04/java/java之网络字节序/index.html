@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="为何网络传输中字符串不需要进行大小端的转换12345678910111213141516171819小端字节序和大端字节序中，区别在于地地址存低位还是高位的区别，字节序中的低位和高位仅针对大于1个字节的组合内存空间（自己定义的名词，就是值的大小是要多个内存单元组合而成，比如int是4个字节（32位或" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>java之网络字节序 | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为何网络传输中字符串不需要进行大小端的转换12345678910111213141516171819小端字节序和大端字节序中，区别在于地地址存低位还是高位的区别，字节序中的低位和高位仅针对大于1个字节的组合内存空间（自己定义的名词，就是值的大小是要多个内存单元组合而成，比如int是4个字节（32位或64位上），那么int类型的值就要4个内存单元组合得到）。内存的单位是字节，对于字符来说，char是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java之网络字节序">
+<meta property="og:url" content="http://www.liuchao566.com/2019/04/04/java/java之网络字节序/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="为何网络传输中字符串不需要进行大小端的转换12345678910111213141516171819小端字节序和大端字节序中，区别在于地地址存低位还是高位的区别，字节序中的低位和高位仅针对大于1个字节的组合内存空间（自己定义的名词，就是值的大小是要多个内存单元组合而成，比如int是4个字节（32位或64位上），那么int类型的值就要4个内存单元组合得到）。内存的单位是字节，对于字符来说，char是">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-04T07:45:43.620Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java之网络字节序">
+<meta name="twitter:description" content="为何网络传输中字符串不需要进行大小端的转换12345678910111213141516171819小端字节序和大端字节序中，区别在于地地址存低位还是高位的区别，字节序中的低位和高位仅针对大于1个字节的组合内存空间（自己定义的名词，就是值的大小是要多个内存单元组合而成，比如int是4个字节（32位或64位上），那么int类型的值就要4个内存单元组合得到）。内存的单位是字节，对于字符来说，char是">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-java/java之网络字节序" class="post-java/java之网络字节序 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      java之网络字节序
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2019/04/04/java/java之网络字节序/" data-id="cjvc1hoqi0002bogfbu594sb1" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="为何网络传输中字符串不需要进行大小端的转换"><a href="#为何网络传输中字符串不需要进行大小端的转换" class="headerlink" title="为何网络传输中字符串不需要进行大小端的转换"></a>为何网络传输中字符串不需要进行大小端的转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">小端字节序和大端字节序中，区别在于地地址存低位还是高位的区别，字节序中的低位和高位仅针对大于1个字节的组合内存空间（自己定义的名词，就是值的大小是要多个内存单元组合而成，比如int是4个字节（32位或64位上），那么int类型的值就要4个内存单元组合得到）。内存的单位是字节，对于字符来说，char是1个字节，不受主机字节序和网络字节序的影响，在内存中就一个单元，没有前后之分。但是当是组合内存空间时，因为有多个内存单元，就有前后之分，而小端和大端字节序的差别就在于怎么对这个前后内存单元进行组合。小端字节序中，是在第一个内存单元中存放低位（即低地址），接下来的内存单元依次存放高位。而在大端字节序中，是在第一个内存单元中存放高位（即低地址），接下来的内存单元依次存放低位。</span><br><span class="line"></span><br><span class="line">举例：整形值10000，对应十六进制表示为0x2710，按照字节可分为0x27（高位）和0x10（低位）</span><br><span class="line"></span><br><span class="line">小端字节序：第一个内存单元就是低地址，存放低位：0x10，接下来的内存单元是高地址，存放高位：0x27   ---&gt;0x1027</span><br><span class="line"></span><br><span class="line">大端字节序：第一个内存单元就是低地址，存放高位：0x27，接下来的内存单元是低地址，存放低位：0x10 ---&gt;0x2710</span><br><span class="line"></span><br><span class="line">那么，我们假设网络传输10000这个值，因为是通过字节传输，所以网络传输的值是10 27 00 00。</span><br><span class="line"></span><br><span class="line">如果发送端和接收端的字节序一致，那么网络传输的时候，可不进行大小端转换，一样能获得相同的值。</span><br><span class="line"></span><br><span class="line">下面的结果是建立在一个前提之上：网络传输的字节序和主机字节序不同。</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line"></span><br><span class="line">既然知道了这个差别，那么我们知道，数组是连续分配内存的，每个数组单元的存放空间是由数组类型决定，但是数组单元间的前后顺序是固定了的。那么在网络传输后，数组各单元的先后顺序不会改变，至于数组单元的值，如果数组类型不止占1个字节的话，就会发生改变。而字符串是字符数组，字符是占1个字节，所以接收端没有进行大小端转换的话也不会影响最终的字符串值。</span><br><span class="line"></span><br><span class="line">至于为什么规定网络传输的时候，要按照大端字节序传输，其实是为了避免发送数据端和接收数据端的机器两边本地的字节序不一致导致接收数据不一致。如果哪边是字节序和网络字节序是一致的，那么就可以不用大小端转换，反之，不一致就要执行大小端转换</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2019/04/04/java/java之网络字节序/">
+    <time datetime="2019-04-03T16:00:00.000Z" class="entry-date">
+        2019-04-04
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2019/05/01/优化/优化之sql优化/" rel="prev"><span class="meta-nav">←</span> 优化之sql优化</a></span>
+    
+    
+        <span class="nav-next"><a href="/2018/11/28/springcloud/SpringCloud之Feign/" rel="next">SpringCloud之Feign <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

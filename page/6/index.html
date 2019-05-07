@@ -105,6 +105,68 @@
 
 
   
+    <article id="post-ssh/struts2之拦截器" class="post-ssh/struts2之拦截器 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之拦截器/">struts2之拦截器</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之拦截器/" data-id="cji89ty22000btstb17wbzhpj" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="拦截器只用场景：验证登录"><a href="#拦截器只用场景：验证登录" class="headerlink" title="拦截器只用场景：验证登录"></a>拦截器只用场景：验证登录</h3><ol>
+<li>配置全局结果视图</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 全局结果视图 --&gt;</span><br><span class="line">&lt;global-results&gt;</span><br><span class="line">	&lt;result name=&quot;login&quot; type=&quot;&quot;&gt;/user/loginUI&lt;/result&gt;</span><br><span class="line">&lt;/global-results&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建验证登录拦截器</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class CheckLoginInterceptor extends MethodFilterInterceptor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected String doIntercept(ActionInvocation actionInvocation) throws Exception &#123;</span><br><span class="line">        Map&lt;String, Object&gt; sessions = ActionContext.getContext().getSession();</span><br><span class="line">        if (sessions.get(&quot;user&quot;) != null)&#123;</span><br><span class="line">            return actionInvocation.invoke();</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;login&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在struts.xml中配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 声明拦截器 --&gt;</span><br><span class="line">&lt;interceptors&gt;</span><br><span class="line">    &lt;interceptor name=&quot;checkLogin&quot; class=&quot;com.abblcg.web.interceptors.CheckLoginInterceptor&quot;/&gt;</span><br><span class="line">    &lt;!-- 定义一个拦截器栈 --&gt;</span><br><span class="line">    &lt;interceptor-stack name=&quot;myDefaultStack&quot;&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;checkLogin&quot;&gt;</span><br><span class="line">            &lt;!-- 由于我们使用了继承MethodFilterInterceptor，</span><br><span class="line">                此时我们可以告知拦截器，排除掉登录方法 --&gt;</span><br><span class="line">            &lt;param name=&quot;excludeMethods&quot;&gt;login&lt;/param&gt;</span><br><span class="line">			&lt;param name=&quot;excludeMethods&quot;&gt;loginUI&lt;/param&gt;</span><br><span class="line">        &lt;/interceptor-ref&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;defaultStack&quot;&gt;&lt;/interceptor-ref&gt;</span><br><span class="line">    &lt;/interceptor-stack&gt;</span><br><span class="line">&lt;/interceptors&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修改默认拦截器栈，设置我们自定义的拦截器栈，</span><br><span class="line">    这样的话我们写的所有动作都有了检查登录功能。并且排除了登录方法--&gt;</span><br><span class="line">&lt;default-interceptor-ref name=&quot;myDefaultStack&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>这样访问的时候只有</li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之拦截器/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-ssh/struts2之数据获取" class="post-ssh/struts2之数据获取 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -171,7 +233,7 @@
 
 
   
-    <article id="post-ssh/struts2之拦截器" class="post-ssh/struts2之拦截器 post type-post status-publish format-standard hentry">
+    <article id="post-ssh/struts2" class="post-ssh/struts2 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -179,40 +241,129 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/07/28/ssh/struts2之拦截器/">struts2之拦截器</a>
+      <a class="article-title" href="/2016/07/28/ssh/struts2/">struts2</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之拦截器/" data-id="cji89ty22000btstb17wbzhpj" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2/" data-id="cjhstbvtq004dm8tb3tn9xicg" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="拦截器只用场景：验证登录"><a href="#拦截器只用场景：验证登录" class="headerlink" title="拦截器只用场景：验证登录"></a>拦截器只用场景：验证登录</h3><ol>
-<li>配置全局结果视图</li>
+        <h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ol>
+<li>导入各种包</li>
+<li>创建StrutsDemo1和StrutsDemo2类</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 全局结果视图 --&gt;</span><br><span class="line">&lt;global-results&gt;</span><br><span class="line">	&lt;result name=&quot;login&quot; type=&quot;&quot;&gt;/user/loginUI&lt;/result&gt;</span><br><span class="line">&lt;/global-results&gt;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建验证登录拦截器</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class CheckLoginInterceptor extends MethodFilterInterceptor &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected String doIntercept(ActionInvocation actionInvocation) throws Exception &#123;</span><br><span class="line">        Map&lt;String, Object&gt; sessions = ActionContext.getContext().getSession();</span><br><span class="line">        if (sessions.get(&quot;user&quot;) != null)&#123;</span><br><span class="line">            return actionInvocation.invoke();</span><br><span class="line">        &#125;</span><br><span class="line">        return &quot;login&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo1 &#123;</span><br><span class="line"></span><br><span class="line">    public String execute()&#123;</span><br><span class="line">        System.out.println(&quot;execute执行了&quot;);</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo2 extends ActionSupport &#123;</span><br><span class="line"></span><br><span class="line">    public String add() &#123;</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String del() &#123;</span><br><span class="line">        return &quot;success&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>在struts.xml中配置</li>
+<li><p>创建demo1.jsp和demo2.jsp</p>
+</li>
+<li><p>配置web.xml</p>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 声明拦截器 --&gt;</span><br><span class="line">&lt;interceptors&gt;</span><br><span class="line">    &lt;interceptor name=&quot;checkLogin&quot; class=&quot;com.abblcg.web.interceptors.CheckLoginInterceptor&quot;/&gt;</span><br><span class="line">    &lt;!-- 定义一个拦截器栈 --&gt;</span><br><span class="line">    &lt;interceptor-stack name=&quot;myDefaultStack&quot;&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;checkLogin&quot;&gt;</span><br><span class="line">            &lt;!-- 由于我们使用了继承MethodFilterInterceptor，</span><br><span class="line">                此时我们可以告知拦截器，排除掉登录方法 --&gt;</span><br><span class="line">            &lt;param name=&quot;excludeMethods&quot;&gt;login&lt;/param&gt;</span><br><span class="line">			&lt;param name=&quot;excludeMethods&quot;&gt;loginUI&lt;/param&gt;</span><br><span class="line">        &lt;/interceptor-ref&gt;</span><br><span class="line">        &lt;interceptor-ref name=&quot;defaultStack&quot;&gt;&lt;/interceptor-ref&gt;</span><br><span class="line">    &lt;/interceptor-stack&gt;</span><br><span class="line">&lt;/interceptors&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 修改默认拦截器栈，设置我们自定义的拦截器栈，</span><br><span class="line">    这样的话我们写的所有动作都有了检查登录功能。并且排除了登录方法--&gt;</span><br><span class="line">&lt;default-interceptor-ref name=&quot;myDefaultStack&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>这样访问的时候只有</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</span><br><span class="line">&lt;/filter&gt;</span><br><span class="line">&lt;filter-mapping&gt;</span><br><span class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/filter-mapping&gt;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>配置struts.xml</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE struts PUBLIC</span><br><span class="line">        &quot;-//Apache Software Foundation//DTD Struts Configuration 2.0//EN&quot;</span><br><span class="line">        &quot;http://struts.apache.org/dtds/struts-2.0.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;struts&gt;</span><br><span class="line"></span><br><span class="line">    &lt;package name=&quot;demo&quot; extends=&quot;struts-default&quot; namespace=&quot;/&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;strutsDemo1&quot; class=&quot;com.abblcg.myblog.web.StrutsDemo1&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot;&gt;/demo1.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;strutsDemo2_*&quot; class=&quot;com.abblcg.myblog.web.StrutsDemo2&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot;&gt;/demo2.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/package&gt;</span><br><span class="line">&lt;/struts&gt;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>修改index.jsp</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;&lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo1.action&quot;&gt;点击跳转&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo2_add.action&quot;&gt;执行add方法&lt;/a&gt;&lt;/p&gt;</span><br><span class="line">&lt;p&gt;&lt;a href=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo2_del.action&quot;&gt;执行del方法&lt;/a&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>浏览器访问localhost:8080</li>
+</ol>
+<h3 id="调用和访问servlet-api"><a href="#调用和访问servlet-api" class="headerlink" title="调用和访问servlet api"></a>调用和访问servlet api</h3><ol>
+<li>通过ActionContext访问</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ActionContext context ActionContext.getContext();</span><br><span class="line">context.put(&quot;name&quot;,&quot;张三&quot;);</span><br><span class="line">context.getApplication().put(&quot;name&quot;,&quot;张三&quot;);</span><br><span class="line">context.getSession().put(&quot;name&quot;,&quot;张三&quot;);</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>Action实现ServletRequestAware，ServletResponseAware，SessionAware，ServletContextAware接口</p>
+</li>
+<li><p>通过ServletActionContext访问</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpServletRequest request = ServletActionContext.getRequest();</span><br><span class="line">HttpServletResponse response = ServletActionContext.getResponse();</span><br><span class="line">ServletContext servletContext = ServletActionContext.getServletContext();</span><br><span class="line">PageContext pageContext = ServletActionContext.getPageContext();</span><br></pre></td></tr></table></figure>
+<h3 id="请求参数的获取与封装"><a href="#请求参数的获取与封装" class="headerlink" title="请求参数的获取与封装"></a>请求参数的获取与封装</h3><p>两种方式：</p>
+<ol>
+<li>属性驱动<h5 id="获取name属性"><a href="#获取name属性" class="headerlink" title="获取name属性"></a>获取name属性</h5></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 &#123;</span><br><span class="line">    private String name;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="获取User对象"><a href="#获取User对象" class="headerlink" title="获取User对象"></a>获取User对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;user.name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;user.age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;user.birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;user.salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 &#123;</span><br><span class="line">    private User user;</span><br><span class="line"></span><br><span class="line">    public User getUser() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="获取List"><a href="#获取List" class="headerlink" title="获取List"></a>获取List</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;list[0].name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;list[0].age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;list[0].birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;list[0].salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 &#123;</span><br><span class="line">    private List&lt;User&gt; list;</span><br><span class="line"></span><br><span class="line">    public List&lt;User&gt; getList() &#123;</span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="获取Map"><a href="#获取Map" class="headerlink" title="获取Map"></a>获取Map</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;map[&apos;one&apos;].name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;map[&apos;one&apos;].age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;map[&apos;one&apos;].birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;map[&apos;one&apos;].salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 &#123;</span><br><span class="line">    private Map&lt;String, User&gt; map;</span><br><span class="line"></span><br><span class="line">    public Map&lt;String, User&gt; getMap() &#123;</span><br><span class="line">        return map;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>模型驱动</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;$&#123;pageContext.request.contextPath&#125;/strutsDemo3.action&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;p&gt;姓名：&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;张三&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;年龄：&lt;input type=&quot;text&quot; name=&quot;age&quot; value=&quot;18&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;生日：&lt;input type=&quot;text&quot; name=&quot;birthday&quot; value=&quot;2015-05-02&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;工资：&lt;input type=&quot;text&quot; name=&quot;salary&quot; value=&quot;10000&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class StrutsDemo3 implements ModelDriven(User)&#123;</span><br><span class="line">    private User user = new User();</span><br><span class="line"></span><br><span class="line">    public User getModel() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ValueStack详解"><a href="#ValueStack详解" class="headerlink" title="ValueStack详解"></a>ValueStack详解</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//先放着，ValueStack是封装了请求action的参数，并且能够通过OGNL表达式（比el表达式强大）读取</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/07/28/ssh/struts2之拦截器/">
+    <a href="/2016/07/28/ssh/struts2/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2之配置文件" class="post-ssh/struts2之配置文件 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之配置文件/">struts2之配置文件</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之配置文件/" data-id="cji89ty2p000ktstb1ur686n3" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="默认的struts-xml配置，如下："><a href="#默认的struts-xml配置，如下：" class="headerlink" title="默认的struts.xml配置，如下："></a>默认的struts.xml配置，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE struts PUBLIC</span><br><span class="line">        &quot;-//Apache Software Foundation//DTD Struts Configuration 2.3//EN&quot;</span><br><span class="line">        &quot;http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;struts&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.i18n.encoding&quot; value=&quot;utf-8&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;constant name=&quot;struts.multipart.maxSize&quot; value=&quot;2048000&quot;&gt;&lt;/constant&gt;</span><br><span class="line">    &lt;package name=&quot;myDefault&quot; extends=&quot;struts-default&quot; namespace=&quot;/user&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;defaultAction&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot; type=&quot;dispatcher&quot;&gt;/index.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line"></span><br><span class="line">        &lt;action name=&quot;login&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;login&quot;&gt;</span><br><span class="line">            &lt;result name=&quot;success&quot; type=&quot;dispatcher&quot;&gt;/login.jsp&lt;/result&gt;</span><br><span class="line">        &lt;/action&gt;</span><br><span class="line">    &lt;/package&gt;</span><br><span class="line">&lt;/struts&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="constant有多个配置，如下："><a href="#constant有多个配置，如下：" class="headerlink" title="constant有多个配置，如下："></a>constant有多个配置，如下：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#编码</span><br><span class="line">struts.i18n.encoding=utf-8</span><br><span class="line"></span><br><span class="line">#文件上传大小限制</span><br><span class="line">struts.multipart.maxSize=2014000</span><br><span class="line"></span><br><span class="line">#开发者模式</span><br><span class="line">struts.devMode=True</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="package"><a href="#package" class="headerlink" title="package"></a>package</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">namespace默认为&quot;&quot;，如需要，可以写成</span><br><span class="line">namespace=&quot;/user&quot;</span><br><span class="line">访问的是后需要在action之前加上user</span><br><span class="line">localhost:8080/user/login</span><br></pre></td></tr></table></figure>
+<h3 id="action"><a href="#action" class="headerlink" title="action"></a>action</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">action的写法有很多种：</span><br><span class="line">&lt;action name=&quot;addUser&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;addUser&quot;&gt;</span><br><span class="line">访问方式：</span><br><span class="line">localhost:8080/addUser</span><br><span class="line"></span><br><span class="line">&lt;action name=&quot;user/*&quot; class=&quot;com.abblcg.struts2demo.web.action.UserAction&quot; method=&quot;addUser&quot; method=&quot;add&quot;&gt;</span><br><span class="line">访问方式：</span><br><span class="line">localhost:8080/user/add</span><br><span class="line">默认method可以省去</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之配置文件/">
     <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
         2016-07-28
     </time>
@@ -445,7 +596,7 @@
 
 
   
-    <article id="post-爬虫/爬虫之极限验证码登录" class="post-爬虫/爬虫之极限验证码登录 post type-post status-publish format-standard hentry">
+    <article id="post-java/java之实现生产者-消费者模型" class="post-java/java之实现生产者-消费者模型 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -453,28 +604,33 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/爬虫/爬虫之极限验证码登录/">爬虫之极限验证码登录</a>
+      <a class="article-title" href="/2016/03/01/java/java之实现生产者-消费者模型/">java之实现生产者-消费者模型</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/爬虫/爬虫之极限验证码登录/" data-id="cjhstbvu2004tm8tblqcg00qf" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/java/java之实现生产者-消费者模型/" data-id="cjhstbvrf001am8tbur6z9gg9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <p>转<a href="http://www.cnblogs.com/caoxing2017/p/8311036.html" target="_blank" rel="noopener">《爬虫项目：破解极验滑动验证码》</a> </p>
-<p>###代码片段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver import ActionChains</span><br><span class="line">from selenium.webdriver.common.by import By</span><br><span class="line">from selenium.webdriver.common.keys import Keys</span><br><span class="line">from selenium.webdriver.support import expected_conditions as EC</span><br><span class="line">from selenium.webdriver.support.wait import WebDriverWait</span><br><span class="line">from PIL import Image</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">def get_snap(driver):</span><br><span class="line">    driver.save_screenshot(&apos;full_snap.png&apos;)</span><br><span class="line">    page_snap_obj=Image.open(&apos;full_snap.png&apos;)</span><br><span class="line">    return page_snap_obj</span><br><span class="line"></span><br><span class="line">def get_image(driver):</span><br><span class="line">    img=driver.find_element_by_class_name(&apos;geetest_canvas_img&apos;)</span><br><span class="line">    time.sleep(2)</span><br><span class="line">    location=img.location</span><br><span class="line">    size=img.size</span><br><span class="line"></span><br><span class="line">    left=location[&apos;x&apos;]</span><br><span class="line">    top=location[&apos;y&apos;]</span><br><span class="line">    right=left+size[&apos;width&apos;]</span><br><span class="line">    bottom=top+size[&apos;height&apos;]</span><br><span class="line"></span><br><span class="line">    page_snap_obj=get_snap(driver)</span><br><span class="line">    image_obj=page_snap_obj.crop((left,top,right,bottom))</span><br><span class="line">    # image_obj.show()</span><br><span class="line">    return image_obj</span><br><span class="line"></span><br><span class="line">def get_distance(image1,image2):</span><br><span class="line">    start=57</span><br><span class="line">    threhold=60</span><br><span class="line"></span><br><span class="line">    for i in range(start,image1.size[0]):</span><br><span class="line">        for j in range(image1.size[1]):</span><br><span class="line">            rgb1=image1.load()[i,j]</span><br><span class="line">            rgb2=image2.load()[i,j]</span><br><span class="line">            res1=abs(rgb1[0]-rgb2[0])</span><br><span class="line">            res2=abs(rgb1[1]-rgb2[1])</span><br><span class="line">            res3=abs(rgb1[2]-rgb2[2])</span><br><span class="line">            # print(res1,res2,res3)</span><br><span class="line">            if not (res1 &lt; threhold and res2 &lt; threhold and res3 &lt; threhold):</span><br><span class="line">                return i-7</span><br><span class="line">    return i-7</span><br><span class="line"></span><br><span class="line">def get_tracks(distance):</span><br><span class="line">    distance+=20 #先滑过一点，最后再反着滑动回来</span><br><span class="line">    v=0</span><br><span class="line">    t=0.2</span><br><span class="line">    forward_tracks=[]</span><br><span class="line"></span><br><span class="line">    current=0</span><br><span class="line">    mid=distance*3/5</span><br><span class="line">    while current &lt; distance:</span><br><span class="line">        if current &lt; mid:</span><br><span class="line">            a=2</span><br><span class="line">        else:</span><br><span class="line">            a=-3</span><br><span class="line"></span><br><span class="line">        s=v*t+0.5*a*(t**2)</span><br><span class="line">        v=v+a*t</span><br><span class="line">        current+=s</span><br><span class="line">        forward_tracks.append(round(s))</span><br><span class="line"></span><br><span class="line">    #反着滑动到准确位置</span><br><span class="line">    back_tracks=[-3,-3,-2,-2,-2,-2,-2,-1,-1,-1] #总共等于-20</span><br><span class="line"></span><br><span class="line">    return &#123;&apos;forward_tracks&apos;:forward_tracks,&apos;back_tracks&apos;:back_tracks&#125;</span><br><span class="line"></span><br><span class="line">def crack(driver): #破解滑动认证</span><br><span class="line">    # 1、点击按钮，得到没有缺口的图片</span><br><span class="line">    button = driver.find_element_by_class_name(&apos;geetest_radar_tip&apos;)</span><br><span class="line">    button.click()</span><br><span class="line"></span><br><span class="line">    # 2、获取没有缺口的图片</span><br><span class="line">    image1 = get_image(driver)</span><br><span class="line"></span><br><span class="line">    # 3、点击滑动按钮，得到有缺口的图片</span><br><span class="line">    button = driver.find_element_by_class_name(&apos;geetest_slider_button&apos;)</span><br><span class="line">    button.click()</span><br><span class="line"></span><br><span class="line">    # 4、获取有缺口的图片</span><br><span class="line">    image2 = get_image(driver)</span><br><span class="line"></span><br><span class="line">    # 5、对比两种图片的像素点，找出位移</span><br><span class="line">    distance = get_distance(image1, image2)</span><br><span class="line"></span><br><span class="line">    # 6、模拟人的行为习惯，根据总位移得到行为轨迹</span><br><span class="line">    tracks = get_tracks(distance)</span><br><span class="line">    print(tracks)</span><br><span class="line"></span><br><span class="line">    # 7、按照行动轨迹先正向滑动，后反滑动</span><br><span class="line">    button = driver.find_element_by_class_name(&apos;geetest_slider_button&apos;)</span><br><span class="line">    ActionChains(driver).click_and_hold(button).perform()</span><br><span class="line"></span><br><span class="line">    # 正常人类总是自信满满地开始正向滑动，自信地表现是疯狂加速</span><br><span class="line">    for track in tracks[&apos;forward_tracks&apos;]:</span><br><span class="line">        ActionChains(driver).move_by_offset(xoffset=track, yoffset=0).perform()</span><br><span class="line"></span><br><span class="line">    # 结果傻逼了，正常的人类停顿了一下，回过神来发现，卧槽，滑过了,然后开始反向滑动</span><br><span class="line">    time.sleep(0.5)</span><br><span class="line">    for back_track in tracks[&apos;back_tracks&apos;]:</span><br><span class="line">        ActionChains(driver).move_by_offset(xoffset=back_track, yoffset=0).perform()</span><br><span class="line"></span><br><span class="line">    # 小范围震荡一下，进一步迷惑极验后台，这一步可以极大地提高成功率</span><br><span class="line">    ActionChains(driver).move_by_offset(xoffset=-3, yoffset=0).perform()</span><br><span class="line">    ActionChains(driver).move_by_offset(xoffset=3, yoffset=0).perform()</span><br><span class="line"></span><br><span class="line">    # 成功后，骚包人类总喜欢默默地欣赏一下自己拼图的成果，然后恋恋不舍地松开那只脏手</span><br><span class="line">    time.sleep(0.5)</span><br><span class="line">    ActionChains(driver).release().perform()</span><br><span class="line"></span><br><span class="line">def login_cnblogs(username,password):</span><br><span class="line">    driver = webdriver.Chrome()</span><br><span class="line">    try:</span><br><span class="line">        # 1、输入账号密码回车</span><br><span class="line">        driver.implicitly_wait(3)</span><br><span class="line">        driver.get(&apos;https://passport.cnblogs.com/user/signin&apos;)</span><br><span class="line"></span><br><span class="line">        input_username = driver.find_element_by_id(&apos;input1&apos;)</span><br><span class="line">        input_pwd = driver.find_element_by_id(&apos;input2&apos;)</span><br><span class="line">        signin = driver.find_element_by_id(&apos;signin&apos;)</span><br><span class="line"></span><br><span class="line">        input_username.send_keys(username)</span><br><span class="line">        input_pwd.send_keys(password)</span><br><span class="line">        signin.click()</span><br><span class="line"></span><br><span class="line">        # 2、破解滑动认证</span><br><span class="line">        crack(driver)</span><br><span class="line"></span><br><span class="line">        time.sleep(10)  # 睡时间长一点，确定登录成功</span><br><span class="line">    finally:</span><br><span class="line">        driver.close()</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    login_cnblogs(username=&apos;linhaifeng&apos;,password=&apos;xxxx&apos;)</span><br><span class="line"></span><br><span class="line">修订版</span><br></pre></td></tr></table></figure>
-
+        <p>转<a href="https://monkeysayhi.github.io/2017/10/08/Java%E5%AE%9E%E7%8E%B0%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B/" target="_blank" rel="noopener">《Java实现生产者-消费者模型》</a></p>
+<p>考查Java的并发编程时，手写“生产者-消费者模型”是一个经典问题。有如下几个考点：</p>
+<ul>
+<li>对Java并发模型的理解</li>
+<li>对Java并发编程接口的熟练程度</li>
+<li>bug free</li>
+<li>coding style</li>
+</ul>
+        
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/03/01/爬虫/爬虫之极限验证码登录/">
+    <a href="/2016/03/01/java/java之实现生产者-消费者模型/">
     <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
         2016-03-01
     </time>
@@ -482,110 +638,7 @@
     
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="/categories/爬虫/">爬虫</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-soa架构/soa架构之负载均衡（ngnix）" class="post-soa架构/soa架构之负载均衡（ngnix） post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/soa架构/soa架构之负载均衡（ngnix）/">soa架构之负载均衡（ngnix）</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/soa架构/soa架构之负载均衡（ngnix）/" data-id="cjhstbvtk0046m8tbu92j253a" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="nginx能干什么"><a href="#nginx能干什么" class="headerlink" title="nginx能干什么"></a>nginx能干什么</h3><ol>
-<li>可以做网页静态服务器（js，css，img等）</li>
-<li>反向代理，负载均衡，实现访问一个ip地址，调用不同tomcat集群来共同分摊服务器压力</li>
-</ol>
-<p>多个域名可以绑定一个ip，将多个域名配置到ngnix中，可以实现多个域名访问各自的tomcat服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  www.abblcg.com;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html-abblcg;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  www.liuchao566.com;</span><br><span class="line"></span><br><span class="line">        #charset koi8-r;</span><br><span class="line"></span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html-liuchao566;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/soa架构/soa架构之负载均衡（ngnix）/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-soa架构/soa架构之redis" class="post-soa架构/soa架构之redis post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/soa架构/soa架构之redis/">soa架构之redis</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/soa架构/soa架构之redis/" data-id="cjhstbvti0043m8tb0ys9dxmo" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="redis的五种数据类型"><a href="#redis的五种数据类型" class="headerlink" title="redis的五种数据类型"></a>redis的五种数据类型</h3><p>redis是以key-value形式进行存取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string</span><br><span class="line">hash</span><br><span class="line">list</span><br><span class="line">set</span><br><span class="line">sortdset：有顺序不能重复</span><br></pre></td></tr></table></figure>
-<h3 id="缓存同步"><a href="#缓存同步" class="headerlink" title="缓存同步"></a>缓存同步</h3><p>对所有的增删改操作都要做缓存删除操作，以便在取的时候重新存缓存</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/soa架构/soa架构之redis/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
+  <a class="article-category-link" href="/categories/java/">java</a>
   </div>
 
     
@@ -613,7 +666,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

@@ -57,6 +57,116 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-优化/优化之sql优化" class="post-优化/优化之sql优化 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2019/05/01/优化/优化之sql优化/">优化之sql优化</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2019/05/01/优化/优化之sql优化/" data-id="cjvdku2ta00009sgf4i8qh42i" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="sql优化的两个步骤"><a href="#sql优化的两个步骤" class="headerlink" title="sql优化的两个步骤"></a>sql优化的两个步骤</h3><ol>
+<li>慢查日志分析</li>
+<li>explain查询分析</li>
+</ol>
+<h4 id="1-慢查日志分析"><a href="#1-慢查日志分析" class="headerlink" title="1 慢查日志分析"></a>1 慢查日志分析</h4><ol>
+<li>开启慢日志查询</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;slow_query_log&apos;  </span><br><span class="line">//查看是否开启慢查询日志</span><br><span class="line"></span><br><span class="line">set global slow_query_log_file=&apos; /var/lib/mysql/mysql-host-slow.log &apos; </span><br><span class="line">//慢查询日志的位置</span><br><span class="line"></span><br><span class="line">set global log_queries_not_using_indexes=on;</span><br><span class="line">//开启慢查询日志</span><br><span class="line"></span><br><span class="line">set global long_query_time=1;  </span><br><span class="line">//大于1秒钟的数据记录到慢日志中，如果设置为默认0，则会有大量的信息存储在磁盘中，磁盘很容易满掉</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装pt-query-digest工具</li>
+<li>执行pt-query-digest /data/mysql/data/db-slow.log</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、查询次数多且每次查询占用时间长的sql。通常为pt-query-digest分析的前几个查询；该工具可以很清楚的看出每个SQL执行的次数及百分比等信息，执行的次数多，占比比较大的SQL</span><br><span class="line">2、IO大的sql。注意pt-query-digest分析中的Rows examine项。扫描的行数越多，IO越大。</span><br><span class="line">3、未命中的索引的SQL。注意pt-query-digest分析中的Rows examine 和Rows Send的对比。说明该SQL的索引命中率不高，对于这种SQL，我们要重点进行关注。</span><br></pre></td></tr></table></figure>
+<h4 id="2-explain查询分析"><a href="#2-explain查询分析" class="headerlink" title="2 explain查询分析"></a>2 explain查询分析</h4><p>在执行sql语句的头部添加explain关键字，可以列出执行效率相关字段，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rows:扫描的行数，越少越好</span><br><span class="line">extra:（1）出现using filesort或者using temporary，需要优化，主要是添加优化索引</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2019/05/01/优化/优化之sql优化/">
+    <time datetime="2019-04-30T16:00:00.000Z" class="entry-date">
+        2019-05-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/优化/">优化</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-java/java之网络字节序" class="post-java/java之网络字节序 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2019/04/04/java/java之网络字节序/">java之网络字节序</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2019/04/04/java/java之网络字节序/" data-id="cjvc1hoqi0002bogfbu594sb1" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="为何网络传输中字符串不需要进行大小端的转换"><a href="#为何网络传输中字符串不需要进行大小端的转换" class="headerlink" title="为何网络传输中字符串不需要进行大小端的转换"></a>为何网络传输中字符串不需要进行大小端的转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">小端字节序和大端字节序中，区别在于地地址存低位还是高位的区别，字节序中的低位和高位仅针对大于1个字节的组合内存空间（自己定义的名词，就是值的大小是要多个内存单元组合而成，比如int是4个字节（32位或64位上），那么int类型的值就要4个内存单元组合得到）。内存的单位是字节，对于字符来说，char是1个字节，不受主机字节序和网络字节序的影响，在内存中就一个单元，没有前后之分。但是当是组合内存空间时，因为有多个内存单元，就有前后之分，而小端和大端字节序的差别就在于怎么对这个前后内存单元进行组合。小端字节序中，是在第一个内存单元中存放低位（即低地址），接下来的内存单元依次存放高位。而在大端字节序中，是在第一个内存单元中存放高位（即低地址），接下来的内存单元依次存放低位。</span><br><span class="line"></span><br><span class="line">举例：整形值10000，对应十六进制表示为0x2710，按照字节可分为0x27（高位）和0x10（低位）</span><br><span class="line"></span><br><span class="line">小端字节序：第一个内存单元就是低地址，存放低位：0x10，接下来的内存单元是高地址，存放高位：0x27   ---&gt;0x1027</span><br><span class="line"></span><br><span class="line">大端字节序：第一个内存单元就是低地址，存放高位：0x27，接下来的内存单元是低地址，存放低位：0x10 ---&gt;0x2710</span><br><span class="line"></span><br><span class="line">那么，我们假设网络传输10000这个值，因为是通过字节传输，所以网络传输的值是10 27 00 00。</span><br><span class="line"></span><br><span class="line">如果发送端和接收端的字节序一致，那么网络传输的时候，可不进行大小端转换，一样能获得相同的值。</span><br><span class="line"></span><br><span class="line">下面的结果是建立在一个前提之上：网络传输的字节序和主机字节序不同。</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line"></span><br><span class="line">既然知道了这个差别，那么我们知道，数组是连续分配内存的，每个数组单元的存放空间是由数组类型决定，但是数组单元间的前后顺序是固定了的。那么在网络传输后，数组各单元的先后顺序不会改变，至于数组单元的值，如果数组类型不止占1个字节的话，就会发生改变。而字符串是字符数组，字符是占1个字节，所以接收端没有进行大小端转换的话也不会影响最终的字符串值。</span><br><span class="line"></span><br><span class="line">至于为什么规定网络传输的时候，要按照大端字节序传输，其实是为了避免发送数据端和接收数据端的机器两边本地的字节序不一致导致接收数据不一致。如果哪边是字节序和网络字节序是一致的，那么就可以不用大小端转换，反之，不一致就要执行大小端转换</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2019/04/04/java/java之网络字节序/">
+    <time datetime="2019-04-03T16:00:00.000Z" class="entry-date">
+        2019-04-04
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-springcloud/SpringCloud之Feign" class="post-springcloud/SpringCloud之Feign post type-post status-publish format-standard hentry">
     <!---->
 
@@ -475,103 +585,6 @@
 
 
   
-    <article id="post-正则表达式/正则表达式" class="post-正则表达式/正则表达式 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2018/03/02/正则表达式/正则表达式/">正则表达式</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/03/02/正则表达式/正则表达式/" data-id="cjhstbvu3004um8tb8owsg38e" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="常用正则符号"><a href="#常用正则符号" class="headerlink" title="常用正则符号"></a>常用正则符号</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># 匹配首字符</span><br><span class="line">^</span><br><span class="line"></span><br><span class="line"># 匹配尾字符</span><br><span class="line">$</span><br><span class="line"></span><br><span class="line"># 0到多个</span><br><span class="line">*</span><br><span class="line"></span><br><span class="line"># 1到多个</span><br><span class="line">+</span><br><span class="line"></span><br><span class="line"># 0或者1</span><br><span class="line">?</span><br><span class="line"></span><br><span class="line"># 指定字符个数</span><br><span class="line">&#123;&#125;</span><br><span class="line">&#123;0，&#125;等于*</span><br><span class="line">&#123;1，&#125;等于+</span><br><span class="line">&#123;0，1&#125;等于？</span><br><span class="line"></span><br><span class="line"># 指定字符集</span><br><span class="line">[]</span><br><span class="line">[a-z]等于该字符是a到z其中的一个</span><br><span class="line">[^a-z]等于该字符不是a到z其中的一个</span><br><span class="line"></span><br><span class="line"># 或，表示匹配前面或者后面的</span><br><span class="line">|</span><br><span class="line"></span><br><span class="line"># 表示括号内是个整体</span><br><span class="line">()</span><br><span class="line"></span><br><span class="line"># 转义</span><br><span class="line">\</span><br><span class="line">\d等于[0-9]</span><br><span class="line">\D等于[^0-9]</span><br><span class="line">\s匹配空白字符，等于[\t\n\r\f\v]</span><br><span class="line">\S匹配非空白字符，等于[^\t\n\r\f\v]</span><br><span class="line">\w等于[a-zA-Z0-9]</span><br><span class="line">\w等于[^a-zA-Z0-9]</span><br><span class="line">\b匹配一个特殊字符边界，比如空格，&amp;，#等</span><br></pre></td></tr></table></figure>
-<h3 id="经典案例"><a href="#经典案例" class="headerlink" title="经典案例"></a>经典案例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">demo_str = &quot;zhangsan25lisi36wangwu48&quot;</span><br><span class="line"># search取出的是第一个匹配值zhangsan25，取出zhangsan25lisi36wangwu48中的姓名和年龄，(?P&lt;name&gt;[a-z]+)表示匹配[a-z]+的值赋给name属性</span><br><span class="line">group_map = re.search(r&quot;(?P&lt;name&gt;[a-z]+)(?P&lt;age&gt;\d+)&quot;, demo_str)</span><br><span class="line">print(group_map.group(&quot;name&quot;))</span><br><span class="line">print(group_map.group(&quot;age&quot;))</span><br><span class="line"></span><br><span class="line"># findall取出的是所有的匹配值</span><br><span class="line">group_list = re.findall(r&quot;(?P&lt;name&gt;[a-z]+)(?P&lt;age&gt;\d+)&quot;, demo_str)</span><br><span class="line">print(group_list)</span><br><span class="line"></span><br><span class="line"># 替换所有数字为指定字符</span><br><span class="line">print(re.sub(&quot;\d+&quot;, &quot;AAA&quot;, demo_str))</span><br><span class="line"></span><br><span class="line"># 找出所有的匹配项放入迭代器中，省内存</span><br><span class="line">demo_iter = re.finditer(&quot;\d+&quot;, demo_str)</span><br><span class="line">print(demo_iter)</span><br><span class="line">for i in demo_iter:</span><br><span class="line">    print(i.group())</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2018/03/02/正则表达式/正则表达式/">
-    <time datetime="2018-03-01T16:00:00.000Z" class="entry-date">
-        2018-03-02
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/正则表达式/">正则表达式</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-前端/html之分页" class="post-前端/html之分页 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2017/11/15/前端/html之分页/">html之分页</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2017/11/15/前端/html之分页/" data-id="cjhstbvu0004qm8tb0lydzfyk" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h1 id="以django的模板引擎为例"><a href="#以django的模板引擎为例" class="headerlink" title="以django的模板引擎为例"></a>以django的模板引擎为例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;pagenation&quot;&gt;</span><br><span class="line">    &#123;% if page.has_previous %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line"></span><br><span class="line">    &#123;% for pindex in paginator.page_range %&#125;</span><br><span class="line">        &#123;% if pindex == page.num %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% else %&#125;</span><br><span class="line">            &lt;a href=&quot;#&quot;&gt;&#123;&#123; pindex &#125;&#125;&lt;/a&gt;</span><br><span class="line">        &#123;% endif %&#125;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"></span><br><span class="line">	&#123;% if page.has_next %&#125;</span><br><span class="line">	    &lt;a href=&quot;#&quot;&gt;上一页&lt;/a&gt;</span><br><span class="line">    &#123;% endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2017/11/15/前端/html之分页/">
-    <time datetime="2017-11-14T16:00:00.000Z" class="entry-date">
-        2017-11-15
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/前端/">前端</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
@@ -587,7 +600,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 
