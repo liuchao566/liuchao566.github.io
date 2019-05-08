@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   
@@ -29,7 +29,7 @@
 
   
 
-</head>
+</head></html>
 <body class="home blog custom-background custom-font-enabled single-author">
   <div id="page" class="hfeed site">
       <header id="masthead" class="site-header" role="banner">
@@ -56,6 +56,54 @@
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-优化/优化之jvm优化" class="post-优化/优化之jvm优化 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2019/05/01/优化/优化之jvm优化/">优化之jvm优化</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2019/05/01/优化/优化之jvm优化/" data-id="cjvdv8ivg0000c8gf61lk71le" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="jvm优化的步骤"><a href="#jvm优化的步骤" class="headerlink" title="jvm优化的步骤"></a>jvm优化的步骤</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1.tomcat8的优化</span><br><span class="line">禁用ajp服务</span><br><span class="line"></span><br><span class="line">设置线程池</span><br><span class="line">&lt;Executor name=&quot;tomcatThreadPool&quot; namePrefix=&quot;catalina-exec-&quot;</span><br><span class="line">    maxThreads=&quot;1000&quot; minSpareThreads=&quot;200&quot; prestartminSpareThreads=&quot;true&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">设置nio2的运行模式</span><br><span class="line">&lt;Connector executor=&quot;tomcatThreadPool&quot; port=&quot;8080&quot;</span><br><span class="line">protocol=&quot;org.apache.coyote.http11.Http11Nio2Protocol&quot;</span><br><span class="line">       connectionTimeout=&quot;20000&quot;</span><br><span class="line">       redirectPort=&quot;8443&quot; /&gt;</span><br><span class="line"></span><br><span class="line">2.jvm参数的优化</span><br><span class="line">设置G1垃圾回收器</span><br><span class="line"></span><br><span class="line">#设置了最大停顿时间100毫秒，初始堆内存128m，最大堆内存1024m</span><br><span class="line">JAVA_OPTS=&quot;-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -Xms128m -Xmx1024m -XX:+PrintGCDetails</span><br><span class="line">-XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -</span><br><span class="line">Xloggc:../logs/gc.log&quot;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2019/05/01/优化/优化之jvm优化/">
+    <time datetime="2019-04-30T16:00:00.000Z" class="entry-date">
+        2019-05-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/优化/">优化</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
   
     <article id="post-优化/优化之sql优化" class="post-优化/优化之sql优化 post type-post status-publish format-standard hentry">
     <!---->
@@ -227,6 +275,56 @@
 
 
   
+    <article id="post-java/java之hashmap原理" class="post-java/java之hashmap原理 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/11/27/java/java之hashmap原理/">java之hashmap原理</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/11/27/java/java之hashmap原理/" data-id="cjp4z7c640000swtb28xrbriy" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>###<br>哈希冲突：开放地址法，散列函数法，链地址法。</p>
+<p>###<br>hashmap由数组和链表组成，采用链地址法解决hash冲突。<br>数组记录hash值的映射关系，链表记录hash冲突的值。<br>插入的时候，计算的hash值已有，就会在链头插入该值。<br>一般没有hash冲突的hashmap，查找数组当前链头的next为空，所有查询很快。<br>但是碰到有hash冲突的hashmap，需要遍历当前链表，性能下降。</p>
+<p>###<br>hashmap的默认出事容量是16，扩充因子是0.75，<br>为什么容量都是2的n次幂，因为2的n次幂的二进制全是1，再进行与运算时，运算结果只跟高位有关。</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/11/27/java/java之hashmap原理/">
+    <time datetime="2018-11-26T16:00:00.000Z" class="entry-date">
+        2018-11-27
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-springcloud/SpringBoot之app加解密" class="post-springcloud/SpringBoot之app加解密 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -270,56 +368,6 @@
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
   <a class="article-category-link" href="/categories/springcloud/">springcloud</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-java/java之hashmap原理" class="post-java/java之hashmap原理 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2018/11/27/java/java之hashmap原理/">java之hashmap原理</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/11/27/java/java之hashmap原理/" data-id="cjp4z7c640000swtb28xrbriy" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>###<br>哈希冲突：开放地址法，散列函数法，链地址法。</p>
-<p>###<br>hashmap由数组和链表组成，采用链地址法解决hash冲突。<br>数组记录hash值的映射关系，链表记录hash冲突的值。<br>插入的时候，计算的hash值已有，就会在链头插入该值。<br>一般没有hash冲突的hashmap，查找数组当前链头的next为空，所有查询很快。<br>但是碰到有hash冲突的hashmap，需要遍历当前链表，性能下降。</p>
-<p>###<br>hashmap的默认出事容量是16，扩充因子是0.75，<br>为什么容量都是2的n次幂，因为2的n次幂的二进制全是1，再进行与运算时，运算结果只跟高位有关。</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2018/11/27/java/java之hashmap原理/">
-    <time datetime="2018-11-26T16:00:00.000Z" class="entry-date">
-        2018-11-27
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
   </div>
 
     
@@ -383,54 +431,6 @@
 
 
   
-    <article id="post-java/java之mybatis与hibernate的区别" class="post-java/java之mybatis与hibernate的区别 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2018/05/01/java/java之mybatis与hibernate的区别/">java之mybatis与hibernate的区别</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/05/01/java/java之mybatis与hibernate的区别/" data-id="cji89ty1u0002tstbcwxi4zr9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、Mybatis和hibernate不同，它不完全是一个ORM框架，因为MyBatis需要程序员自己编写Sql语句。mybatis可以通过XML或注解方式灵活配置要运行的sql语句，并将java对象和sql语句映射生成最终执行的sql，最后将sql执行的结果再映射生成java对象。</span><br><span class="line">2、Mybatis学习门槛低，简单易学，程序员直接编写原生态sql，可严格控制sql执行性能，灵活度高，非常适合对关系数据模型要求不高的软件开发，例如互联网软件、企业运营类软件等，因为这类软件需求变化频繁，一但需求变化要求成果输出迅速。但是灵活的前提是mybatis无法做到数据库无关性，如果需要实现支持多种数据库的软件则需要自定义多套sql映射文件，工作量大。</span><br><span class="line">3、Hibernate对象/关系映射能力强，数据库无关性好，对于关系模型要求高的软件（例如需求固定的定制化软件）如果用hibernate开发可以节省很多代码，提高效率。但是Hibernate的学习门槛高，要精通门槛更高，而且怎么设计O/R映射，在性能和对象模型之间如何权衡，以及怎样用好Hibernate需要具有很强的经验和能力才行。</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2018/05/01/java/java之mybatis与hibernate的区别/">
-    <time datetime="2018-04-30T16:00:00.000Z" class="entry-date">
-        2018-05-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
     <article id="post-java/java之springmvc与struts2的区别" class="post-java/java之springmvc与struts2的区别 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -459,6 +459,54 @@
 
     <footer class="entry-meta">
     <a href="/2018/05/01/java/java之springmvc与struts2的区别/">
+    <time datetime="2018-04-30T16:00:00.000Z" class="entry-date">
+        2018-05-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-java/java之mybatis与hibernate的区别" class="post-java/java之mybatis与hibernate的区别 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/05/01/java/java之mybatis与hibernate的区别/">java之mybatis与hibernate的区别</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/05/01/java/java之mybatis与hibernate的区别/" data-id="cji89ty1u0002tstbcwxi4zr9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、Mybatis和hibernate不同，它不完全是一个ORM框架，因为MyBatis需要程序员自己编写Sql语句。mybatis可以通过XML或注解方式灵活配置要运行的sql语句，并将java对象和sql语句映射生成最终执行的sql，最后将sql执行的结果再映射生成java对象。</span><br><span class="line">2、Mybatis学习门槛低，简单易学，程序员直接编写原生态sql，可严格控制sql执行性能，灵活度高，非常适合对关系数据模型要求不高的软件开发，例如互联网软件、企业运营类软件等，因为这类软件需求变化频繁，一但需求变化要求成果输出迅速。但是灵活的前提是mybatis无法做到数据库无关性，如果需要实现支持多种数据库的软件则需要自定义多套sql映射文件，工作量大。</span><br><span class="line">3、Hibernate对象/关系映射能力强，数据库无关性好，对于关系模型要求高的软件（例如需求固定的定制化软件）如果用hibernate开发可以节省很多代码，提高效率。但是Hibernate的学习门槛高，要精通门槛更高，而且怎么设计O/R映射，在性能和对象模型之间如何权衡，以及怎样用好Hibernate需要具有很强的经验和能力才行。</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/05/01/java/java之mybatis与hibernate的区别/">
     <time datetime="2018-04-30T16:00:00.000Z" class="entry-date">
         2018-05-01
     </time>
@@ -532,59 +580,6 @@
 
 
   
-    <article id="post-soa架构/soa架构之dubbo" class="post-soa架构/soa架构之dubbo post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2018/03/05/soa架构/soa架构之dubbo/">soa架构之dubbo</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/03/05/soa架构/soa架构之dubbo/" data-id="cjhstbvtf003ym8tby7qinxqn" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"><a href="#功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？" class="headerlink" title="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"></a>功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？</h3><p>一般会想到http请求，但是，开发效率低，维护成本高</p>
-<h3 id="dubbo的出现"><a href="#dubbo的出现" class="headerlink" title="dubbo的出现"></a>dubbo的出现</h3><p>duboo底层是基于socket传输，传输速度快<br>需要配合zookeeper使用</p>
-<p>zookeeper提供一个注册信息中介的作用<br>服务方和消费方需要向zookeeper注册服务<br>服务层就是服务方<br>表现层就是消费方<br>二者都必须创建相同包名的接口类<br>配置好之后，表现层就可以直接调用自己的接口访问服务层的接口数据</p>
-<h3 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a>spring配置</h3><p>服务提供方配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 使用dubbo发布服务 --&gt;</span><br><span class="line">&lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;</span><br><span class="line">&lt;dubbo:application name=&quot;myfbs_manager&quot;/&gt;</span><br><span class="line">&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;192.168.43.47:2181&quot;/&gt;</span><br><span class="line">&lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;</span><br><span class="line">&lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot;/&gt;</span><br><span class="line">&lt;!-- 声明需要暴露的服务接口 --&gt;</span><br><span class="line">&lt;dubbo:service interface=&quot;com.abblcg.service.TestService&quot; ref=&quot;testService&quot; timeout=&quot;100000&quot;/&gt;</span><br><span class="line">&lt;bean name=&quot;testService&quot; class=&quot;com.abblcg.service.impl.TestServiceImpl&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
-<p>服务消费方配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--引用dubbo服务--&gt;</span><br><span class="line">&lt;dubbo:application name=&quot;myfbs_manager_web&quot;/&gt;</span><br><span class="line">&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;192.168.43.47:2181&quot;/&gt;</span><br><span class="line">&lt;dubbo:reference interface=&quot;com.abblcg.service.TestService&quot; id=&quot;testService&quot;/&gt;</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2018/03/05/soa架构/soa架构之dubbo/">
-    <time datetime="2018-03-04T16:00:00.000Z" class="entry-date">
-        2018-03-05
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
@@ -600,7 +595,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

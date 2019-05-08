@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   
   
+  <meta name="description" content="jvm优化的步骤12345678910111213141516171819201.tomcat8的优化禁用ajp服务设置线程池&amp;lt;Executor name=&amp;quot;tomcatThreadPool&amp;quot; namePrefix=&amp;quot;catalina-exec-&amp;quot;   ">
+  
 
   
   
@@ -11,15 +13,19 @@
   
   
   
-  <title>Archives: 2014/11 | 刘朝的技术博客</title>
+  <title>优化之jvm优化 | 刘朝的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="刘朝的技术博客">
-<meta property="og:url" content="http://www.liuchao566.com/archives/2014/11/index.html">
+  <meta name="description" content="jvm优化的步骤12345678910111213141516171819201.tomcat8的优化禁用ajp服务设置线程池&amp;lt;Executor name=&amp;quot;tomcatThreadPool&amp;quot; namePrefix=&amp;quot;catalina-exec-&amp;quot;    maxThreads=&amp;quot;1000&amp;quot; minSpareThreads=&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化之jvm优化">
+<meta property="og:url" content="http://www.liuchao566.com/2019/05/01/优化/优化之jvm优化/index.html">
 <meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="jvm优化的步骤12345678910111213141516171819201.tomcat8的优化禁用ajp服务设置线程池&amp;lt;Executor name=&amp;quot;tomcatThreadPool&amp;quot; namePrefix=&amp;quot;catalina-exec-&amp;quot;    maxThreads=&amp;quot;1000&amp;quot; minSpareThreads=&amp;quot">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-08T06:58:24.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刘朝的技术博客">
+<meta name="twitter:title" content="优化之jvm优化">
+<meta name="twitter:description" content="jvm优化的步骤12345678910111213141516171819201.tomcat8的优化禁用ajp服务设置线程池&amp;lt;Executor name=&amp;quot;tomcatThreadPool&amp;quot; namePrefix=&amp;quot;catalina-exec-&amp;quot;    maxThreads=&amp;quot;1000&amp;quot; minSpareThreads=&amp;quot">
   
   
     <link rel="icon" href="/css/images/favicon.ico">
@@ -55,76 +61,63 @@
     </nav>
 </header>
       <div id="main" class="wrapper">
-        <div id="primary" class="site-content"><div id="content" role="main">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-优化/优化之jvm优化" class="post-优化/优化之jvm优化 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2014" class="archive-year">2014</a>
-        </div>
-        <div class="archives">
-    
-    <article class="post type-post status-publish format-standard hentry archive-type-post">
-  <header class="entry-header">
-      
-  
-    <h1 class="entry-title">
-      <a class="archive-article-title" href="/2014/11/28/java/java之servlet是个什么鬼/">java之servlet是个什么鬼</a>
+    <h1 class="entry-title article-title">
+      优化之jvm优化
     </h1>
   
 
-  </header>
-  <footer class="entry-meta">
-    <a href="/2014/11/28/java/java之servlet是个什么鬼/">
-    <time datetime="2014-11-27T16:00:00.000Z" class="entry-date">
-        2014-11-28
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2019/05/01/优化/优化之jvm优化/" data-id="cjvdv8ivg0000c8gf61lk71le" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="jvm优化的步骤"><a href="#jvm优化的步骤" class="headerlink" title="jvm优化的步骤"></a>jvm优化的步骤</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1.tomcat8的优化</span><br><span class="line">禁用ajp服务</span><br><span class="line"></span><br><span class="line">设置线程池</span><br><span class="line">&lt;Executor name=&quot;tomcatThreadPool&quot; namePrefix=&quot;catalina-exec-&quot;</span><br><span class="line">    maxThreads=&quot;1000&quot; minSpareThreads=&quot;200&quot; prestartminSpareThreads=&quot;true&quot;/&gt;</span><br><span class="line">    </span><br><span class="line">设置nio2的运行模式</span><br><span class="line">&lt;Connector executor=&quot;tomcatThreadPool&quot; port=&quot;8080&quot;</span><br><span class="line">protocol=&quot;org.apache.coyote.http11.Http11Nio2Protocol&quot;</span><br><span class="line">       connectionTimeout=&quot;20000&quot;</span><br><span class="line">       redirectPort=&quot;8443&quot; /&gt;</span><br><span class="line"></span><br><span class="line">2.jvm参数的优化</span><br><span class="line">设置G1垃圾回收器</span><br><span class="line"></span><br><span class="line">#设置了最大停顿时间100毫秒，初始堆内存128m，最大堆内存1024m</span><br><span class="line">JAVA_OPTS=&quot;-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -Xms128m -Xmx1024m -XX:+PrintGCDetails</span><br><span class="line">-XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -</span><br><span class="line">Xloggc:../logs/gc.log&quot;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2019/05/01/优化/优化之jvm优化/">
+    <time datetime="2019-04-30T16:00:00.000Z" class="entry-date">
+        2019-05-01
     </time>
 </a>
     
   <span class="article-delim">&#8226;</span>
   <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
+  <a class="article-category-link" href="/categories/优化/">优化</a>
   </div>
 
     
     </footer>
 </article>
-  
-    
-    
-    <article class="post type-post status-publish format-standard hentry archive-type-post">
-  <header class="entry-header">
-      
-  
-    <h1 class="entry-title">
-      <a class="archive-article-title" href="/2014/11/20/java/java之传输乱码/">java之传输乱码</a>
-    </h1>
-  
 
-  </header>
-  <footer class="entry-meta">
-    <a href="/2014/11/20/java/java之传输乱码/">
-    <time datetime="2014-11-19T16:00:00.000Z" class="entry-date">
-        2014-11-20
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
 
     
-    </footer>
-</article>
-  
-  
-    </div></section>
-  
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2019/05/01/优化/优化之sql优化/" rel="next">优化之sql优化 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
 
 </div></div>
         <div id="secondary" class="widget-area" role="complementary">

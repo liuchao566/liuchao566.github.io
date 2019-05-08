@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   
@@ -29,7 +29,7 @@
 
   
 
-</head>
+</head></html>
 <body class="home blog custom-background custom-font-enabled single-author">
   <div id="page" class="hfeed site">
       <header id="masthead" class="site-header" role="banner">
@@ -56,6 +56,59 @@
 </header>
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
+  
+    <article id="post-soa架构/soa架构之dubbo" class="post-soa架构/soa架构之dubbo post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2018/03/05/soa架构/soa架构之dubbo/">soa架构之dubbo</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2018/03/05/soa架构/soa架构之dubbo/" data-id="cjhstbvtf003ym8tby7qinxqn" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"><a href="#功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？" class="headerlink" title="功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？"></a>功能点拆分成表现层和服务层，会单独运行到不同的tomcat服务器中，那怎么进行通信呢？</h3><p>一般会想到http请求，但是，开发效率低，维护成本高</p>
+<h3 id="dubbo的出现"><a href="#dubbo的出现" class="headerlink" title="dubbo的出现"></a>dubbo的出现</h3><p>duboo底层是基于socket传输，传输速度快<br>需要配合zookeeper使用</p>
+<p>zookeeper提供一个注册信息中介的作用<br>服务方和消费方需要向zookeeper注册服务<br>服务层就是服务方<br>表现层就是消费方<br>二者都必须创建相同包名的接口类<br>配置好之后，表现层就可以直接调用自己的接口访问服务层的接口数据</p>
+<h3 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a>spring配置</h3><p>服务提供方配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 使用dubbo发布服务 --&gt;</span><br><span class="line">&lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;</span><br><span class="line">&lt;dubbo:application name=&quot;myfbs_manager&quot;/&gt;</span><br><span class="line">&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;192.168.43.47:2181&quot;/&gt;</span><br><span class="line">&lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;</span><br><span class="line">&lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot;/&gt;</span><br><span class="line">&lt;!-- 声明需要暴露的服务接口 --&gt;</span><br><span class="line">&lt;dubbo:service interface=&quot;com.abblcg.service.TestService&quot; ref=&quot;testService&quot; timeout=&quot;100000&quot;/&gt;</span><br><span class="line">&lt;bean name=&quot;testService&quot; class=&quot;com.abblcg.service.impl.TestServiceImpl&quot;&gt;&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+<p>服务消费方配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--引用dubbo服务--&gt;</span><br><span class="line">&lt;dubbo:application name=&quot;myfbs_manager_web&quot;/&gt;</span><br><span class="line">&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;192.168.43.47:2181&quot;/&gt;</span><br><span class="line">&lt;dubbo:reference interface=&quot;com.abblcg.service.TestService&quot; id=&quot;testService&quot;/&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2018/03/05/soa架构/soa架构之dubbo/">
+    <time datetime="2018-03-04T16:00:00.000Z" class="entry-date">
+        2018-03-05
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/soa架构/">soa架构</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
   
     <article id="post-正则表达式/正则表达式" class="post-正则表达式/正则表达式 post type-post status-publish format-standard hentry">
     <!---->
@@ -510,54 +563,6 @@
 
 
   
-    <article id="post-python/python之文件-读取大文件" class="post-python/python之文件-读取大文件 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/12/03/python/python之文件-读取大文件/">python之文件-读取大文件</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/12/03/python/python之文件-读取大文件/" data-id="cjhstbvt0003fm8tbvr4bxbmj" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="读取大文件"><a href="#读取大文件" class="headerlink" title="读取大文件"></a>读取大文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">理论上来说，总体上file.readlines()可以（取决于实现）不慢于你自己手动的一次次调用file.readline()，</span><br><span class="line">因为前者的循环在C语言层面，而你的循环是在Python语言层面。但是在内存占用上前者可能是后者的好几十百倍，</span><br><span class="line">因为前者会一次性把所有数据读取到内存中，而后者只每次读取一行。更好的写法是：</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">with open(&apos;filename&apos;) as file:</span><br><span class="line">    for line in file:</span><br><span class="line">        do_things(line)</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/12/03/python/python之文件-读取大文件/">
-    <time datetime="2016-12-02T16:00:00.000Z" class="entry-date">
-        2016-12-03
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
@@ -573,7 +578,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

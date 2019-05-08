@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   
@@ -29,7 +29,7 @@
 
   
 
-</head>
+</head></html>
 <body class="home blog custom-background custom-font-enabled single-author">
   <div id="page" class="hfeed site">
       <header id="masthead" class="site-header" role="banner">
@@ -57,7 +57,7 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
-    <article id="post-ssh/struts2之访问servletAPI" class="post-ssh/struts2之访问servletAPI post type-post status-publish format-standard hentry">
+    <article id="post-ssh/struts2之标签库" class="post-ssh/struts2之标签库 post type-post status-publish format-standard hentry">
     <!---->
 
       <header class="entry-header">
@@ -65,26 +65,26 @@
         
   
     <h1 class="entry-title">
-      <a class="article-title" href="/2016/07/28/ssh/struts2之访问servletAPI/">struts2之访问servletAPI</a>
+      <a class="article-title" href="/2016/07/28/ssh/struts2之标签库/">struts2之标签库</a>
     </h1>
   
 
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之访问servletAPI/" data-id="cji89ty24000dtstb312wwv3g" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之标签库/" data-id="cji89ty1z0007tstb83roh035" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
     <div class="entry-content">
       
-        <h3 id="访问方式有三种"><a href="#访问方式有三种" class="headerlink" title="访问方式有三种"></a>访问方式有三种</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.使用ActionContext，建议使用，耦合性最低</span><br><span class="line">ActionContext context = ActionContext.getContext();</span><br><span class="line">context.getSession();</span><br><span class="line">context.getApplication();</span><br><span class="line"></span><br><span class="line">2.使用ServletActionContext</span><br><span class="line">HttpServletRequest request = ServletActionContext.getRequest();</span><br><span class="line">HttpServletResponse response = ServletActionContext.getResponse();</span><br><span class="line">HttpSession session = request.getSession();</span><br><span class="line">ServletContext application = ServletActionContext.getServletContext();</span><br><span class="line"></span><br><span class="line">3.分别实现ServletRequestAware，ServletResponseAware，SessionAware，ServletContextAware</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib uri=&quot;/struts-tags&quot; prefix=&quot;s&quot; %&gt;</span><br><span class="line"></span><br><span class="line">//取值</span><br><span class="line">&lt;s:property value=&quot;#username&quot;/&gt;</span><br><span class="line"></span><br><span class="line">//循环</span><br><span class="line">&lt;s:iterator value=&quot;users&quot; var=&quot;user&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/s:iterator&gt;</span><br><span class="line"></span><br><span class="line">//判断</span><br><span class="line">&lt;s:if test=&quot;&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/s:if&gt;</span><br></pre></td></tr></table></figure>
 
       
     </div><!-- .entry-content -->
 
     <footer class="entry-meta">
-    <a href="/2016/07/28/ssh/struts2之访问servletAPI/">
+    <a href="/2016/07/28/ssh/struts2之标签库/">
     <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
         2016-07-28
     </time>
@@ -147,72 +147,6 @@
 
     <footer class="entry-meta">
     <a href="/2016/07/28/ssh/struts2之拦截器/">
-    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
-        2016-07-28
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/ssh/">ssh</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-ssh/struts2之数据获取" class="post-ssh/struts2之数据获取 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/07/28/ssh/struts2之数据获取/">struts2之数据获取</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之数据获取/" data-id="cji89ty200009tstblrfkkf26" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="第一种，传统方式，使用request获取"><a href="#第一种，传统方式，使用request获取" class="headerlink" title="第一种，传统方式，使用request获取"></a>第一种，传统方式，使用request获取</h3><h3 id="第一种，使用struts内置的属性驱动和模型驱动获取"><a href="#第一种，使用struts内置的属性驱动和模型驱动获取" class="headerlink" title="第一种，使用struts内置的属性驱动和模型驱动获取"></a>第一种，使用struts内置的属性驱动和模型驱动获取</h3><ol>
-<li>属性驱动1</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=&quot;username&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private String username;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>属性驱动2</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;user.username&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;user.password&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private User user;</span><br><span class="line"></span><br><span class="line">    public void setUser(User user) &#123;</span><br><span class="line">        this.user = user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>属性驱动3</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;users[0].name&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;users[1].name&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private List&lt;User&gt; users;</span><br><span class="line"></span><br><span class="line">    public void setUsers(List&lt;User&gt; users) &#123;</span><br><span class="line">        this.users = users;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>属性驱动4</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;users[&apos;one&apos;].name&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;users[&apos;two&apos;].name&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private Map&lt;String, User&gt; users;</span><br><span class="line"></span><br><span class="line">    public void setUsers(Map&lt;String, User&gt; users) &#123;</span><br><span class="line">        this.users = users;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>模型驱动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;username&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;password&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport implements ModelDriven&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private User user = new User();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public User getModel() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/07/28/ssh/struts2之数据获取/">
     <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
         2016-07-28
     </time>
@@ -313,6 +247,120 @@
 
     <footer class="entry-meta">
     <a href="/2016/07/28/ssh/struts2/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2之访问servletAPI" class="post-ssh/struts2之访问servletAPI post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之访问servletAPI/">struts2之访问servletAPI</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之访问servletAPI/" data-id="cji89ty24000dtstb312wwv3g" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="访问方式有三种"><a href="#访问方式有三种" class="headerlink" title="访问方式有三种"></a>访问方式有三种</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.使用ActionContext，建议使用，耦合性最低</span><br><span class="line">ActionContext context = ActionContext.getContext();</span><br><span class="line">context.getSession();</span><br><span class="line">context.getApplication();</span><br><span class="line"></span><br><span class="line">2.使用ServletActionContext</span><br><span class="line">HttpServletRequest request = ServletActionContext.getRequest();</span><br><span class="line">HttpServletResponse response = ServletActionContext.getResponse();</span><br><span class="line">HttpSession session = request.getSession();</span><br><span class="line">ServletContext application = ServletActionContext.getServletContext();</span><br><span class="line"></span><br><span class="line">3.分别实现ServletRequestAware，ServletResponseAware，SessionAware，ServletContextAware</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之访问servletAPI/">
+    <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
+        2016-07-28
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/ssh/">ssh</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-ssh/struts2之数据获取" class="post-ssh/struts2之数据获取 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2016/07/28/ssh/struts2之数据获取/">struts2之数据获取</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/07/28/ssh/struts2之数据获取/" data-id="cji89ty200009tstblrfkkf26" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="第一种，传统方式，使用request获取"><a href="#第一种，传统方式，使用request获取" class="headerlink" title="第一种，传统方式，使用request获取"></a>第一种，传统方式，使用request获取</h3><h3 id="第一种，使用struts内置的属性驱动和模型驱动获取"><a href="#第一种，使用struts内置的属性驱动和模型驱动获取" class="headerlink" title="第一种，使用struts内置的属性驱动和模型驱动获取"></a>第一种，使用struts内置的属性驱动和模型驱动获取</h3><ol>
+<li>属性驱动1</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input name=&quot;username&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private String username;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>属性驱动2</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;user.username&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;user.password&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private User user;</span><br><span class="line"></span><br><span class="line">    public void setUser(User user) &#123;</span><br><span class="line">        this.user = user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>属性驱动3</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;users[0].name&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;users[1].name&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private List&lt;User&gt; users;</span><br><span class="line"></span><br><span class="line">    public void setUsers(List&lt;User&gt; users) &#123;</span><br><span class="line">        this.users = users;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>属性驱动4</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;users[&apos;one&apos;].name&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;users[&apos;two&apos;].name&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport &#123;</span><br><span class="line">    </span><br><span class="line">    private Map&lt;String, User&gt; users;</span><br><span class="line"></span><br><span class="line">    public void setUsers(Map&lt;String, User&gt; users) &#123;</span><br><span class="line">        this.users = users;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>模型驱动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  &lt;input name=&quot;username&quot;&gt;</span><br><span class="line">  &lt;input name=&quot;password&quot;&gt;</span><br><span class="line"></span><br><span class="line">public class UserAction extends ActionSupport implements ModelDriven&lt;User&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private User user = new User();</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public User getModel() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2016/07/28/ssh/struts2之数据获取/">
     <time datetime="2016-07-27T16:00:00.000Z" class="entry-date">
         2016-07-28
     </time>
@@ -596,61 +644,6 @@
 
 
   
-    <article id="post-java/java之实现生产者-消费者模型" class="post-java/java之实现生产者-消费者模型 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2016/03/01/java/java之实现生产者-消费者模型/">java之实现生产者-消费者模型</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2016/03/01/java/java之实现生产者-消费者模型/" data-id="cjhstbvrf001am8tbur6z9gg9" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>转<a href="https://monkeysayhi.github.io/2017/10/08/Java%E5%AE%9E%E7%8E%B0%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B/" target="_blank" rel="noopener">《Java实现生产者-消费者模型》</a></p>
-<p>考查Java的并发编程时，手写“生产者-消费者模型”是一个经典问题。有如下几个考点：</p>
-<ul>
-<li>对Java并发模型的理解</li>
-<li>对Java并发编程接口的熟练程度</li>
-<li>bug free</li>
-<li>coding style</li>
-</ul>
-        
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2016/03/01/java/java之实现生产者-消费者模型/">
-    <time datetime="2016-02-29T16:00:00.000Z" class="entry-date">
-        2016-03-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
@@ -666,7 +659,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 
