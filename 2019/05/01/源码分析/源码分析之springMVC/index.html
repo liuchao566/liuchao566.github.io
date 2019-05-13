@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="springmvc入口类，初始化方法和控制方法1234application启动的时候会初始化org.springframework.web.servlet.DispatcherServlet类并且调用onRefresh进行处理器映射器的初始化每次访问url的时候会调用doService
+1 处理器">
+  
+
+  
+  
+  
+  
+  
+  
+  <title>源码分析之springMVC | 刘朝的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="springmvc入口类，初始化方法和控制方法1234application启动的时候会初始化org.springframework.web.servlet.DispatcherServlet类并且调用onRefresh进行处理器映射器的初始化每次访问url的时候会调用doService 1 处理器映射器1通过请求url与controller的方法建立map关系 2 处理器适配器1通过请求hea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="源码分析之springMVC">
+<meta property="og:url" content="http://www.liuchao566.com/2019/05/01/源码分析/源码分析之springMVC/index.html">
+<meta property="og:site_name" content="刘朝的技术博客">
+<meta property="og:description" content="springmvc入口类，初始化方法和控制方法1234application启动的时候会初始化org.springframework.web.servlet.DispatcherServlet类并且调用onRefresh进行处理器映射器的初始化每次访问url的时候会调用doService 1 处理器映射器1通过请求url与controller的方法建立map关系 2 处理器适配器1通过请求hea">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liuchao566.com/images/java/mvc.png">
+<meta property="og:updated_time" content="2019-05-09T05:05:33.110Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="源码分析之springMVC">
+<meta name="twitter:description" content="springmvc入口类，初始化方法和控制方法1234application启动的时候会初始化org.springframework.web.servlet.DispatcherServlet类并且调用onRefresh进行处理器映射器的初始化每次访问url的时候会调用doService 1 处理器映射器1通过请求url与controller的方法建立map关系 2 处理器适配器1通过请求hea">
+<meta name="twitter:image" content="http://www.liuchao566.com/images/java/mvc.png">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+</head></html>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="刘朝的技术博客" rel="home">刘朝的技术博客</a>
+      </h1>
+
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">首页</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/about">关于我</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-源码分析/源码分析之springMVC" class="post-源码分析/源码分析之springMVC post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      源码分析之springMVC
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2019/05/01/源码分析/源码分析之springMVC/" data-id="cjvg6t7zr0000bggfbvi71ohh" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p><img src="/images/java/mvc.png" alt></p>
+<h3 id="springmvc入口类，初始化方法和控制方法"><a href="#springmvc入口类，初始化方法和控制方法" class="headerlink" title="springmvc入口类，初始化方法和控制方法"></a>springmvc入口类，初始化方法和控制方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">application启动的时候会初始化</span><br><span class="line">org.springframework.web.servlet.DispatcherServlet类</span><br><span class="line">并且调用onRefresh进行处理器映射器的初始化</span><br><span class="line">每次访问url的时候会调用doService</span><br></pre></td></tr></table></figure>
+<h4 id="1-处理器映射器"><a href="#1-处理器映射器" class="headerlink" title="1 处理器映射器"></a>1 处理器映射器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过请求url与controller的方法建立map关系</span><br></pre></td></tr></table></figure>
+<h4 id="2-处理器适配器"><a href="#2-处理器适配器" class="headerlink" title="2 处理器适配器"></a>2 处理器适配器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通过请求head和参数，调用相应的处理器适配器，比如根据content-type确定相应的处理器适配器</span><br></pre></td></tr></table></figure>
+<h4 id="3-视图解析器"><a href="#3-视图解析器" class="headerlink" title="3 视图解析器"></a>3 视图解析器</h4>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2019/05/01/源码分析/源码分析之springMVC/">
+    <time datetime="2019-04-30T16:00:00.000Z" class="entry-date">
+        2019-05-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/源码分析/">源码分析</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2019/05/01/源码分析/源码分析之mybaits/" rel="prev"><span class="meta-nav">←</span> 源码分析之mybaits</a></span>
+    
+    
+        <span class="nav-next"><a href="/2019/05/01/优化/优化之sql优化/" rel="next">优化之sql优化 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全文检索/">全文检索</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/源码分析/">源码分析</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2015 刘朝
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

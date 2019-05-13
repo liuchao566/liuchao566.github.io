@@ -57,6 +57,220 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-mysql/mysql之事务" class="post-mysql/mysql之事务 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2015/03/09/mysql/mysql之事务/">mysql之事务</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/03/09/mysql/mysql之事务/" data-id="cjhstbvrl001im8tbpcj91i1g" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">create table school (</span><br><span class="line">	id int primary key,</span><br><span class="line">	name varchar(20)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table student (</span><br><span class="line">	id tinyint primary key auto_increment,</span><br><span class="line">	name varchar(20),</span><br><span class="line">	school_id int</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into school</span><br><span class="line">	(id,name)</span><br><span class="line">	values</span><br><span class="line">	(100,&apos;一中&apos;),</span><br><span class="line">	(101,&apos;二中&apos;),</span><br><span class="line">	(102,&apos;三中&apos;);</span><br><span class="line"></span><br><span class="line">insert into student</span><br><span class="line">	(name,school_id)</span><br><span class="line">	values</span><br><span class="line">	(&apos;张三&apos;,100),</span><br><span class="line">	(&apos;李四&apos;,101),</span><br><span class="line">	(&apos;王五&apos;,101),</span><br><span class="line">	(&apos;赵六&apos;,101),</span><br><span class="line">	(&apos;钱七&apos;,102),</span><br><span class="line">	(&apos;钱七&apos;,null);</span><br></pre></td></tr></table></figure>
+<h3 id="事务相关命令"><a href="#事务相关命令" class="headerlink" title="事务相关命令"></a>事务相关命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">start transaction开启事务</span><br><span class="line">rollback回滚事务</span><br><span class="line">commit提交事务</span><br><span class="line">savepoint保留点</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/03/09/mysql/mysql之事务/">
+    <time datetime="2015-03-08T16:00:00.000Z" class="entry-date">
+        2015-03-09
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-mysql/mysql之多表查询-外键" class="post-mysql/mysql之多表查询-外键 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2015/03/04/mysql/mysql之多表查询-外键/">mysql之多表查询-外键</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/03/04/mysql/mysql之多表查询-外键/" data-id="cjhstbvrw001xm8tbk06l4d5h" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">create table school (</span><br><span class="line">	id int primary key,</span><br><span class="line">	name varchar(20)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table student (</span><br><span class="line">	id tinyint primary key auto_increment,</span><br><span class="line">	name varchar(20),</span><br><span class="line">	school_id int</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into school</span><br><span class="line">	(id,name)</span><br><span class="line">	values</span><br><span class="line">	(100,&apos;一中&apos;),</span><br><span class="line">	(101,&apos;二中&apos;),</span><br><span class="line">	(102,&apos;三中&apos;);</span><br><span class="line"></span><br><span class="line">insert into student</span><br><span class="line">	(name,school_id)</span><br><span class="line">	values</span><br><span class="line">	(&apos;张三&apos;,100),</span><br><span class="line">	(&apos;李四&apos;,101),</span><br><span class="line">	(&apos;王五&apos;,101),</span><br><span class="line">	(&apos;赵六&apos;,101),</span><br><span class="line">	(&apos;钱七&apos;,102);</span><br></pre></td></tr></table></figure>
+<h3 id="添加外键1"><a href="#添加外键1" class="headerlink" title="添加外键1"></a>添加外键1</h3><p>–切记：外键一定要和父表关联主键的数据类型一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">create table student (</span><br><span class="line">	id tinyint primary key auto_increment,</span><br><span class="line">	name varchar(20),</span><br><span class="line">	school_id int,</span><br><span class="line">	constraint school_fk_student foreign key (school_id) references school(id)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">insert into student</span><br><span class="line">	(name,school_id)</span><br><span class="line">	values</span><br><span class="line">	(&apos;张三&apos;,100),</span><br><span class="line">	(&apos;李四&apos;,101),</span><br><span class="line">	(&apos;王五&apos;,101),</span><br><span class="line">	(&apos;赵六&apos;,101),</span><br><span class="line">	(&apos;钱七&apos;,102);</span><br></pre></td></tr></table></figure>
+<h3 id="添加外键2"><a href="#添加外键2" class="headerlink" title="添加外键2"></a>添加外键2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table student add constraint school_fk_student foreign key (school_id) references school(id)</span><br></pre></td></tr></table></figure>
+<h3 id="删除外键"><a href="#删除外键" class="headerlink" title="删除外键"></a>删除外键</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table student drop foreign key school_fk_student;</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>–执行删除会报错，因为有外键关联了school(id)，必须先删除子表的数据或者修改子表的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from school where id=100;</span><br></pre></td></tr></table></figure>
+<p>–确实要执行级联删除，添加以下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foreign key (school_id) references school(id) on delete cascade</span><br></pre></td></tr></table></figure>
+<p>–不想级联删除而改为置空，添加以下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foreign key (school_id) references school(id) on delete set null</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/03/04/mysql/mysql之多表查询-外键/">
+    <time datetime="2015-03-03T16:00:00.000Z" class="entry-date">
+        2015-03-04
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-java/java之tomcat热部署与热加载" class="post-java/java之tomcat热部署与热加载 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2015/03/03/java/java之tomcat热部署与热加载/">java之tomcat热部署与热加载</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/03/03/java/java之tomcat热部署与热加载/" data-id="cjhstbvr5000xm8tbcddmy5my" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>项目开发过程中，经常要改动Java/JSP文件，但是又不想重新启动服务器(服务器启动花时间)，想直接获得（debug）结果。有两种方式热部署和热加载。</p>
+<h3 id="热部署"><a href="#热部署" class="headerlink" title="热部署"></a>热部署</h3><p>整个项目从新部署，包括你从新打上.war 文件。 会清空session ，释放内存。项目打包的时候用的多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在server.xml -&gt; context 属性中 设置  autoDeploy=&quot;true&quot;</span><br><span class="line">&lt;Context docBase=&quot;xxx&quot; path=&quot;/xxx&quot; autoDeploy=&quot;true&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="热加载"><a href="#热加载" class="headerlink" title="热加载"></a>热加载</h3><p>服务器会监听class文件改变，包括web-inf/class,web-inf/lib,web-inf/web.xml等文件，若发生更改，则局部进行加载，不清空session ，不释放内存。开发中用的多，但是要考虑内存溢出的情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在server.xml -&gt; context 属性中 设置 reloadable=&quot;true&quot;</span><br><span class="line">&lt;Context docBase=&quot;xxx&quot; path=&quot;/xxx&quot; reloadable=&quot;true&quot;/&gt;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/03/03/java/java之tomcat热部署与热加载/">
+    <time datetime="2015-03-02T16:00:00.000Z" class="entry-date">
+        2015-03-03
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-mysql/mysql之多表查询-连接查询" class="post-mysql/mysql之多表查询-连接查询 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2015/03/01/mysql/mysql之多表查询-连接查询/">mysql之多表查询-连接查询</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/03/01/mysql/mysql之多表查询-连接查询/" data-id="cjhstbvrs001sm8tb1plgdwbz" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">create table school (</span><br><span class="line">	id int primary key,</span><br><span class="line">	name varchar(20)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">create table student (</span><br><span class="line">	id tinyint primary key auto_increment,</span><br><span class="line">	name varchar(20),</span><br><span class="line">	school_id int</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into school</span><br><span class="line">	(id,name)</span><br><span class="line">	values</span><br><span class="line">	(100,&apos;一中&apos;),</span><br><span class="line">	(101,&apos;二中&apos;),</span><br><span class="line">	(102,&apos;三中&apos;);</span><br><span class="line"></span><br><span class="line">insert into student</span><br><span class="line">	(name,school_id)</span><br><span class="line">	values</span><br><span class="line">	(&apos;张三&apos;,100),</span><br><span class="line">	(&apos;李四&apos;,101),</span><br><span class="line">	(&apos;王五&apos;,101),</span><br><span class="line">	(&apos;赵六&apos;,101),</span><br><span class="line">	(&apos;钱七&apos;,102),</span><br><span class="line">	(&apos;钱七&apos;,null);</span><br></pre></td></tr></table></figure>
+<h3 id="笛卡尔积查询"><a href="#笛卡尔积查询" class="headerlink" title="笛卡尔积查询"></a>笛卡尔积查询</h3><p>–m*n格式记录查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from student,school;</span><br></pre></td></tr></table></figure>
+<h3 id="内连接-inner-join"><a href="#内连接-inner-join" class="headerlink" title="内连接(inner join)"></a>内连接(inner join)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select student.name,school.name from student,school where student.school_id=school.id;</span><br><span class="line"></span><br><span class="line">select student.name,school.name from student inner join school on student.school_id=school.id;</span><br></pre></td></tr></table></figure>
+<h3 id="左连接-left-join"><a href="#左连接-left-join" class="headerlink" title="左连接(left join)"></a>左连接(left join)</h3><p>–左表数据全部显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select student.name,school.name from student left join school on student.school_id=school.id;</span><br></pre></td></tr></table></figure>
+<h3 id="右连接-right"><a href="#右连接-right" class="headerlink" title="右连接(right)"></a>右连接(right)</h3><p>–右表数据全部显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select student.name,school.name from student right join school on student.school_id=school.id;</span><br></pre></td></tr></table></figure>
+<h3 id="全外连接-full"><a href="#全外连接-full" class="headerlink" title="全外连接(full)"></a>全外连接(full)</h3><p>–mysql不支持全外连接，但是可以用技巧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from student full join school on student.school_id=school.id;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from student left join school on student.school_id=school.id</span><br><span class="line">	union</span><br><span class="line">	select * from student right join school on student.school_id=school.id;</span><br></pre></td></tr></table></figure>
+<h3 id="查出二中的所有学生姓名"><a href="#查出二中的所有学生姓名" class="headerlink" title="查出二中的所有学生姓名"></a>查出二中的所有学生姓名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select student.name,school.name from student inner join school where</span><br><span class="line">	student.school_id=school.id and school.name=&apos;二中&apos;;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/03/01/mysql/mysql之多表查询-连接查询/">
+    <time datetime="2015-02-28T16:00:00.000Z" class="entry-date">
+        2015-03-01
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-mysql/mysql之查执行顺序" class="post-mysql/mysql之查执行顺序 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -373,223 +587,10 @@
 
 
   
-    <article id="post-mysql/mysql之表基本操作" class="post-mysql/mysql之表基本操作 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2015/01/19/mysql/mysql之表基本操作/">mysql之表基本操作</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/01/19/mysql/mysql之表基本操作/" data-id="cjhstbvsa002em8tbrakfxcyt" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create table employee (</span><br><span class="line">	id tinyint primary key auto_increment,</span><br><span class="line">	name varchar(25),</span><br><span class="line">	gender boolean,</span><br><span class="line">	age int default 19,</span><br><span class="line">	school varchar(25),</span><br><span class="line">	score_java double default 0,</span><br><span class="line">	score_python double default 0,</span><br><span class="line">	score_swift double default 0</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h3 id="查看表信息"><a href="#查看表信息" class="headerlink" title="查看表信息"></a>查看表信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">desc employee;</span><br><span class="line">show create table employee;</span><br></pre></td></tr></table></figure>
-<h3 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h3><h5 id="添加字段"><a href="#添加字段" class="headerlink" title="添加字段"></a>添加字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table employee</span><br><span class="line">	add is_married tinyint</span><br><span class="line">	add addr varchar;</span><br></pre></td></tr></table></figure>
-<h5 id="修改字段类型"><a href="#修改字段类型" class="headerlink" title="修改字段类型"></a>修改字段类型</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table employee</span><br><span class="line">	modify age int after id;</span><br></pre></td></tr></table></figure>
-<h5 id="修改字段名称"><a href="#修改字段名称" class="headerlink" title="修改字段名称"></a>修改字段名称</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table employee</span><br><span class="line">	change age employee_age int;</span><br></pre></td></tr></table></figure>
-<h5 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table employee</span><br><span class="line">	drop is_married;</span><br></pre></td></tr></table></figure>
-<h3 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename table employee to user;</span><br></pre></td></tr></table></figure>
-<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table employee;</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2015/01/19/mysql/mysql之表基本操作/">
-    <time datetime="2015-01-18T16:00:00.000Z" class="entry-date">
-        2015-01-19
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/mysql/">mysql</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-mysql/mysql之DDL" class="post-mysql/mysql之DDL post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2015/01/17/mysql/mysql之DDL/">mysql之DDL</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/01/17/mysql/mysql之DDL/" data-id="cjhstbvrp001nm8tbberxoa4a" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="创建数据库，并制定编码集"><a href="#创建数据库，并制定编码集" class="headerlink" title="创建数据库，并制定编码集"></a>创建数据库，并制定编码集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database db_name if not exists</span><br><span class="line">create database db_name default character set utf8 collate utf8_general_ci;</span><br></pre></td></tr></table></figure>
-<h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br><span class="line">show create database db_name;</span><br></pre></td></tr></table></figure>
-<h3 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter database db_name character set utf8</span><br></pre></td></tr></table></figure>
-<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database if exists db_name;</span><br></pre></td></tr></table></figure>
-<h3 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use db_name;</span><br><span class="line">select database();</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2015/01/17/mysql/mysql之DDL/">
-    <time datetime="2015-01-16T16:00:00.000Z" class="entry-date">
-        2015-01-17
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/mysql/">mysql</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-java/java之跨域" class="post-java/java之跨域 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2015/01/05/java/java之跨域/">java之跨域</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/01/05/java/java之跨域/" data-id="cjhstbvrj001fm8tbpy4545l6" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>域名、ip地址不同<br>域名、ip相同，端口不同</p>
-<p>浏览器会阻止返回数据的显示</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>将返回数据伪装成方法回调，而不是单纯的json串</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2015/01/05/java/java之跨域/">
-    <time datetime="2015-01-04T16:00:00.000Z" class="entry-date">
-        2015-01-05
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-java/java之线程池" class="post-java/java之线程池 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2015/01/02/java/java之线程池/">java之线程池</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/01/02/java/java之线程池/" data-id="cjhstbvrb0015m8tbtbqp80tt" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>转<a href="http://www.trinea.cn/android/java-android-thread-pool/" target="_blank" rel="noopener">《Java(Android)线程池》</a></p>
-<h1 id="1-new-Thread的弊端"><a href="#1-new-Thread的弊端" class="headerlink" title="1,new Thread的弊端"></a>1,new Thread的弊端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
-<p>缺点：<br>a. 每次new Thread新建对象性能差。<br>b. 线程缺乏统一管理，可能无限制新建线程，相互之间竞争，及可能占用过多系统资源导致死机或oom。<br>c. 缺乏更多功能，如定时执行、定期执行、线程中断。  </p>
-<h1 id="2-java线程池"><a href="#2-java线程池" class="headerlink" title="2,java线程池"></a>2,java线程池</h1><p>Java通过Executors提供四种线程池，分别为：  </p>
-<h3 id="1-newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。"><a href="#1-newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。" class="headerlink" title="(1)newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。"></a>(1)newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//线程池为无限大，当执行第二个任务时第一个任务已经完成，会复用执行第一个任务的线程，而不用每次新建线程。</span><br><span class="line">ExecutorService cachedThreadPool = Executors.newCachedThreadPool();</span><br><span class="line">for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">	final int index = i;</span><br><span class="line">	try &#123;</span><br><span class="line">		Thread.sleep(index * 1000);</span><br><span class="line">	&#125; catch (InterruptedException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	cachedThreadPool.execute(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">		@Override</span><br><span class="line">		public void run() &#123;</span><br><span class="line">			System.out.println(index);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-newFixedThreadPool-创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。"><a href="#2-newFixedThreadPool-创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。" class="headerlink" title="(2)newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。"></a>(2)newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。</h3><p>创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。示例代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//因为线程池大小为3，每个任务输出index后sleep 2秒，所以每两秒打印3个数字。  </span><br><span class="line">//定长线程池的大小最好根据系统资源进行设置。如Runtime.getRuntime().availableProcessors()。</span><br><span class="line">ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3);</span><br><span class="line">for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">	final int index = i;</span><br><span class="line">	fixedThreadPool.execute(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">		@Override</span><br><span class="line">		public void run() &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				System.out.println(index);</span><br><span class="line">				Thread.sleep(2000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-newScheduledThreadPool-创建一个定长线程池，支持定时及周期性任务执行。"><a href="#3-newScheduledThreadPool-创建一个定长线程池，支持定时及周期性任务执行。" class="headerlink" title="(3)newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。"></a>(3)newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。</h3><p>创建一个定长线程池，支持定时及周期性任务执行。延迟执行示例代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//表示延迟3秒执行</span><br><span class="line">ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);</span><br><span class="line">scheduledThreadPool.schedule(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;delay 3 seconds&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, 3, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//表示延迟1秒后每3秒执行一次。</span><br><span class="line">//ScheduledExecutorService比Timer更安全，功能更强大</span><br><span class="line">scheduledThreadPool.scheduleAtFixedRate(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;delay 1 seconds, and excute every 3 seconds&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, 1, 3, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
-<h3 id="4-newSingleThreadExecutor-创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序-FIFO-LIFO-优先级-执行。"><a href="#4-newSingleThreadExecutor-创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序-FIFO-LIFO-优先级-执行。" class="headerlink" title="(4)newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。"></a>(4)newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//结果依次输出，相当于顺序执行各个任务。</span><br><span class="line">//现行大多数GUI程序都是单线程的。</span><br><span class="line">//Android中单线程可用于数据库操作，文件操作，应用批量安装，应用批量删除等不适合并发但可能IO阻塞性及影响UI线程响应的操作。</span><br><span class="line">ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();</span><br><span class="line">for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">	final int index = i;</span><br><span class="line">	singleThreadExecutor.execute(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">		@Override</span><br><span class="line">		public void run() &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				System.out.println(index);</span><br><span class="line">				Thread.sleep(2000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2015/01/02/java/java之线程池/">
-    <time datetime="2015-01-01T16:00:00.000Z" class="entry-date">
-        2015-01-02
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -601,7 +602,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全文检索/">全文检索</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/源码分析/">源码分析</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 

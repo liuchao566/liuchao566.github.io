@@ -57,6 +57,219 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-mysql/mysql之表基本操作" class="post-mysql/mysql之表基本操作 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2015/01/19/mysql/mysql之表基本操作/">mysql之表基本操作</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/01/19/mysql/mysql之表基本操作/" data-id="cjhstbvsa002em8tbrakfxcyt" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">create table employee (</span><br><span class="line">	id tinyint primary key auto_increment,</span><br><span class="line">	name varchar(25),</span><br><span class="line">	gender boolean,</span><br><span class="line">	age int default 19,</span><br><span class="line">	school varchar(25),</span><br><span class="line">	score_java double default 0,</span><br><span class="line">	score_python double default 0,</span><br><span class="line">	score_swift double default 0</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="查看表信息"><a href="#查看表信息" class="headerlink" title="查看表信息"></a>查看表信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">desc employee;</span><br><span class="line">show create table employee;</span><br></pre></td></tr></table></figure>
+<h3 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h3><h5 id="添加字段"><a href="#添加字段" class="headerlink" title="添加字段"></a>添加字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table employee</span><br><span class="line">	add is_married tinyint</span><br><span class="line">	add addr varchar;</span><br></pre></td></tr></table></figure>
+<h5 id="修改字段类型"><a href="#修改字段类型" class="headerlink" title="修改字段类型"></a>修改字段类型</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table employee</span><br><span class="line">	modify age int after id;</span><br></pre></td></tr></table></figure>
+<h5 id="修改字段名称"><a href="#修改字段名称" class="headerlink" title="修改字段名称"></a>修改字段名称</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table employee</span><br><span class="line">	change age employee_age int;</span><br></pre></td></tr></table></figure>
+<h5 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table employee</span><br><span class="line">	drop is_married;</span><br></pre></td></tr></table></figure>
+<h3 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename table employee to user;</span><br></pre></td></tr></table></figure>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table employee;</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/01/19/mysql/mysql之表基本操作/">
+    <time datetime="2015-01-18T16:00:00.000Z" class="entry-date">
+        2015-01-19
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-mysql/mysql之DDL" class="post-mysql/mysql之DDL post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2015/01/17/mysql/mysql之DDL/">mysql之DDL</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/01/17/mysql/mysql之DDL/" data-id="cjhstbvrp001nm8tbberxoa4a" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="创建数据库，并制定编码集"><a href="#创建数据库，并制定编码集" class="headerlink" title="创建数据库，并制定编码集"></a>创建数据库，并制定编码集</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create database db_name if not exists</span><br><span class="line">create database db_name default character set utf8 collate utf8_general_ci;</span><br></pre></td></tr></table></figure>
+<h3 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br><span class="line">show create database db_name;</span><br></pre></td></tr></table></figure>
+<h3 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter database db_name character set utf8</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database if exists db_name;</span><br></pre></td></tr></table></figure>
+<h3 id="使用数据库"><a href="#使用数据库" class="headerlink" title="使用数据库"></a>使用数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use db_name;</span><br><span class="line">select database();</span><br></pre></td></tr></table></figure>
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/01/17/mysql/mysql之DDL/">
+    <time datetime="2015-01-16T16:00:00.000Z" class="entry-date">
+        2015-01-17
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-java/java之跨域" class="post-java/java之跨域 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2015/01/05/java/java之跨域/">java之跨域</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/01/05/java/java之跨域/" data-id="cjhstbvrj001fm8tbpy4545l6" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>域名、ip地址不同<br>域名、ip相同，端口不同</p>
+<p>浏览器会阻止返回数据的显示</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>将返回数据伪装成方法回调，而不是单纯的json串</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/01/05/java/java之跨域/">
+    <time datetime="2015-01-04T16:00:00.000Z" class="entry-date">
+        2015-01-05
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="post-java/java之线程池" class="post-java/java之线程池 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2015/01/02/java/java之线程池/">java之线程池</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2015/01/02/java/java之线程池/" data-id="cjhstbvrb0015m8tbtbqp80tt" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>转<a href="http://www.trinea.cn/android/java-android-thread-pool/" target="_blank" rel="noopener">《Java(Android)线程池》</a></p>
+<h1 id="1-new-Thread的弊端"><a href="#1-new-Thread的弊端" class="headerlink" title="1,new Thread的弊端"></a>1,new Thread的弊端</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">	&#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+<p>缺点：<br>a. 每次new Thread新建对象性能差。<br>b. 线程缺乏统一管理，可能无限制新建线程，相互之间竞争，及可能占用过多系统资源导致死机或oom。<br>c. 缺乏更多功能，如定时执行、定期执行、线程中断。  </p>
+<h1 id="2-java线程池"><a href="#2-java线程池" class="headerlink" title="2,java线程池"></a>2,java线程池</h1><p>Java通过Executors提供四种线程池，分别为：  </p>
+<h3 id="1-newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。"><a href="#1-newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。" class="headerlink" title="(1)newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。"></a>(1)newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//线程池为无限大，当执行第二个任务时第一个任务已经完成，会复用执行第一个任务的线程，而不用每次新建线程。</span><br><span class="line">ExecutorService cachedThreadPool = Executors.newCachedThreadPool();</span><br><span class="line">for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">	final int index = i;</span><br><span class="line">	try &#123;</span><br><span class="line">		Thread.sleep(index * 1000);</span><br><span class="line">	&#125; catch (InterruptedException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	cachedThreadPool.execute(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">		@Override</span><br><span class="line">		public void run() &#123;</span><br><span class="line">			System.out.println(index);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-newFixedThreadPool-创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。"><a href="#2-newFixedThreadPool-创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。" class="headerlink" title="(2)newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。"></a>(2)newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。</h3><p>创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。示例代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//因为线程池大小为3，每个任务输出index后sleep 2秒，所以每两秒打印3个数字。  </span><br><span class="line">//定长线程池的大小最好根据系统资源进行设置。如Runtime.getRuntime().availableProcessors()。</span><br><span class="line">ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3);</span><br><span class="line">for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">	final int index = i;</span><br><span class="line">	fixedThreadPool.execute(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">		@Override</span><br><span class="line">		public void run() &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				System.out.println(index);</span><br><span class="line">				Thread.sleep(2000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-newScheduledThreadPool-创建一个定长线程池，支持定时及周期性任务执行。"><a href="#3-newScheduledThreadPool-创建一个定长线程池，支持定时及周期性任务执行。" class="headerlink" title="(3)newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。"></a>(3)newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。</h3><p>创建一个定长线程池，支持定时及周期性任务执行。延迟执行示例代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//表示延迟3秒执行</span><br><span class="line">ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);</span><br><span class="line">scheduledThreadPool.schedule(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;delay 3 seconds&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, 3, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//表示延迟1秒后每3秒执行一次。</span><br><span class="line">//ScheduledExecutorService比Timer更安全，功能更强大</span><br><span class="line">scheduledThreadPool.scheduleAtFixedRate(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;delay 1 seconds, and excute every 3 seconds&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, 1, 3, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
+<h3 id="4-newSingleThreadExecutor-创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序-FIFO-LIFO-优先级-执行。"><a href="#4-newSingleThreadExecutor-创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序-FIFO-LIFO-优先级-执行。" class="headerlink" title="(4)newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。"></a>(4)newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//结果依次输出，相当于顺序执行各个任务。</span><br><span class="line">//现行大多数GUI程序都是单线程的。</span><br><span class="line">//Android中单线程可用于数据库操作，文件操作，应用批量安装，应用批量删除等不适合并发但可能IO阻塞性及影响UI线程响应的操作。</span><br><span class="line">ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();</span><br><span class="line">for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">	final int index = i;</span><br><span class="line">	singleThreadExecutor.execute(new Runnable() &#123;</span><br><span class="line"> </span><br><span class="line">		@Override</span><br><span class="line">		public void run() &#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				System.out.println(index);</span><br><span class="line">				Thread.sleep(2000);</span><br><span class="line">			&#125; catch (InterruptedException e) &#123;</span><br><span class="line">				// TODO Auto-generated catch block</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2015/01/02/java/java之线程池/">
+    <time datetime="2015-01-01T16:00:00.000Z" class="entry-date">
+        2015-01-02
+    </time>
+</a>
+    
+  <span class="article-delim">&#8226;</span>
+  <div class="article-category">
+  <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-java/java之session持久化" class="post-java/java之session持久化 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -381,157 +594,10 @@
 
 
   
-    <article id="post-java/java之servlet是个什么鬼" class="post-java/java之servlet是个什么鬼 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2014/11/28/java/java之servlet是个什么鬼/">java之servlet是个什么鬼</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2014/11/28/java/java之servlet是个什么鬼/" data-id="cjhstbvrc0016m8tbx0o7qqlx" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>转<a href="https://www.zhihu.com/question/21416727" target="_blank" rel="noopener">《servlet的本质是什么，它是如何工作的？》</a> </p>
-<p>这个提问的最大一个bug，就是以为servlet是很复杂的东西，事实上，servlet就是一个Java接口，interface! 打开idea，ctrl + shift + n，搜索servlet，就可以看到是一个只有5个方法的interface!<br><img src="/images/java/servlet01.jpg" alt></p>
-<p>所以，提问中说的网络协议、http什么的，servlet根本不管！也管不着！那servlet是干嘛的？很简单，接口的作用是什么？规范呗！servlet接口定义的是一套处理网络请求的规范，所有实现servlet的类，都需要实现它那五个方法，其中最主要的是两个生命周期方法 init()和destroy()，还有一个处理请求的service()，也就是说，所有实现servlet接口的类，或者说，所有想要处理网络请求的类，都需要回答这三个问题：你初始化时要做什么你销毁时要做什么你接受到请求时要做什么这是Java给的一种规范！就像阿西莫夫的机器人三大定律、行尸走肉里Rick的那三个问题一样，规范！servlet是一个规范，那实现了servlet的类，就能处理请求了吗？答案是，不能。你可以随便谷歌一个servlet的hello world教程，里面都会让你写一个servlet，相信我，你从来不会在servlet中写什么监听8080端口的代码，servlet不会直接和客户端打交道！那请求怎么来到servlet呢？答案是servlet容器，比如我们最常用的tomcat，同样，你可以随便谷歌一个servlet的hello world教程，里面肯定会让你把servlet部署到一个容器中，不然你的servlet压根不会起作用。tomcat才是与客户端直接打交道的家伙，他监听了端口，请求过来后，根据url等信息，确定要将请求交给哪个servlet去处理，然后调用那个servlet的service方法，service方法返回一个response对象，tomcat再把这个response返回给客户端。</p>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2014/11/28/java/java之servlet是个什么鬼/">
-    <time datetime="2014-11-27T16:00:00.000Z" class="entry-date">
-        2014-11-28
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-java/java之传输乱码" class="post-java/java之传输乱码 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2014/11/20/java/java之传输乱码/">java之传输乱码</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/2014/11/20/java/java之传输乱码/" data-id="cjhstbvr90013m8tbj5kg86wc" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <h3 id="request"><a href="#request" class="headerlink" title="request"></a>request</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//post请求处理，只适合post请求</span><br><span class="line">request.setCharacterEncoding(&quot;UTF-8&quot;);</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//get请求处理，因为request接受默认是iso8859-1传输编码的</span><br><span class="line">parameter=new String(parameter.getBytes(&quot;iso8859-1&quot;),&quot;UTF-8&quot;);</span><br><span class="line"></span><br><span class="line">//为了一劳永逸，还可以修改tomcat下/conf/server.xml文件，添加URIEncoding=&quot;UTF-8&quot;，否则就要按照上面批量处理参数编码</span><br><span class="line">&lt;Connector connectionTimeout=&quot;20000&quot; port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; redirectPort=&quot;8443&quot; URIEncoding=&quot;UTF-8&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="response"><a href="#response" class="headerlink" title="response"></a>response</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//设置response缓冲区的编码，没有强制设置浏览器解析的编码</span><br><span class="line">//response=setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//设置response缓冲区的编码，同时强制设置浏览器解析的编码，多使用该方法</span><br><span class="line">response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span><br></pre></td></tr></table></figure>
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2014/11/20/java/java之传输乱码/">
-    <time datetime="2014-11-19T16:00:00.000Z" class="entry-date">
-        2014-11-20
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/java/">java</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
-    <article id="post-总结/总结" class="post-总结/总结 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/1970/01/01/总结/总结/">总结</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://www.liuchao566.com/1970/01/01/总结/总结/" data-id="cjtp4f2qn000080tbkzmlsqoo" class="leave-reply bdsharebuttonbox" data-cmd="more"></a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//bio、nio和aio</span><br><span class="line">bio进行io操作的线程是阻塞式的，浪费线程资源</span><br><span class="line">nio只有在需要进行io操作的时候启动线程进行处理</span><br><span class="line">aio是nio的改进版，自己不处理ios操作而由系统自己去进行ios操作</span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/1970/01/01/总结/总结/">
-    <time datetime="1969-12-31T16:00:00.000Z" class="entry-date">
-        1970-01-01
-    </time>
-</a>
-    
-  <span class="article-delim">&#8226;</span>
-  <div class="article-category">
-  <a class="article-category-link" href="/categories/总结/">总结</a>
-  </div>
-
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+        <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/">Next &raquo;</a>
       </nav>
     </nav>
   
@@ -543,7 +609,7 @@
   <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ios/">ios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/soa架构/">soa架构</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/springcloud/">springcloud</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssh/">ssh</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ssm/">ssm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/tornado/">tornado</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/优化/">优化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/全文检索/">全文检索</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/总结/">总结</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/效率/">效率</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/源码分析/">源码分析</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li></ul>
     </div>
   </aside>
 
